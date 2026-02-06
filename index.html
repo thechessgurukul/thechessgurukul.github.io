@@ -16,7 +16,7 @@
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.8; /* Increased line height for better readability */
+            line-height: 1.7;
             color: var(--text-dark);
             margin: 0;
             background-color: var(--off-white);
@@ -26,7 +26,7 @@
         /* Navigation */
         nav {
             background: var(--navy);
-            padding: 15px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -67,46 +67,27 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 140px 20px; /* Increased padding */
+            padding: 120px 20px;
             text-align: center;
         }
         .hero h1 { font-size: 3.5rem; margin: 0; color: var(--gold); letter-spacing: -1px; }
-        .hero p { font-size: 1.25rem; max-width: 700px; margin: 30px auto; opacity: 0.9; font-weight: 300; }
+        .hero p { font-size: 1.25rem; max-width: 700px; margin: 25px auto; opacity: 0.9; font-weight: 300; }
 
         /* General Section Styling */
-        section { padding: 120px 20px; max-width: 1100px; margin: 0 auto; } /* Increased vertical spacing */
-        .section-title { text-align: center; margin-bottom: 25px; font-size: 2.4rem; color: var(--navy); }
-        .section-subtitle { text-align: center; margin-bottom: 70px; color: #666; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-        /* Floating WhatsApp Button */
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 1001;
-            transition: transform 0.3s ease;
-        }
-        .floating-whatsapp:hover { transform: scale(1.1); }
+        section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 20px; font-size: 2.4rem; color: var(--navy); }
+        .section-subtitle { text-align: center; margin-bottom: 60px; color: #666; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
         /* Why Chess Section */
         .why-chess-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 35px; /* Increased gap */
+            gap: 20px;
             text-align: center;
         }
-        .benefit-item { padding: 25px; }
-        .benefit-item h4 { color: var(--navy); margin-bottom: 15px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        .benefit-item { padding: 20px; }
+        .benefit-item h4 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        .benefit-item p { font-size: 0.95rem; color: #555; }
         
         /* Styled Syllabus List */
         .syllabus-list {
@@ -116,7 +97,7 @@
             margin: 0;
         }
         .syllabus-list li {
-            padding: 12px 0; /* More spacing between syllabus items */
+            padding: 8px 0;
             border-bottom: 1px solid #eee;
             font-size: 0.95rem;
             color: #444;
@@ -131,44 +112,44 @@
         /* Boxes */
         .founder-box {
             background: var(--white);
-            padding: 60px; /* Increased padding */
+            padding: 50px;
             border-radius: 20px;
             display: flex;
-            gap: 50px;
+            gap: 40px;
             align-items: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .syllabus-box {
             display: block; 
-            margin-top: 60px;
+            margin-top: 40px;
         }
-        .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
+        .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
 
         /* Training Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; } /* Increased gap */
-        .card { background: var(--white); padding: 50px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; }
-        .card h3 { color: var(--navy); margin-top: 0; font-size: 1.5rem; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--white); padding: 40px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; }
+        .card h3 { color: var(--navy); margin-top: 0; font-size: 1.5rem; }
 
         /* Testimonials */
-        .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 40px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between; }
-        .stars { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
-        .quote { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; color: #333; line-height: 1.6; }
+        .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 35px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        .stars { color: var(--gold); margin-bottom: 15px; font-size: 1.2rem; }
+        .quote { font-style: italic; font-size: 1rem; margin-bottom: 20px; color: #333; }
         .author { font-weight: 700; color: var(--navy); display: block; }
 
         /* Contact Section */
-        .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
-        .contact-section h2 { color: var(--gold); margin-bottom: 20px; }
+        .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 60px 20px; }
+        .contact-section h2 { color: var(--gold); }
         
         /* Buttons */
         .btn {
             display: inline-block;
             background: var(--gold);
             color: var(--navy);
-            padding: 18px 50px;
+            padding: 18px 40px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 800;
-            margin-top: 25px;
+            margin: 10px;
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -179,29 +160,23 @@
         .btn-outline {
             background: transparent;
             color: var(--gold);
-            margin-left: 10px;
         }
         .btn-outline:hover {
             background: var(--gold);
             color: var(--navy);
         }
 
-        footer { padding: 50px 20px; text-align: center; font-size: 0.9rem; color: #777; border-top: 1px solid #eee; }
+        footer { padding: 40px 20px; text-align: center; font-size: 0.9rem; color: #777; }
 
         @media (max-width: 850px) {
             .hero h1 { font-size: 2.5rem; }
-            .founder-box { flex-direction: column; text-align: center; padding: 40px; }
+            .founder-box { flex-direction: column; text-align: center; padding: 30px; }
             .nav-links { display: none; } 
-            .btn-outline { margin-left: 0; margin-top: 15px; }
-            section { padding: 80px 20px; }
+            .btn { width: 100%; margin: 10px 0; }
         }
     </style>
 </head>
 <body>
-
-<a href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session%20for%20my%20child." class="floating-whatsapp" target="_blank" title="WhatsApp us">
-    <svg viewBox="0 0 32 32" style="width:35px; height:35px; fill:white;"><path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.236-.73-3.82-.95-3.82-.57 0-1.428.854-1.428 1.503 0 .285.452 1.334.8 1.83 1.51 2.162 3.503 3.612 6.094 4.545.505.183 1.01.323 1.547.472.523.145 1.135.252 1.547.252.393 0 1.075-.153 1.5-.54.423-.387.92-.967.92-1.503 0-.173-2.022-1.025-2.022-1.025s-.854-.427-1.43-.19zM16 1C7.716 1 1 7.716 1 16c0 2.64.68 5.12 1.87 7.28L1 31l8.07-1.87A14.93 14.93 0 0 0 16 31c8.284 0 15-6.716 15-15 0-8.284-6.716-15-15-15z"/></svg>
-</a>
 
 <nav>
     <div class="nav-container">
@@ -339,21 +314,18 @@
 <section id="contact">
     <div class="contact-section">
         <h2>Start Your Strategic Journey</h2>
-        <p>Book a demo session with Coach Gaurav and experience the structured learning of The Chess Gurukul.</p>
-        
-        <div style="margin-bottom: 30px; font-size: 1.15rem; line-height: 1.6;">
+        <div style="margin-bottom: 25px; font-size: 1.1rem;">
             <p><strong>📍 Training Center:</strong><br>
-            Sai Chauk, Balewadi, Pune, Maharashtra, India 411045</p>
+            Sai Chauk, Balewadi, Pune, Maharashtra 411045</p>
         </div>
-
-        <a class="btn" href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session%20for%20my%20child." target="_blank">WhatsApp Us Now</a>
+        <a class="btn" href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session%20for%20my%20child." target="_blank">WhatsApp Us</a>
         <a class="btn btn-outline" href="https://share.google/9Pvi62wvRu26lAIy1" target="_blank">Get Directions</a>
-        <a class="btn btn-outline" href="https://share.google/tyrL92WueEB12yoDM" target="_blank">View FIDE Profile</a>
+        <a class="btn btn-outline" href="https://share.google/tyrL92WueEB12yoDM" target="_blank">FIDE Profile</a>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2026 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
+    <p>&copy; 2026 The Chess Gurukul | Pune, India</p>
 </footer>
 
 </body>
