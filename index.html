@@ -85,8 +85,8 @@
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
 
         /* Training Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .card { background: var(--white); padding: 40px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--white); padding: 40px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; }
         .card h3 { color: var(--navy); margin-top: 0; font-size: 1.5rem; }
 
         /* Testimonials */
@@ -195,7 +195,7 @@
 
 <section id="programs" style="background-color: #f1f3f5;">
     <h2 class="section-title">Our Training Programs</h2>
-    <div class="grid" style="justify-content: center;">
+    <div class="grid">
         <div class="card">
             <h3>Online Coaching</h3>
             <p>Interactive, high-quality sessions via <strong>Zoom</strong>. Perfect for students globally who want personalized attention from the comfort of home.</p>
@@ -203,6 +203,10 @@
         <div class="card">
             <h3>Offline Sessions</h3>
             <p>Structured in-person coaching in Pune to build strong over-the-board skills and tournament confidence.</p>
+        </div>
+        <div class="card">
+            <h3>Chess Club</h3>
+            <p>Our weekend activity where students meet to practice, play friendly matches, and analyze games together in a social environment.</p>
         </div>
     </div>
 </section>
@@ -244,7 +248,7 @@
 </section>
 
 <footer>
-    <p>&copy; 2022 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
+    <p>&copy; 2024 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
 </footer>
 
 </body>
