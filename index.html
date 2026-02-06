@@ -61,7 +61,7 @@
         .section-title { text-align: center; margin-bottom: 20px; font-size: 2.4rem; color: var(--navy); }
         .section-subtitle { text-align: center; margin-bottom: 60px; color: #666; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        /* Why Chess Section */
+        /* Why Chess Section & Syllabus List */
         .why-chess-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -71,8 +71,28 @@
         .benefit-item { padding: 20px; }
         .benefit-item h4 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
         .benefit-item p { font-size: 0.95rem; color: #555; }
+        
+        /* Styled Syllabus List */
+        .syllabus-list {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .syllabus-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            gap: 10px;
+        }
+        .syllabus-list li span {
+            color: var(--gold);
+            font-weight: bold;
+        }
 
-        /* Founder Section */
+        /* Founder Section & Syllabus Box */
         .founder-box {
             background: var(--white);
             padding: 50px;
@@ -81,6 +101,10 @@
             gap: 40px;
             align-items: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .syllabus-box {
+            display: block; /* Override flex for syllabus detail */
+            margin-top: 40px;
         }
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
 
@@ -207,6 +231,37 @@
         <div class="card">
             <h3>Chess Club</h3>
             <p>Our weekend activity where students meet to practice, play friendly matches, and analyze games together in a social environment.</p>
+        </div>
+    </div>
+
+    <div class="founder-box syllabus-box">
+        <span class="badge">Comprehensive Curriculum</span>
+        <h2 style="color: var(--navy); margin-top: 0;">Beginner Level I Syllabus</h2>
+        <p style="color: #666; margin-bottom: 30px;">Specially curated for age group 6 and above to build a rock-solid foundation in the game.</p>
+        
+        <div class="why-chess-grid" style="text-align: left;">
+            <div class="benefit-item" style="padding: 0 10px;">
+                <ul class="syllabus-list">
+                    <li><span>1.</span> Chess history in brief, the board, and pieces</li>
+                    <li><span>2.</span> How chess pieces move and capture</li>
+                    <li><span>3.</span> Point value of the chess pieces</li>
+                    <li><span>4.</span> Profitable exchange</li>
+                    <li><span>5.</span> Attack and defend</li>
+                    <li><span>6.</span> Check and getting out of check</li>
+                    <li><span>7.</span> Checkmate</li>
+                </ul>
+            </div>
+            <div class="benefit-item" style="padding: 0 10px;">
+                <ul class="syllabus-list">
+                    <li><span>8.</span> Special moves (Promotion, Castling, En Passant)</li>
+                    <li><span>9.</span> Basic chess notations</li>
+                    <li><span>10.</span> Draws</li>
+                    <li><span>11.</span> Illegal moves</li>
+                    <li><span>12.</span> Time controls & Intro to a chess clock</li>
+                    <li><span>13.</span> Tournament rules and etiquette</li>
+                    <li><span>14.</span> Chess related general knowledge</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
