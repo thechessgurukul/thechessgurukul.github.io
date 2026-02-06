@@ -26,7 +26,7 @@
         /* Navigation */
         nav {
             background: var(--navy);
-            padding: 15px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -40,7 +40,24 @@
             align-items: center;
             padding: 0 20px;
         }
-        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        .logo-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo { 
+            color: var(--gold); 
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            text-decoration: none; 
+            line-height: 1.2;
+        }
+        .tagline {
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0.9;
+        }
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
         .nav-links a:hover { color: var(--gold); }
 
@@ -61,7 +78,7 @@
         .section-title { text-align: center; margin-bottom: 20px; font-size: 2.4rem; color: var(--navy); }
         .section-subtitle { text-align: center; margin-bottom: 60px; color: #666; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        /* Why Chess Section & Syllabus List */
+        /* Why Chess Section */
         .why-chess-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -92,7 +109,7 @@
             font-weight: bold;
         }
 
-        /* Founder Section & Syllabus Box */
+        /* Boxes */
         .founder-box {
             background: var(--white);
             padding: 50px;
@@ -103,14 +120,14 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .syllabus-box {
-            display: block; /* Override flex for syllabus detail */
+            display: block; 
             margin-top: 40px;
         }
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
 
         /* Training Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--white); padding: 40px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--white); padding: 40px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
         .card h3 { color: var(--navy); margin-top: 0; font-size: 1.5rem; }
 
         /* Testimonials */
@@ -164,7 +181,10 @@
 
 <nav>
     <div class="nav-container">
-        <a href="#" class="logo">THE CHESS GURUKUL</a>
+        <div class="logo-group">
+            <a href="#" class="logo">THE CHESS GURUKUL</a>
+            <span class="tagline">Explore the world of 64 squares...</span>
+        </div>
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#why-chess">Why Chess?</a>
@@ -192,7 +212,6 @@
     </div>
 </section>
 
-
 <section id="why-chess" style="border-top: 1px solid #ddd;">
     <h2 class="section-title">The Chess Advantage</h2>
     <p class="section-subtitle">Chess is more than just a game; it is a tool for life. At The Chess Gurukul, we use the board to develop essential cognitive skills.</p>
@@ -219,7 +238,7 @@
 
 <section id="programs" style="background-color: #f1f3f5;">
     <h2 class="section-title">Our Training Programs</h2>
-    <div class="grid">
+    <div class="grid" style="justify-content: center;">
         <div class="card">
             <h3>Online Coaching</h3>
             <p>Interactive, high-quality sessions via <strong>Zoom</strong>. Perfect for students globally who want personalized attention from the comfort of home.</p>
@@ -228,16 +247,12 @@
             <h3>Offline Sessions</h3>
             <p>Structured in-person coaching in Pune to build strong over-the-board skills and tournament confidence.</p>
         </div>
-        <div class="card">
-            <h3>Chess Club</h3>
-            <p>Our weekend activity where students meet to practice, play friendly matches, and analyze games together in a social environment.</p>
-        </div>
     </div>
 
     <div class="founder-box syllabus-box">
         <span class="badge">Comprehensive Curriculum</span>
         <h2 style="color: var(--navy); margin-top: 0;">Beginner Level I Syllabus</h2>
-        <p style="color: #666; margin-bottom: 30px;">Specially curated for age group 6 and above to build a rock-solid foundation in the game.</p>
+        <p style="color: #666; margin-bottom: 30px;">Specially curated to build a rock-solid foundation in the game.</p>
         
         <div class="why-chess-grid" style="text-align: left;">
             <div class="benefit-item" style="padding: 0 10px;">
@@ -282,29 +297,3 @@
                 <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily to the next level. He also provides clear session-wise updates on the material covered."</p>
             </div>
             <span class="author">— Sameer Patil</span>
-        </div>
-        <div class="testimonial-card">
-            <div>
-                <div class="stars">★★★★★</div>
-                <p class="quote">"Gaurav Sir is very keen and particular about chess. My son is taking classes for more than a year and we are happy with the result. Sir guides us for tournaments as well. He is very punctual and encourages children beyond the game."</p>
-            </div>
-            <span class="author">— Aparna Choudhari</span>
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <div class="contact-section">
-        <h2>Start Your Strategic Journey</h2>
-        <p>Book a demo session with Coach Gaurav and experience the structured learning of The Chess Gurukul.</p>
-        <a class="btn" href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session%20for%20my%20child." target="_blank">WhatsApp Us Now</a>
-        <a class="btn btn-outline" href="https://share.google/tyrL92WueEB12yoDM" target="_blank">View FIDE Profile</a>
-    </div>
-</section>
-
-<footer>
-    <p>&copy; 2024 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
-</footer>
-
-</body>
-</html>
