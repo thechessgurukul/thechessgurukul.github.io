@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNH0MG597R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MNH0MG597R');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -72,6 +80,14 @@
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
         .nav-links a:hover { color: var(--gold); }
 
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
@@ -130,7 +146,7 @@
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; width: fit-content; }
         .bio-footer { display: flex; justify-content: flex-end; margin-top: 20px; }
 
-        /* Testimonials Update V22 */
+        /* Testimonials */
         .testimonial-card { 
             background: #fffef0; 
             border: 1px solid var(--gold); 
@@ -185,6 +201,7 @@
 
         /* MOBILE OPTIMIZATIONS */
         @media (max-width: 850px) {
+            .menu-toggle { display: block; }
             .nav-container { padding: 0 15px; }
             .logo { font-size: 1.1rem; } 
             .tagline { font-size: 0.65rem; }
@@ -193,7 +210,23 @@
             .hero p { font-size: 0.95rem; margin: 15px auto; } 
             .founder-box { padding: 30px; }
             .bio-footer { justify-content: center; }
-            .nav-links { display: none; } 
+            
+            /* Toggle Logic */
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 70px; 
+                left: 0; 
+                width: 100%; 
+                background: var(--navy); 
+                flex-direction: column; 
+                padding: 20px; 
+                text-align: center;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 15px 0; font-size: 1.1rem; }
+
             .section-title { font-size: 1.8rem; }
             .btn { 
                 padding: 12px 25px; 
@@ -215,7 +248,8 @@
             <a href="#" class="logo">THE CHESS GURUKUL</a>
             <span class="tagline">Explore the world of 64 squares...</span>
         </div>
-        <div class="nav-links">
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        <div class="nav-links" id="nav-list">
             <a href="#about">About</a>
             <a href="#why-chess">Why Chess?</a>
             <a href="#programs">Programs</a>
@@ -340,6 +374,22 @@
 <footer>
     <p>&copy; 2026 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
 </footer>
+
+<script>
+    // TECHNICAL FIX FOR MOBILE MENU
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+    menuToggle.addEventListener('click', () => { 
+        navList.classList.toggle('active'); 
+    });
+    
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => { 
+            navList.classList.remove('active'); 
+        });
+    });
+</script>
 
 </body>
 </html>
