@@ -137,16 +137,42 @@
 
         /* Contact Section */
         .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
-        .btn { display: inline-block; background: var(--gold); color: var(--navy); padding: 18px 50px; text-decoration: none; border-radius: 50px; font-weight: 800; margin-top: 25px; transition: 0.3s; text-transform: uppercase; border: 2px solid var(--gold); font-size: 0.9rem; }
+        
+        /* Unified Button Styling */
+        .btn { 
+            display: inline-block; 
+            background: var(--gold); 
+            color: var(--navy); 
+            padding: 18px 50px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 800; 
+            margin-top: 25px; 
+            transition: 0.3s; 
+            text-transform: uppercase; 
+            border: 2px solid var(--gold); 
+            font-size: 0.9rem;
+            white-space: nowrap; /* Prevents text from wrapping */
+        }
         .btn:hover { background: #e59400; border-color: #e59400; }
 
         footer { padding: 50px 20px; text-align: center; font-size: 0.9rem; color: #777; border-top: 1px solid #eee; }
 
+        /* MOBILE OPTIMIZATIONS */
         @media (max-width: 850px) {
-            .hero h1 { font-size: 2.5rem; }
-            .founder-box { padding: 40px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .founder-box { padding: 30px; }
             .bio-footer { justify-content: center; }
             .nav-links { display: none; } 
+            .section-title { font-size: 1.8rem; }
+            
+            /* Responsive Button Tweak */
+            .btn { 
+                padding: 12px 25px; 
+                font-size: 0.8rem; 
+                margin-top: 15px;
+            }
         }
     </style>
 </head>
