@@ -54,7 +54,7 @@
             gap: 12px;
         }
         .nav-logo-img {
-            height: 45px;
+            height: 50px; 
             width: auto;
             background: transparent;
             object-fit: contain;
@@ -75,15 +75,15 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 60px 20px 100px;
+            padding: 80px 20px 100px;
             text-align: center;
         }
         .hero-logo {
-            width: 240px; 
+            width: 320px; 
+            max-width: 90%;
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             background: transparent;
-            border: none;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
         .hero h1 { font-size: 3rem; margin: 0; color: var(--gold); letter-spacing: -1px; line-height: 1.2; }
@@ -105,7 +105,6 @@
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             z-index: 1001;
-            transition: all 0.3s ease;
         }
         .floating-whatsapp svg { width: 38px; height: 38px; fill: white; }
 
@@ -114,24 +113,21 @@
         .section-title { text-align: center; margin-bottom: 25px; font-size: 2.4rem; color: var(--navy); }
         .section-subtitle { text-align: center; margin-bottom: 50px; color: #666; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-        /* Grid Styling */
         .why-chess-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
         .benefit-item { padding: 20px; }
         .benefit-item h4 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .card { background: var(--white); padding: 50px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; }
 
-        /* Founder Section */
         .founder-box { background: var(--white); padding: 60px; border-radius: 20px; display: flex; gap: 50px; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
 
-        /* Testimonial Styling */
         .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 40px; border-radius: 15px; display: flex; flex-direction: column; height: 100%; }
         .stars { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
         .quote { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; color: #333; line-height: 1.6; text-align: left; }
         .author { font-weight: 700; color: var(--navy); display: block; margin-top: auto; }
 
-        /* Contact Section */
         .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
         .btn { display: inline-block; background: var(--gold); color: var(--navy); padding: 18px 40px; text-decoration: none; border-radius: 50px; font-weight: 800; margin: 10px; transition: 0.3s; text-transform: uppercase; border: 2px solid var(--gold); font-size: 0.85rem; min-width: 220px; }
         .btn:hover { background-color: #e59400; border-color: #e59400; }
@@ -140,7 +136,7 @@
 
         @media (max-width: 850px) {
             .hero h1 { font-size: 2.2rem; }
-            .hero-logo { width: 180px; }
+            .hero-logo { width: 220px; }
             .founder-box { flex-direction: column; text-align: center; padding: 40px; }
             .nav-links { display: none; } 
         }
@@ -232,17 +228,17 @@
     <div class="grid">
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Bapat is an exceptional Chess Mentor. He’s soft-spoken and patient, and my son loves to be with him in chess sessions."</p>
+            <p class="quote">"Gaurav Bapat is an exceptional Chess Mentor. He’s soft-spoken and patient, and my son loves to be with him in chess sessions. Gaurav is extremely well-versed in the game and motivates everyone on a regular basis. I highly recommend him."</p>
             <span class="author">— Shivani Goyal</span>
         </div>
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily."</p>
+            <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily to the next level. He also provides clear session-wise updates on the material covered."</p>
             <span class="author">— Sameer Patil</span>
         </div>
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Sir is very keen and particular about chess. Sir guides us for tournaments as well. He is very punctual."</p>
+            <p class="quote">"Gaurav Sir is very keen and particular about chess. My son is taking classes for more than a year and we are happy with the result. Sir guides us for tournaments as well. He is very punctual and encourages children beyond the game."</p>
             <span class="author">— Aparna Choudhari</span>
         </div>
     </div>
