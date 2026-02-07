@@ -9,7 +9,7 @@
     
     <meta property="og:title" content="The Chess Gurukul | Professional Chess Coaching">
     <meta property="og:description" content="Nurturing young minds through structured mental discipline and expert chess mentorship with CA Gaurav Bapat.">
-    <meta property="og:image" content="social-preview.jpg">
+    <meta property="og:image" content="logo.png">
     <meta property="og:type" content="website">
 
     <style>
@@ -54,11 +54,9 @@
             gap: 12px;
         }
         .nav-logo-img {
-            height: 40px;
-            width: 40px;
-            border-radius: 4px;
-            border: 1px solid var(--gold);
-            background: white;
+            height: 45px;
+            width: auto;
+            background: transparent;
             object-fit: contain;
         }
         .logo { 
@@ -71,24 +69,22 @@
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
         .nav-links a:hover { color: var(--gold); }
 
-        /* Hero Section with Large Logo */
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(20, 33, 61, 0.92), rgba(20, 33, 61, 0.92)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 80px 20px 100px;
+            padding: 60px 20px 100px;
             text-align: center;
         }
         .hero-logo {
-            width: 180px;
-            height: 180px;
-            margin-bottom: 25px;
-            border-radius: 15px;
-            border: 3px solid var(--gold);
-            background: white;
-            padding: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 240px; 
+            height: auto;
+            margin-bottom: 20px;
+            background: transparent;
+            border: none;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
         .hero h1 { font-size: 3rem; margin: 0; color: var(--gold); letter-spacing: -1px; line-height: 1.2; }
         .hero p { font-size: 1.2rem; max-width: 700px; margin: 20px auto 35px; opacity: 0.9; font-weight: 300; }
@@ -118,25 +114,18 @@
         .section-title { text-align: center; margin-bottom: 25px; font-size: 2.4rem; color: var(--navy); }
         .section-subtitle { text-align: center; margin-bottom: 50px; color: #666; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
 
-        /* Why Chess Grid */
-        .why-chess-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
+        /* Grid Styling */
+        .why-chess-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
         .benefit-item { padding: 20px; }
         .benefit-item h4 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
-
-        /* Standard Grids */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .card { background: var(--white); padding: 50px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; }
 
-        /* Founder Box */
+        /* Founder Section */
         .founder-box { background: var(--white); padding: 60px; border-radius: 20px; display: flex; gap: 50px; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
 
-        /* Testimonials */
+        /* Testimonial Styling */
         .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 40px; border-radius: 15px; display: flex; flex-direction: column; height: 100%; }
         .stars { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
         .quote { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; color: #333; line-height: 1.6; text-align: left; }
@@ -144,28 +133,14 @@
 
         /* Contact Section */
         .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
-        .btn { 
-            display: inline-block; 
-            background: var(--gold); 
-            color: var(--navy); 
-            padding: 18px 40px; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: 800; 
-            margin: 10px; 
-            transition: 0.3s; 
-            text-transform: uppercase; 
-            border: 2px solid var(--gold);
-            font-size: 0.85rem;
-            min-width: 220px; 
-        }
+        .btn { display: inline-block; background: var(--gold); color: var(--navy); padding: 18px 40px; text-decoration: none; border-radius: 50px; font-weight: 800; margin: 10px; transition: 0.3s; text-transform: uppercase; border: 2px solid var(--gold); font-size: 0.85rem; min-width: 220px; }
         .btn:hover { background-color: #e59400; border-color: #e59400; }
 
         footer { padding: 50px 20px; text-align: center; font-size: 0.9rem; color: #777; border-top: 1px solid #eee; }
 
         @media (max-width: 850px) {
             .hero h1 { font-size: 2.2rem; }
-            .hero-logo { width: 140px; height: 140px; }
+            .hero-logo { width: 180px; }
             .founder-box { flex-direction: column; text-align: center; padding: 40px; }
             .nav-links { display: none; } 
         }
@@ -180,7 +155,7 @@
 <nav>
     <div class="nav-container">
         <div class="logo-group">
-            <img src="social-preview.jpg" alt="Logo" class="nav-logo-img">
+            <img src="logo.png" alt="Logo" class="nav-logo-img">
             <a href="#" class="logo">THE CHESS GURUKUL</a>
         </div>
         <div class="nav-links">
@@ -194,7 +169,7 @@
 </nav>
 
 <header class="hero">
-    <img src="social-preview.jpg" alt="The Chess Gurukul Logo" class="hero-logo">
+    <img src="logo.png" alt="The Chess Gurukul Logo" class="hero-logo">
     <h1>Professional Chess Coaching in Pune & Online</h1>
     <p>Nurturing young minds through structured mental discipline and expert chess mentorship with CA Gaurav Bapat.</p>
     <a href="https://wa.me/919175154913" class="btn">Book a Demo Session</a>
@@ -257,17 +232,17 @@
     <div class="grid">
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Bapat is an exceptional Chess Mentor. He’s soft-spoken and patient, and my son loves to be with him in chess sessions. Gaurav is extremely well-versed in the game and motivates everyone on a regular basis. I highly recommend him."</p>
+            <p class="quote">"Gaurav Bapat is an exceptional Chess Mentor. He’s soft-spoken and patient, and my son loves to be with him in chess sessions."</p>
             <span class="author">— Shivani Goyal</span>
         </div>
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily to the next level. He also provides clear session-wise updates on the material covered."</p>
+            <p class="quote">"Gaurav Sir structures the sessions thoughtfully, with a well-defined curriculum designed to help students progress steadily."</p>
             <span class="author">— Sameer Patil</span>
         </div>
         <div class="testimonial-card">
             <div class="stars">★★★★★</div>
-            <p class="quote">"Gaurav Sir is very keen and particular about chess. My son is taking classes for more than a year and we are happy with the result. Sir guides us for tournaments as well. He is very punctual and encourages children beyond the game."</p>
+            <p class="quote">"Gaurav Sir is very keen and particular about chess. Sir guides us for tournaments as well. He is very punctual."</p>
             <span class="author">— Aparna Choudhari</span>
         </div>
     </div>
