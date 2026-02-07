@@ -152,26 +152,31 @@
             text-transform: uppercase; 
             border: 2px solid var(--gold); 
             font-size: 0.9rem;
-            white-space: nowrap; /* Prevents text from wrapping */
+            white-space: nowrap; 
         }
         .btn:hover { background: #e59400; border-color: #e59400; }
 
         footer { padding: 50px 20px; text-align: center; font-size: 0.9rem; color: #777; border-top: 1px solid #eee; }
 
-        /* MOBILE OPTIMIZATIONS */
+        /* MOBILE OPTIMIZATIONS (Only affects phone screens) */
         @media (max-width: 850px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; }
+            .nav-container { padding: 0 15px; }
+            .logo { font-size: 1.1rem; } /* Slightly smaller logo to save height */
+            .tagline { font-size: 0.65rem; }
+
+            .hero { padding: 60px 20px; } /* Reduced from 140px to pull the button UP */
+            .hero h1 { font-size: 1.8rem; margin-bottom: 10px; } /* Smaller h1 */
+            .hero p { font-size: 0.95rem; margin: 15px auto; } /* Less margin */
+            
             .founder-box { padding: 30px; }
             .bio-footer { justify-content: center; }
             .nav-links { display: none; } 
             .section-title { font-size: 1.8rem; }
             
-            /* Responsive Button Tweak */
             .btn { 
                 padding: 12px 25px; 
                 font-size: 0.8rem; 
-                margin-top: 15px;
+                margin-top: 10px;
             }
         }
     </style>
