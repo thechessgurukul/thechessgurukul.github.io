@@ -87,21 +87,21 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 20px 140px;
+            padding: 80px 20px 100px;
             text-align: center;
         }
         .hero-logo {
             width: 180px;
             height: 180px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-radius: 15px;
             border: 3px solid var(--gold);
             background: white;
             padding: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .hero h1 { font-size: 3.5rem; margin: 0; color: var(--gold); letter-spacing: -1px; line-height: 1.2; }
-        .hero p { font-size: 1.25rem; max-width: 700px; margin: 25px auto 40px; opacity: 0.9; font-weight: 300; }
+        .hero h1 { font-size: 3rem; margin: 0; color: var(--gold); letter-spacing: -1px; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 20px auto 35px; opacity: 0.9; font-weight: 300; }
 
         /* Floating WhatsApp Button */
         .floating-whatsapp {
@@ -123,9 +123,23 @@
         }
         .floating-whatsapp svg { width: 38px; height: 38px; fill: white; }
 
-        /* Sections */
-        section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
+        /* General Section Styling */
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
         .section-title { text-align: center; margin-bottom: 25px; font-size: 2.4rem; color: var(--navy); }
+        .section-subtitle { text-align: center; margin-bottom: 50px; color: #666; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* Why Chess Section */
+        .why-chess-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .benefit-item { padding: 20px; }
+        .benefit-item h4 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        .benefit-item p { font-size: 0.95rem; color: #555; }
+
+        /* Content Grids */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
         .card { background: var(--white); padding: 50px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; }
 
@@ -133,13 +147,13 @@
         .founder-box { background: var(--white); padding: 60px; border-radius: 20px; display: flex; gap: 50px; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
         .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
 
-        /* Testimonials Full Text */
+        /* Testimonials */
         .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 40px; border-radius: 15px; display: flex; flex-direction: column; height: 100%; }
         .stars { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
         .quote { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; color: #333; line-height: 1.6; text-align: left; }
         .author { font-weight: 700; color: var(--navy); display: block; margin-top: auto; }
 
-        /* Contact Section Buttons */
+        /* Contact Section */
         .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
         .btn { 
             display: inline-block; 
@@ -185,6 +199,7 @@
         </div>
         <div class="nav-links">
             <a href="#about">About</a>
+            <a href="#why-chess">Why Chess?</a>
             <a href="#programs">Programs</a>
             <a href="#reviews">Reviews</a>
             <a href="#contact">Contact</a>
@@ -206,6 +221,29 @@
             <h2>CA Gaurav Bapat</h2>
             <p>Combining corporate precision with the strategic depth of a <strong>FIDE-rated player</strong>, Coach Gaurav has established a unique coaching methodology. Known for his soft-spoken, patient, and highly motivational approach, he provides a well-defined curriculum that helps students progress steadily through every level of the game.</p>
             <p>He is personally involved in every student's journey, ensuring that the discipline learned at the chessboard translates into real-world confidence and problem-solving skills.</p>
+        </div>
+    </div>
+</section>
+
+<section id="why-chess" style="border-top: 1px solid #ddd;">
+    <h2 class="section-title">The Chess Advantage</h2>
+    <p class="section-subtitle">Chess is more than just a game; it is a tool for life. At The Chess Gurukul, we use the board to develop essential cognitive skills.</p>
+    <div class="why-chess-grid">
+        <div class="benefit-item">
+            <h4>Better Focus</h4>
+            <p>Training the brain to block out distractions and concentrate on the task at hand.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Strategic Thinking</h4>
+            <p>Learning to analyze situations, weigh options, and plan ahead.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Problem Solving</h4>
+            <p>Developing the patience and logic to find the best solution under pressure.</p>
+        </div>
+        <div class="benefit-item">
+            <h4>Resilience</h4>
+            <p>Building the maturity to handle wins with grace and losses with determination.</p>
         </div>
     </div>
 </section>
