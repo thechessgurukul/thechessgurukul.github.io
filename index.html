@@ -24,7 +24,7 @@
         * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.8;
+            line-height: 1.6;
             color: var(--text-dark);
             margin: 0;
             background-color: var(--off-white);
@@ -34,7 +34,7 @@
         /* Navigation */
         nav {
             background: var(--navy);
-            padding: 12px 0;
+            padding: 8px 0; /* Reduced padding */
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -51,10 +51,10 @@
         .logo-group {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
         .nav-logo-img {
-            height: 55px; 
+            height: 48px; /* Slightly smaller to save vertical space */
             width: auto;
             background: transparent;
             object-fit: contain;
@@ -66,102 +66,84 @@
         .logo { 
             color: var(--gold); 
             font-weight: 800; 
-            font-size: 1.3rem; 
+            font-size: 1.2rem; 
             text-decoration: none; 
             line-height: 1;
-            letter-spacing: 0.5px;
         }
         .tagline {
             color: #ffffff;
-            font-size: 0.75rem;
-            font-weight: 400;
+            font-size: 0.7rem;
             opacity: 0.8;
-            margin-top: 4px;
+            margin-top: 2px;
         }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.85rem; font-weight: 600; }
         .nav-links a:hover { color: var(--gold); }
 
-        /* Hero Section */
+        /* Hero Section - ADJUSTED SPACING */
         .hero {
             background: linear-gradient(rgba(20, 33, 61, 0.92), rgba(20, 33, 61, 0.92)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 80px 20px 100px;
+            padding: 40px 20px 60px; /* Heavily reduced top/bottom padding */
             text-align: center;
+            min-height: 80vh; /* Ensures it fills most of the screen but stays tight */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .hero-logo {
-            width: 320px; 
-            max-width: 90%;
+            width: 260px; /* Slightly reduced to pull content up */
+            max-width: 80%;
             height: auto;
-            margin-bottom: 20px;
-            background: transparent;
+            margin-bottom: 15px; /* Reduced gap */
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
-        .hero h1 { font-size: 3rem; margin: 0; color: var(--gold); letter-spacing: -1px; line-height: 1.2; }
-        .hero .hero-tagline { font-style: italic; font-size: 1.1rem; color: #fff; margin-top: 5px; opacity: 0.9; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 25px auto 35px; opacity: 0.9; font-weight: 300; }
+        .hero h1 { font-size: 2.5rem; margin: 0; color: var(--gold); line-height: 1.1; }
+        .hero .hero-tagline { font-style: italic; font-size: 1rem; color: #fff; margin-top: 5px; opacity: 0.9; }
+        .hero p { font-size: 1.1rem; max-width: 650px; margin: 15px auto 25px; opacity: 0.9; font-weight: 300; line-height: 1.4; }
 
-        /* Floating WhatsApp Button */
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 1001;
+        .btn { 
+            display: inline-block; 
+            background: var(--gold); 
+            color: var(--navy); 
+            padding: 15px 35px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 800; 
+            transition: 0.3s; 
+            text-transform: uppercase; 
+            border: 2px solid var(--gold); 
+            font-size: 0.85rem; 
         }
-        .floating-whatsapp svg { width: 38px; height: 38px; fill: white; }
-
-        /* Sections */
-        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
-        .section-title { text-align: center; margin-bottom: 25px; font-size: 2.4rem; color: var(--navy); }
-        .section-subtitle { text-align: center; margin-bottom: 50px; color: #666; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-
-        .why-chess-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
-        .benefit-item { padding: 20px; }
-        .benefit-item h4 { color: var(--navy); margin-bottom: 10px; font-size: 1.2rem; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-        .card { background: var(--white); padding: 50px; border-radius: 15px; border-top: 5px solid var(--gold); box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; }
-
-        .founder-box { background: var(--white); padding: 60px; border-radius: 20px; display: flex; gap: 50px; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-        .badge { background: var(--gold); color: var(--navy); padding: 5px 14px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
-
-        /* Testimonials */
-        .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 40px; border-radius: 15px; display: flex; flex-direction: column; height: 100%; }
-        .stars { color: var(--gold); margin-bottom: 20px; font-size: 1.2rem; }
-        .quote { font-style: italic; font-size: 1.05rem; margin-bottom: 25px; color: #333; line-height: 1.6; text-align: left; }
-        .author { font-weight: 700; color: var(--navy); display: block; margin-top: auto; }
-
-        /* Contact Section */
-        .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 80px 20px; }
-        .btn { display: inline-block; background: var(--gold); color: var(--navy); padding: 18px 40px; text-decoration: none; border-radius: 50px; font-weight: 800; margin: 10px; transition: 0.3s; text-transform: uppercase; border: 2px solid var(--gold); font-size: 0.85rem; min-width: 220px; }
         .btn:hover { background-color: #e59400; border-color: #e59400; }
 
-        footer { padding: 50px 20px; text-align: center; font-size: 0.9rem; color: #777; border-top: 1px solid #eee; }
+        /* Sections */
+        section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 20px; font-size: 2.2rem; color: var(--navy); }
+        
+        /* Rest of your sections... */
+        .founder-box { background: var(--white); padding: 40px; border-radius: 20px; display: flex; gap: 40px; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .why-chess-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--white); padding: 40px; border-radius: 15px; border-top: 5px solid var(--gold); text-align: center; }
+        .testimonial-card { background: #fffef0; border: 1px solid var(--gold); padding: 30px; border-radius: 15px; }
+        .contact-section { text-align: center; background: var(--navy); color: white; border-radius: 25px; padding: 60px 20px; }
+        footer { padding: 40px 20px; text-align: center; font-size: 0.8rem; color: #777; }
 
         @media (max-width: 850px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero-logo { width: 220px; }
-            .founder-box { flex-direction: column; text-align: center; padding: 40px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero-logo { width: 180px; }
             .nav-links { display: none; } 
-            .tagline { font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
 
-<a href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session." class="floating-whatsapp" target="_blank">
-    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+<a href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I'm%20interested%20in%20a%20Chess%20Demo%20Session." 
+   style="position:fixed; bottom:20px; right:20px; background:#25d366; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:1001;">
+    <svg style="width:30px; height:30px; fill:white;" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
 </a>
 
 <nav>
@@ -194,47 +176,68 @@
 <section id="about">
     <div class="founder-box">
         <div class="founder-content">
-            <span class="badge">Founder & Mentor</span>
-            <h2>CA Gaurav Bapat</h2>
-            <p>Combining corporate precision with the strategic depth of a <strong>FIDE-rated player</strong>, Coach Gaurav has established a unique coaching methodology. Known for his soft-spoken, patient, and highly motivational approach, he provides a well-defined curriculum that helps students progress steadily through every level of the game.</p>
-            <p>He is personally involved in every student's journey, ensuring that the discipline learned at the chessboard translates into real-world confidence and problem-solving skills.</p>
+            <span style="background:var(--gold); color:var(--navy); padding:4px 10px; border-radius:4px; font-weight:800; font-size:0.7rem; text-transform:uppercase;">Founder & Mentor</span>
+            <h2 style="margin: 10px 0;">CA Gaurav Bapat</h2>
+            <p>Combining corporate precision with the strategic depth of a <strong>FIDE-rated player</strong>, Coach Gaurav has established a unique coaching methodology. Personally involved in every student's journey, he ensures discipline learned at the chessboard translates into real-world confidence.</p>
         </div>
     </div>
 </section>
 
-<section id="why-chess" style="border-top: 1px solid #ddd;">
+<section id="why-chess" style="background:#fff;">
     <h2 class="section-title">The Chess Advantage</h2>
-    <p class="section-subtitle">Chess is more than just a game; it is a tool for life. At The Chess Gurukul, we use the board to develop essential cognitive skills.</p>
     <div class="why-chess-grid">
         <div class="benefit-item">
-            <h4>Better Focus</h4>
+            <h4 style="border-bottom: 2px solid var(--gold); display:inline-block;">Better Focus</h4>
             <p>Training the brain to block out distractions and concentrate on the task at hand.</p>
         </div>
         <div class="benefit-item">
-            <h4>Strategic Thinking</h4>
+            <h4 style="border-bottom: 2px solid var(--gold); display:inline-block;">Strategic Thinking</h4>
             <p>Learning to analyze situations, weigh options, and plan ahead.</p>
         </div>
         <div class="benefit-item">
-            <h4>Problem Solving</h4>
+            <h4 style="border-bottom: 2px solid var(--gold); display:inline-block;">Problem Solving</h4>
             <p>Developing the patience and logic to find the best solution under pressure.</p>
-        </div>
-        <div class="benefit-item">
-            <h4>Resilience</h4>
-            <p>Building the maturity to handle wins with grace and losses with determination.</p>
         </div>
     </div>
 </section>
 
 <section id="programs" style="background-color: #f1f3f5;">
-    <h2 class="section-title">Our Training Programs</h2>
+    <h2 class="section-title">Our Programs</h2>
     <div class="grid">
-        <div class="card">
-            <h3>Online Coaching</h3>
-            <p>Interactive sessions via Zoom for students worldwide, bringing the chessboard to your home with expert guidance.</p>
+        <div class="card"><h3>Online Coaching</h3><p>Interactive sessions via Zoom for students worldwide.</p></div>
+        <div class="card"><h3>Offline Sessions</h3><p>Structured in-person coaching at Balewadi, Pune.</p></div>
+        <div class="card"><h3>Chess Club</h3><p>Practice sessions and friendly matches to apply your skills.</p></div>
+    </div>
+</section>
+
+<section id="reviews">
+    <h2 class="section-title">Parent Reviews</h2>
+    <div class="grid">
+        <div class="testimonial-card">
+            <p class="quote">"Gaurav Bapat is an exceptional mentor. He’s patient, and my son loves the sessions. I highly recommend him."</p>
+            <span style="font-weight:bold;">— Shivani Goyal</span>
         </div>
-        <div class="card">
-            <h3>Offline Sessions</h3>
-            <p>Structured in-person coaching in Pune, providing hands-on training and a focused learning environment.</p>
+        <div class="testimonial-card">
+            <p class="quote">"The curriculum is well-defined and helps students progress steadily. Excellent communication."</p>
+            <span style="font-weight:bold;">— Sameer Patil</span>
         </div>
-        <div class="card">
-            <h3>Chess Club</h3>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="contact-section">
+        <h2>Start Your Journey</h2>
+        <p>📍 Sai Chauk, Balewadi, Pune, Maharashtra 411045</p>
+        <div style="margin-top: 20px;">
+            <a class="btn" href="https://wa.me/919175154913" target="_blank">WhatsApp Us</a>
+            <a class="btn" href="https://share.google/9Pvi62wvRu26lAIy1" target="_blank" style="background:none; color:white;">Directions</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 The Chess Gurukul | Pune, India</p>
+</footer>
+
+</body>
+</html>
