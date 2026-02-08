@@ -42,14 +42,16 @@
             scroll-behavior: smooth;
         }
 
-        /* Navigation */
+        /* Navigation - Distinguishable update */
         nav {
             background: var(--navy);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            /* Added shadow and subtle border to separate from Hero */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(252, 163, 17, 0.2);
         }
         .nav-container {
             max-width: 1100px;
@@ -88,7 +90,7 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Hero Section - Distinguishable update */
         .hero {
             background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -96,6 +98,8 @@
             color: white;
             padding: 140px 20px;
             text-align: center;
+            /* Added top border to clearly mark the beginning of the section */
+            border-top: 4px solid var(--gold);
         }
         .hero h1 { font-size: 3.5rem; margin: 0; color: var(--gold); letter-spacing: -1px; }
         .hero p { font-size: 1.25rem; max-width: 700px; margin: 30px auto; opacity: 0.9; font-weight: 300; }
