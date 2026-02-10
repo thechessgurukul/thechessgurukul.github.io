@@ -10,15 +10,17 @@
         .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         h2 { color: #2c3e50; text-align: center; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { background: #3498db; color: white; padding: 12px; text-align: left; }
+        th { background: #14213d; color: white; padding: 12px; text-align: left; } /* Navy to match your brand */
         td { padding: 12px; border-bottom: 1px solid #ddd; }
-        .reg-btn { background: #27ae60; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; font-size: 0.9em; }
-        .reg-btn:hover { background: #2ecc71; }
+        .reg-btn { background: #fca311; color: #14213d; padding: 6px 12px; text-decoration: none; border-radius: 4px; font-size: 0.9em; font-weight: bold; }
+        .reg-btn:hover { background: #e59400; }
+        .type-badge { font-size: 0.8em; padding: 2px 8px; border-radius: 10px; background: #eee; color: #333; font-weight: bold; }
+        
         @media (max-width: 600px) {
             table, thead, tbody, th, td, tr { display: block; }
             th { display: none; }
-            td { border: none; position: relative; padding-left: 50%; }
-            td:before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; color: #3498db; }
+            td { border: none; position: relative; padding-left: 50%; border-bottom: 1px solid #eee; }
+            td:before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; color: #14213d; }
         }
     </style>
 </head>
@@ -32,18 +34,18 @@
             <tr>
                 <th>Date</th>
                 <th>Tournament</th>
+                <th>Type</th>
                 <th>Location</th>
-                <th>Registration</th>
+                <th>Link</th>
             </tr>
         </thead>
-        <tbody id="table-body">
-            </tbody>
+        <tbody id="table-body"></tbody>
     </table>
 </div>
 
 <script>
-    // REPLACE the URL below with your "Publish to Web" CSV Link from Step 1
-    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/YOUR_ID/pub?output=csv';
+    // REPLACE the URL below with your "Publish to Web" CSV Link from Google Sheets
+    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/YOUR_ID_HERE/pub?output=csv';
 
     function init() {
         Papa.parse(publicSpreadsheetUrl, {
@@ -60,13 +62,15 @@
         const table = document.getElementById('tournament-table');
 
         data.forEach(row => {
-            if(row.Date) { // Only add rows that have a date
+            // Note: Use the exact column names from Row 1 of your Google Sheet
+            if(row['Date']) { 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td data-label="Date">${row.Date}</td>
-                    <td data-label="Tournament"><strong>${row['Tournament Name']}</strong><br><small>${row.Category}</small></td>
-                    <td data-label="Location">${row.Location}</td>
-                    <td data-label="Registration"><a href="${row['Registration Link']}" target="_blank" class="reg-btn">Register</a></td>
+                    <td data-label="Date">${row['Date']}</td>
+                    <td data-label="Tournament"><strong>${row['Tournament Name']}</strong></td>
+                    <td data-label="Type"><span class="type-badge">${row['Type']}</span></td>
+                    <td data-label="Location">${row['Location']}</td>
+                    <td data-label="Link"><a href="${row['Link']}" target="_blank" class="reg-btn">View Details</a></td>
                 `;
                 tableBody.appendChild(tr);
             }
