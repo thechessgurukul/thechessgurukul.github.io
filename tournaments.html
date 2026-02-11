@@ -7,23 +7,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <style>
         body { font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; background: #f4f4f9; }
-        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         h2 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
         
-        /* Simple Table with Borders */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ccc; }
-        th { background: #f8f9fa; color: #333; padding: 12px; border: 1px solid #ccc; text-align: left; }
-        td { padding: 12px; border: 1px solid #ccc; color: #444; vertical-align: top; line-height: 1.4; }
+        /* Table Wrapper for Horizontal Scroll on Mobile */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ccc; min-width: 600px; }
+        th { background: #f8f9fa; color: #333; padding: 12px; border: 1px solid #ccc; text-align: left; font-size: 14px; }
+        td { padding: 12px; border: 1px solid #ccc; color: #444; vertical-align: top; line-height: 1.4; font-size: 14px; }
         
-        /* Simple Link Styling */
         .reg-link { color: #0044cc; text-decoration: underline; font-weight: normal; }
         .reg-link:hover { color: #002266; }
 
+        /* Mobile specific adjustments while keeping table structure */
         @media (max-width: 600px) {
-            table, thead, tbody, th, td, tr { display: block; }
-            th { display: none; }
-            td { position: relative; padding-left: 45%; border: none; border-bottom: 1px solid #eee; }
-            td:before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; color: #2c3e50; }
+            .container { padding: 10px; }
+            th, td { padding: 8px; font-size: 13px; }
         }
     </style>
 </head>
@@ -32,22 +36,24 @@
 <div class="container">
     <h2>Upcoming Pune Tournaments</h2>
     <div id="loading">Loading latest tournaments...</div>
-    <table id="tournament-table" style="display:none;">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Tournament</th>
-                <th>Type</th>
-                <th>Location</th>
-                <th>Link</th>
-            </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-    </table>
+    
+    <div class="table-responsive">
+        <table id="tournament-table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Tournament</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
 </div>
 
 <script>
-    // Your live Google Sheets Link
     const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
 
     function init() {
@@ -68,11 +74,11 @@
             if(row['Date']) { 
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td data-label="Date">${row['Date']}</td>
-                    <td data-label="Tournament">${row['Tournament Name']}</td>
-                    <td data-label="Type">${row['Type']}</td>
-                    <td data-label="Location">${row['Location']}</td>
-                    <td data-label="Link"><a href="${row['Link']}" target="_blank" class="reg-link">View Info</a></td>
+                    <td>${row['Date']}</td>
+                    <td>${row['Tournament Name']}</td>
+                    <td>${row['Type']}</td>
+                    <td>${row['Location']}</td>
+                    <td><a href="${row['Link']}" target="_blank" class="reg-link">View Info</a></td>
                 `;
                 tableBody.appendChild(tr);
             }
