@@ -77,7 +77,6 @@
             border-top: 5px solid var(--gold);
         }
 
-        /* Filter Section Styles */
         .filter-section {
             display: flex;
             gap: 15px;
@@ -113,6 +112,8 @@
         td { padding: 15px; border: 1px solid #eee; vertical-align: top; }
         tr:nth-child(even) { background-color: #fcfcfc; }
         .reg-link { color: var(--link-blue); text-decoration: underline; font-weight: 600; }
+
+        #loading { text-align: center; padding: 40px; font-weight: bold; color: var(--navy); }
 
         @media (max-width: 850px) {
             .hero h1 { font-size: 1.6rem; }
@@ -218,12 +219,19 @@
         const filtered = allTournaments.filter(row => {
             const d = new Date(row['Date']);
             const rowMonth = d.toLocaleString('default', { month: 'long' });
-            const typeText = row['Type'].toLowerCase();
+            
+            // Fixed Logic: Ensure 'Type' exists and handle Rated vs Unrated
+            const typeText = (row['Type'] || "").toLowerCase();
+            const isRated = typeText.includes("rated");
 
             const matchMonth = (monthVal === 'all' || rowMonth === monthVal);
+            
             let matchRating = true;
-            if (ratingVal === 'rated') matchRating = typeText.includes('rated');
-            if (ratingVal === 'unrated') matchRating = !typeText.includes('rated');
+            if (ratingVal === 'rated') {
+                matchRating = isRated;
+            } else if (ratingVal === 'unrated') {
+                matchRating = !isRated;
+            }
 
             return matchMonth && matchRating;
         });
@@ -239,7 +247,7 @@
         tableBody.innerHTML = "";
         
         if(data.length === 0) {
-            tableBody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No tournaments found for the selected filters.</td></tr>";
+            tableBody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding: 40px;'>No tournaments found for the selected filters.</td></tr>";
         } else {
             data.forEach(row => {
                 const dateObj = new Date(row['Date']);
