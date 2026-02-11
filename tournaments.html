@@ -33,7 +33,6 @@
             background-color: var(--off-white);
         }
 
-        /* Navigation - Brand Matched */
         nav {
             background: var(--navy);
             padding: 15px 0;
@@ -70,7 +69,6 @@
         .nav-links a:hover { color: var(--gold); }
         .menu-toggle { display: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -83,7 +81,6 @@
         .hero h1 { font-size: 2.2rem; margin: 0; color: var(--gold); letter-spacing: -1px; }
         .hero p { font-size: 1.1rem; max-width: 700px; margin: 15px auto; opacity: 0.9; font-weight: 300; }
 
-        /* Container */
         .container { 
             max-width: 1100px; 
             margin: 40px auto; 
@@ -94,13 +91,12 @@
             border-top: 5px solid var(--gold);
         }
 
-        /* Table Design */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        table { width: 100%; border-collapse: collapse; min-width: 850px; }
         th { background: var(--off-white); color: var(--navy); padding: 15px; text-align: left; border: 1px solid #ddd; font-weight: 700; }
         td { padding: 15px; border: 1px solid #eee; vertical-align: top; font-size: 0.95rem; }
         tr:nth-child(even) { background-color: #fcfcfc; }
@@ -109,9 +105,7 @@
             color: var(--link-blue);
             text-decoration: underline;
             font-weight: 600;
-            transition: 0.2s;
         }
-        .reg-link:hover { color: var(--navy); }
 
         #loading { text-align: center; font-weight: bold; padding: 40px; color: var(--navy); }
 
@@ -119,7 +113,7 @@
 
         @media (max-width: 850px) {
             .menu-toggle { display: block; }
-            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--navy); flex-direction: column; padding: 20px; text-align: center; box-shadow: 0 10px 10px rgba(0,0,0,0.2); }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--navy); flex-direction: column; padding: 20px; text-align: center; }
             .nav-links.active { display: flex; }
             .nav-links a { margin: 15px 0; font-size: 1.1rem; margin-left: 0; }
             .hero h1 { font-size: 1.8rem; }
@@ -191,6 +185,18 @@
         });
     }
 
+    function getDayName(dateString) {
+        // This function tries to read your date and return the Day
+        try {
+            const date = new Date(dateString);
+            if (isNaN(date)) return ""; // Returns nothing if date is invalid
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            return days[date.getDay()] + ", ";
+        } catch (e) {
+            return ""; 
+        }
+    }
+
     function showInfo(results) {
         const data = results.data;
         const tableBody = document.getElementById('table-body');
@@ -199,9 +205,15 @@
 
         data.forEach(row => {
             if(row['Date'] && row['Date'].trim() !== "") { 
+                const rawDate = row['Date'];
+                const dayName = getDayName(rawDate);
+                
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td style="font-weight:bold; color:var(--navy);">${row['Date']}</td>
+                    <td style="font-weight:bold; color:var(--navy); min-width:140px;">
+                        <span style="color:var(--gold); font-size:0.85rem; display:block;">${dayName}</span>
+                        ${rawDate}
+                    </td>
                     <td>${row['Tournament Name']}</td>
                     <td>${row['Type']}</td>
                     <td>${row['Location']}</td>
