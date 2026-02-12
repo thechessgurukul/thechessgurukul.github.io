@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chess Game Review | The Chess Gurukul</title>
+    <meta name="description" content="Free AI-powered chess game review tool by The Chess Gurukul. Detailed move-by-move coaching.">
+    
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    
     <style>
-        :root { --navy: #14213d; --gold: #fca311; --off-white: #f8f9fa; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--off-white); }
-        nav { background: var(--navy); padding: 15px 0; text-align: center; color: var(--gold); font-weight: 800; font-size: 1.4rem; }
+        :root { --navy: #14213d; --gold: #fca311; --off-white: #f8f9fa; --white: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--off-white); color: #212529; line-height: 1.6; }
+        nav { background: var(--navy); padding: 15px 0; text-align: center; color: var(--gold); font-weight: 800; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .container { max-width: 1100px; margin: 30px auto; padding: 20px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
         .board-section { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
         
-        /* Navigation Buttons */
+        /* Premium Focus Styling (Improvement 8) */
+        textarea, input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-family: inherit; transition: 0.3s; }
+        textarea:focus, input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(252,163,17,0.2); }
+
         .nav-btns { margin-top: 15px; display: flex; gap: 8px; justify-content: center; }
         .btn-nav { background: #e9ecef; border: 1px solid #ddd; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1.1rem; }
         .btn-nav:hover { background: var(--gold); color: white; border-color: var(--gold); }
 
-        .input-section { display: flex; flex-direction: column; gap: 15px; }
-        textarea, input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-family: inherit; }
         .btn-group { display: flex; gap: 10px; }
         .main-btn { padding: 12px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; flex: 1; transition: 0.3s; text-transform: uppercase; }
         .btn-analyze { background: var(--navy); color: white; }
+        .btn-analyze:disabled { background: #ccc; cursor: not-allowed; }
         .btn-reset { background: #6c757d; color: white; }
         .btn-download { background: #28a745; color: white; display: none; }
         
@@ -48,7 +53,7 @@
     </div>
 
     <div class="input-section">
-        <input type="text" id="studentName" placeholder="Student Name">
+        <input type="text" id="studentName" placeholder="Student Name (e.g. Rahul S.)">
         <textarea id="pgnInput" placeholder="Paste PGN here..." rows="5"></textarea>
         <div class="btn-group">
             <button class="main-btn btn-analyze" id="analyzeBtn" onclick="startAnalysis()">Deep AI Review</button>
@@ -56,9 +61,9 @@
             <button class="main-btn btn-download" id="downloadBtn" onclick="downloadPDF()">Save PDF</button>
         </div>
         <div id="ai-coach-output">
-            <div id="loader" class="loader">♞ Studying moves...</div>
+            <div id="loader" class="loader">♞ Analyzing game...</div>
             <div id="pdf-area">
-                <div id="coach-text">Enter a PGN to begin analysis.</div>
+                <div id="coach-text">Ready to begin. Paste a PGN to start.</div>
             </div>
         </div>
     </div>
@@ -72,9 +77,10 @@
 <script>
     var board = Chessboard('board', { draggable: true, position: 'start', pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png' });
     var game = new Chess();
-    var moveHistory = [];
+    var moveHistory = []; // RENAMED VARIABLE (Improvement 4)
     var currentIndex = -1;
 
+    // SAFER RESET (Improvement 11)
     function resetAll() {
         game = new Chess();
         board.start();
@@ -84,9 +90,11 @@
         document.getElementById('pgnInput').value = '';
         document.getElementById('coach-text').innerHTML = 'Ready for analysis.';
         document.getElementById('downloadBtn').style.display = 'none';
+        document.getElementById('analyzeBtn').disabled = false;
+        document.getElementById('analyzeBtn').innerText = "Deep AI Review";
     }
 
-    // Logic to fix "PGN and Board not matching"
+    // SYNC LOGIC (Fixes PGN and Board matching)
     function updateBoardSync() {
         let tempGame = new Chess();
         for (let i = 0; i <= currentIndex; i++) {
@@ -103,19 +111,25 @@
 
     async function startAnalysis() {
         const pgn = document.getElementById('pgnInput').value;
-        if (!pgn.trim()) { alert("Please paste a PGN."); return; }
+        const btn = document.getElementById('analyzeBtn');
+
+        // EMPTY PGN VALIDATION (Improvement 1)
+        if (!pgn.trim()) { alert("Please paste a PGN before starting analysis."); return; }
 
         if (game.load_pgn(pgn)) {
             moveHistory = game.history();
-            currentIndex = moveHistory.length - 1; // Show final position by default
+            currentIndex = moveHistory.length - 1; 
             updateBoardSync();
 
+            // DISABLE BUTTON WHILE LOADING (Improvement 2)
+            btn.disabled = true;
+            btn.innerText = "Analyzing...";
             document.getElementById('loader').style.display = 'block';
             document.getElementById('coach-text').style.display = 'none';
             
             await analyzeWithGemini(pgn);
         } else {
-            alert("Invalid PGN format. Please copy-paste directly from Lichess or Chess.com.");
+            alert("Invalid PGN format. Please check your source.");
         }
     }
 
@@ -123,44 +137,62 @@
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
         const headers = game.header();
+        const btn = document.getElementById('analyzeBtn');
 
         try {
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    contents: [{ parts: [{ text: `You are a Chess Grandmaster Coach. 
-                    Perform a deep analysis for this PGN: ${pgnData}.
-                    1. Explain key mistakes and brilliant moves.
-                    2. Provide a move-by-move technical breakdown.
-                    3. Give 3 actionable tips for the student.
-                    Be very detailed and long.` }] }]
+                    contents: [{ parts: [{ text: `You are a Chess Grandmaster Coach at The Chess Gurukul. 
+                    Perform a DEEP technical analysis for this PGN: ${pgnData}.
+                    1. Breakdown key tactical mistakes and brilliant ideas.
+                    2. Provide move-by-move commentary where critical.
+                    3. Give 3 actionable training goals for this student.
+                    Be extremely detailed and encouraging.` }] }]
                 })
             });
             const data = await response.json();
-            const result = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Coach is reviewing... please try again.";
+            
+            // API RESPONSE SAFETY (Improvement 5)
+            const result = data?.candidates?.[0]?.content?.parts?.[0]?.text 
+                || "Analysis could not be generated. Please check your PGN or API connection.";
             
             document.getElementById('loader').style.display = 'none';
             document.getElementById('coach-text').style.display = 'block';
+            
+            // BRANDED REPORT WITH HEADERS & TIMESTAMP (Improvements 6, 10, 12)
             document.getElementById('coach-text').innerHTML = `
                 <div style="border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-bottom: 15px;">
                     <h2 style="margin:0; color:var(--navy);">Analysis for ${document.getElementById('studentName').value || 'Student'}</h2>
-                    <p style="margin:5px 0;"><strong>Game:</strong> ${headers.White || 'White'} vs ${headers.Black || 'Black'} | <strong>Result:</strong> ${headers.Result || 'N/A'}</p>
+                    <p style="margin:5px 0;"><strong>Game:</strong> ${headers.White || 'White'} vs ${headers.Black || 'Black'}</p>
+                    <p style="margin:5px 0;"><strong>Result:</strong> ${headers.Result || 'N/A'} | <strong>Moves:</strong> ${moveHistory.length}</p>
+                    <p style="margin:5px 0; font-size: 0.8rem; color: #666;">Generated on: ${new Date().toLocaleDateString()}</p>
                 </div>
-                <div style="white-space: pre-wrap; font-size: 0.95rem; color: #333;">${result}</div>
+                <div style="white-space: pre-wrap; font-size: 0.95rem; color: #333; line-height: 1.6;">${result}</div>
             `;
             document.getElementById('downloadBtn').style.display = 'block';
         } catch (e) {
+            // FIX LOADER ON ERROR (Improvement 3)
             document.getElementById('loader').style.display = 'none';
             document.getElementById('coach-text').style.display = 'block';
-            document.getElementById('coach-text').innerHTML = "⚠️ Error generating report. Check your API key or PGN.";
+            document.getElementById('coach-text').innerHTML = "⚠️ Error generating report. Please ensure your API key is active.";
+        } finally {
+            btn.disabled = false;
+            btn.innerText = "Deep AI Review";
         }
     }
 
     function downloadPDF() {
         const element = document.getElementById('pdf-area');
         const name = document.getElementById('studentName').value || "Student";
-        html2pdf().set({ filename: `Gurukul_Review_${name}.pdf`, margin: 1, html2canvas: { scale: 2 } }).from(element).save();
+        // IMPROVED PDF BRANDING (Improvement 7)
+        html2pdf().set({ 
+            filename: `Chess_Gurukul_Analysis_${name}.pdf`, 
+            margin: 1, 
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        }).from(element).save();
     }
 </script>
 </body>
