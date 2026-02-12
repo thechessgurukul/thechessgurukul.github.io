@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chess Game Review | The Chess Gurukul</title>
-    
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
-    
     <style>
         :root { --navy: #14213d; --gold: #fca311; --off-white: #f8f9fa; --white: #ffffff; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--off-white); color: #212529; line-height: 1.6; }
@@ -15,54 +13,57 @@
         .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
         .container { max-width: 1100px; margin: 40px auto; padding: 20px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; }
         .board-section { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; }
+        
+        /* Navigation Buttons Styling */
+        .nav-btns { margin-top: 15px; display: flex; gap: 5px; }
+        .btn-nav { background: #e9ecef; color: #495057; padding: 8px 15px; min-width: 50px; font-size: 1.1rem; }
+        .btn-nav:hover { background: #dee2e6; }
+
         .input-section { display: flex; flex-direction: column; gap: 15px; }
-        textarea, input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; box-sizing: border-box; transition: 0.3s; }
-        textarea:focus, input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(252,163,17,0.2); }
+        textarea, input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; }
         .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
-        button { padding: 12px 20px; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; flex: 1; min-width: 120px; }
+        button { padding: 12px 20px; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; transition: 0.3s; flex: 1; }
         .btn-analyze { background: var(--navy); color: white; }
         .btn-reset { background: #6c757d; color: white; }
         .btn-download { background: #28a745; color: white; display: none; }
-        #ai-coach-output { background: #fffef0; border: 1px solid var(--gold); padding: 25px; border-radius: 15px; margin-top: 10px; min-height: 200px; }
-        .coach-header { color: var(--navy); font-weight: 800; margin-bottom: 10px; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; }
-        .chess-knight-loader { font-size: 40px; animation: pulse 1.5s infinite ease-in-out; display: inline-block; color: var(--gold); }
+        
+        #ai-coach-output { background: #fffef0; border: 1px solid var(--gold); padding: 25px; border-radius: 15px; margin-top: 10px; }
+        .chess-knight-loader { font-size: 40px; animation: pulse 1.5s infinite ease-in-out; display: none; color: var(--gold); text-align: center; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } #board { width: 100% !important; max-width: 350px; } }
+        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } #board { width: 320px !important; } }
     </style>
 </head>
 <body>
 
-<nav><div class="nav-container"><a href="index.html" class="logo">THE CHESS GURUKUL</a></div></nav>
+<nav><div class="nav-container"><a href="#" class="logo">THE CHESS GURUKUL</a></div></nav>
 
 <div class="container">
     <div class="board-section">
         <h2>Interactive Analysis Board</h2>
-        <div id="board" style="width: 450px"></div>
-        <p style="color: #666; font-size: 0.8rem; margin-top: 15px;">Drag pieces to explore different moves!</p>
+        <div id="board" style="width: 400px"></div>
+        <div class="nav-btns">
+            <button class="btn-nav" onclick="moveStart()">«</button>
+            <button class="btn-nav" onclick="moveBack()">‹</button>
+            <button class="btn-nav" onclick="moveNext()">›</button>
+            <button class="btn-nav" onclick="moveEnd()">»</button>
+        </div>
+        <p style="color: #666; font-size: 0.8rem; margin-top: 15px;">Use buttons to see the game move-by-move.</p>
     </div>
 
     <div class="input-section">
-        <h1>AI Chess Game Review</h1>
-        <input type="text" id="studentName" placeholder="Student Name (e.g. Rahul S.)">
-        <textarea id="pgnInput" placeholder="Paste your PGN here..." rows="6"></textarea>
+        <input type="text" id="studentName" placeholder="Student Name">
+        <textarea id="pgnInput" placeholder="Paste PGN here..." rows="5"></textarea>
         
         <div class="btn-group">
-            <button class="btn-analyze" id="analyzeBtn" onclick="startAnalysis()">Analyze Game</button>
+            <button class="btn-analyze" id="analyzeBtn" onclick="startAnalysis()">Deep AI Review</button>
             <button class="btn-reset" onclick="resetAll()">Reset</button>
-            <button id="downloadBtn" class="btn-download" onclick="downloadPDF()">Save PDF Report</button>
+            <button id="downloadBtn" class="btn-download" onclick="downloadPDF()">Save PDF</button>
         </div>
 
         <div id="ai-coach-output">
-            <div class="coach-header">
-                <span>✨ Gemini AI Coach</span>
-                <span id="loader" class="chess-knight-loader" style="display:none;">♞</span>
-            </div>
+            <div id="loader" class="chess-knight-loader">♞</div>
             <div id="pdf-area">
-                <div id="loading-text" style="display:none; text-align:center; color:#666;">
-                    <strong>Coach is studying your moves...</strong><br>
-                    <small>Generating your move-by-move report</small>
-                </div>
-                <div id="coach-text">Ready for analysis. Paste a PGN and click Analyze.</div>
+                <div id="coach-text">Paste a PGN to begin your training session.</div>
             </div>
         </div>
     </div>
@@ -74,102 +75,76 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-    var board = Chessboard('board', { 
-        draggable: true, 
-        dropOffBoard: 'snapback', // Pieces return if move is invalid
-        position: 'start', 
-        pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png' 
-    });
+    var board = Chessboard('board', { draggable: true, position: 'start', pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png' });
     var game = new Chess();
+    var history = [];
+    var currentMoveIndex = -1;
 
     function resetAll() {
         game.reset(); board.start();
+        history = []; currentMoveIndex = -1;
         document.getElementById('pgnInput').value = '';
-        document.getElementById('studentName').value = '';
-        document.getElementById('coach-text').innerHTML = 'Ready for analysis. Paste a PGN and click Analyze.';
+        document.getElementById('coach-text').innerHTML = 'Ready for analysis.';
         document.getElementById('downloadBtn').style.display = 'none';
-        document.getElementById('loader').style.display = 'none';
-        document.getElementById('loading-text').style.display = 'none';
+    }
+
+    // Navigation Logic
+    function moveStart() { currentMoveIndex = -1; updateBoard(); }
+    function moveEnd() { currentMoveIndex = history.length - 1; updateBoard(); }
+    function moveBack() { if (currentMoveIndex > -1) { currentMoveIndex--; updateBoard(); } }
+    function moveNext() { if (currentMoveIndex < history.length - 1) { currentMoveIndex++; updateBoard(); } }
+
+    function updateBoard() {
+        let tempGame = new Chess();
+        for (let i = 0; i <= currentMoveIndex; i++) { tempGame.move(history[i]); }
+        board.position(tempGame.fen());
     }
 
     async function startAnalysis() {
         const pgn = document.getElementById('pgnInput').value;
-        const coachText = document.getElementById('coach-text');
-        const analyzeBtn = document.getElementById('analyzeBtn');
-        const loader = document.getElementById('loader');
-        const loadingText = document.getElementById('loading-text');
-
-        if (!pgn.trim()) { alert("Please paste a PGN first."); return; }
-
         if (game.load_pgn(pgn)) {
+            history = game.history();
+            currentMoveIndex = history.length - 1; // Start at the end
             board.position(game.fen());
-            analyzeBtn.disabled = true;
-            analyzeBtn.innerText = "Processing...";
-            coachText.style.display = 'none';
-            loader.style.display = 'block';
-            loadingText.style.display = 'block';
+            
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('coach-text').style.display = 'none';
+            
             await analyzeWithGemini(pgn);
-            analyzeBtn.disabled = false;
-            analyzeBtn.innerText = "Analyze Game";
-        } else { alert("Invalid PGN format."); }
+        } else { alert("Invalid PGN."); }
     }
 
     async function analyzeWithGemini(pgnData) {
-        const coachText = document.getElementById('coach-text');
-        const loader = document.getElementById('loader');
-        const loadingText = document.getElementById('loading-text');
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-        const headers = game.header();
-        const result = headers.Result || "Not recorded";
-        const moveCount = game.history().length;
-
         const requestBody = {
-            contents: [{ parts: [{ text: `You are the Lead Coach at The Chess Gurukul academy. 
-                Perform a deep, LONG analysis on this PGN for a student.
-                Structure your response exactly like this:
-                1. Move-by-Move Commentary: (Explain the key moments and tactical ideas behind moves)
-                2. Key Highlights & Lessons: (List 3 specific bullet points for improvement)
-                Keep the tone encouraging. PGN: ${pgnData}` }] }]
+            contents: [{ parts: [{ text: `Act as a Senior Chess Coach at The Chess Gurukul. 
+            Provide a HIGHLY DETAILED analysis for this PGN: ${pgnData}.
+            1. MOVE-BY-MOVE BREAKDOWN: Explain the tactical purpose of white and black's key moves.
+            2. MISTAKES: Identify any blunders or missed opportunities.
+            3. COACH'S ADVICE: Give 3 specific training goals for this student.
+            Write at least 4-5 detailed paragraphs.` }] }]
         };
 
         try {
-            const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(requestBody) });
+            const response = await fetch(url, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(requestBody) });
             const data = await response.json();
-            const analysis = data.candidates?.[0]?.content?.parts?.[0]?.text || "Coach's tip: Control the center and develop your pieces!";
+            const analysis = data.candidates[0].content.parts[0].text;
             
-            const name = document.getElementById('studentName').value || "Student";
-            loader.style.display = 'none';
-            loadingText.style.display = 'none';
-            coachText.style.display = 'block';
-
-            coachText.innerHTML = `
-                <div style="border-bottom: 2px solid #fca311; margin-bottom: 15px; padding-bottom: 5px;">
-                    <h3 style="margin:0; color:#14213d;">Gurukul Training Report: ${name}</h3>
-                </div>
-                <p><strong>Result:</strong> ${result} | <strong>Moves:</strong> ${moveCount}</p>
-                <div style="white-space: pre-wrap; font-size: 0.95rem; color: #333; background: #white; padding: 15px; border-radius: 8px; border: 1px solid #eee;">${analysis}</div>
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('coach-text').style.display = 'block';
+            document.getElementById('coach-text').innerHTML = `
+                <h3 style="color:var(--navy); border-bottom: 2px solid var(--gold);">Gurukul Report: ${document.getElementById('studentName').value || 'Student'}</h3>
+                <div style="white-space: pre-wrap;">${analysis}</div>
             `;
             document.getElementById('downloadBtn').style.display = 'block';
-        } catch (e) { 
-            loader.style.display = 'none';
-            loadingText.style.display = 'none';
-            coachText.style.display = 'block';
-            coachText.innerHTML = "⚠️ Coach is busy. Try again in 15 seconds."; 
-        }
+        } catch (e) { document.getElementById('coach-text').innerHTML = "Connection error. Try again."; }
     }
 
     function downloadPDF() {
         const element = document.getElementById('pdf-area');
-        const name = document.getElementById('studentName').value || "Student";
-        const opt = { 
-            margin: 1, 
-            filename: `Chess_Gurukul_Analysis_${name}.pdf`, 
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-        };
-        html2pdf().set(opt).from(element).save();
+        html2pdf().from(element).save('Analysis_Report.pdf');
     }
 </script>
 </body>
