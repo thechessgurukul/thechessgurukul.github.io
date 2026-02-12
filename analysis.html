@@ -46,48 +46,12 @@
             max-width: 1200px; margin: 0 auto;
             display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
         }
-        .logo-group { display: flex; flex-direction: column; }
-        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; line-height: 1.2; }
-        .tagline { color: #ffffff; font-size: 0.75rem; opacity: 0.9; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
+        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
 
         .main-container {
-            max-width: 1250px; margin: 30px auto; padding: 0 20px;
-            display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;
-        }
-
-        /* --- HD BOARD & EVAL BAR --- */
-        .analysis-area {
-            display: flex; gap: 15px; align-items: stretch; justify-content: center;
-        }
-
-        #eval-bar-container {
-            width: 30px;
-            background: #403d39;
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border: 2px solid #2b2d42;
-        }
-
-        #eval-bar-fill {
-            background: white;
-            width: 100%;
-            height: 50%; /* Starts at 50/50 */
-            transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        #eval-text {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            font-size: 10px;
-            font-weight: bold;
-            z-index: 2;
-            bottom: 5px;
-            color: #14213d;
+            max-width: 1300px; margin: 30px auto; padding: 0 20px;
+            display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px;
         }
 
         .tool-card {
@@ -95,19 +59,38 @@
             box-shadow: var(--shadow); border-top: 5px solid var(--gold);
         }
 
-        .board-ui { text-align: center; flex-grow: 1; }
-        #board { width: 100%; max-width: 550px; margin: 0 auto; }
-        
-        #move-indicator { color: var(--navy); font-weight: 700; margin-bottom: 10px; font-size: 1.2rem; }
-        .nav-btns { margin-top: 20px; display: flex; gap: 10px; justify-content: center; }
-        .btn-nav { 
-            background: #e9ecef; border: none; padding: 10px 20px; 
-            border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: 0.2s;
+        /* --- HD BOARD & EVAL BAR --- */
+        .analysis-area {
+            display: flex; gap: 15px; align-items: stretch; justify-content: center; height: 500px;
         }
-        .btn-nav:hover { background: var(--gold); color: white; }
+
+        #eval-bar-container {
+            width: 35px; background: #403d39; border-radius: 6px;
+            position: relative; overflow: hidden; display: flex; flex-direction: column; border: 2px solid #2b2d42;
+        }
+
+        #eval-bar-fill {
+            background: white; width: 100%; height: 50%;
+            transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #eval-text {
+            position: absolute; width: 100%; text-align: center;
+            font-size: 11px; font-weight: bold; z-index: 2; bottom: 5px; color: #14213d;
+        }
+
+        .board-ui { text-align: center; }
+        #board { width: 500px; height: 500px; margin: 0 auto; }
+        
+        #move-indicator { color: var(--navy); font-weight: 700; margin-bottom: 10px; font-size: 1.3rem; }
+        .nav-btns { margin-top: 25px; display: flex; gap: 10px; justify-content: center; }
+        .btn-nav { 
+            background: #e9ecef; border: none; padding: 12px 24px; 
+            border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.2rem;
+        }
 
         .input-group { display: flex; flex-direction: column; gap: 15px; }
-        input, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; }
+        input, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; box-sizing: border-box; }
         
         .action-btns { display: flex; flex-direction: column; gap: 10px; }
         .btn-main { 
@@ -126,9 +109,10 @@
         .loader { font-size: 35px; animation: pulse 1s infinite; display: none; text-align: center; color: var(--gold); }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
-        @media (max-width: 950px) { 
+        @media (max-width: 1000px) { 
             .main-container { grid-template-columns: 1fr; } 
-            .analysis-area { flex-direction: row; height: 400px; }
+            #board { width: 100%; height: auto; max-width: 400px; }
+            .analysis-area { height: 400px; }
         }
     </style>
 </head>
@@ -136,13 +120,8 @@
 
 <nav>
     <div class="nav-container">
-        <div class="logo-group">
-            <a href="#" class="logo">THE CHESS GURUKUL</a>
-            <span class="tagline">High Performance AI Analysis</span>
-        </div>
-        <div class="nav-links">
-            <a href="#" class="active">AI Game Review</a>
-        </div>
+        <a href="#" class="logo">THE CHESS GURUKUL</a>
+        <div class="nav-links"><a href="#">AI Game Review</a></div>
     </div>
 </nav>
 
@@ -187,20 +166,34 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.1.min.js"></script>
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-    var board = Chessboard('board', { draggable: true, position: 'start', pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png' });
+    var board = null;
     var game = new Chess();
     var moveHistory = [];
     var currentIndex = -1;
     var lastAnalysis = "";
-    var moveEvals = []; // Stores eval for each move
+    var moveEvals = [];
+
+    // Initialize board on load
+    window.onload = function() {
+        board = Chessboard('board', {
+            draggable: false,
+            position: 'start',
+            pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png'
+        });
+        updateEvalBar(0);
+    };
 
     function resetAll() {
-        game = new Chess(); board.start(); moveHistory = []; currentIndex = -1; moveEvals = [];
+        game = new Chess();
+        board.start();
+        moveHistory = [];
+        currentIndex = -1;
+        moveEvals = [];
         updateEvalBar(0);
         document.getElementById('move-indicator').innerText = "Position: Start";
         document.getElementById('pgnInput').value = '';
@@ -210,8 +203,6 @@
     }
 
     function updateEvalBar(cp) {
-        // Lichess Sigmoid Formula for Eval Bar height
-        // height = 50 - 50 * (2 / (1 + exp(-0.00368208 * cp)) - 1)
         let percent = 50 - (50 * (2 / (1 + Math.exp(-0.004 * cp)) - 1));
         document.getElementById('eval-bar-fill').style.height = percent + "%";
         document.getElementById('eval-text').innerText = (cp / 100).toFixed(1);
@@ -222,13 +213,7 @@
         for (let i = 0; i <= currentIndex; i++) { tempGame.move(moveHistory[i]); }
         board.position(tempGame.fen());
         document.getElementById('move-indicator').innerText = currentIndex === -1 ? "Position: Start" : "Move: " + (currentIndex + 1);
-        
-        // Update bar based on current move eval if available
-        if (moveEvals[currentIndex]) {
-            updateEvalBar(moveEvals[currentIndex]);
-        } else {
-            updateEvalBar(0);
-        }
+        updateEvalBar(moveEvals[currentIndex] || 0);
     }
 
     function moveStart() { currentIndex = -1; updateBoardSync(); }
@@ -261,7 +246,6 @@
             let data = await response.json();
             lastAnalysis = data.candidates[0].content.parts[0].text;
 
-            // Parse CP (centipawns) from AI response to move the bar
             let cpMatch = lastAnalysis.match(/CP:\s*([+-]?\d+)/);
             let cpValue = cpMatch ? parseInt(cpMatch[1]) : 0;
             moveEvals[currentIndex] = cpValue;
@@ -271,7 +255,7 @@
             document.getElementById('downloadBtn').style.display = 'block';
             document.getElementById('whatsappBtn').style.display = 'block';
         } catch (e) {
-            document.getElementById('coach-text').innerHTML = `<div style="color:red;">Analysis Failed. Check Connection.</div>`;
+            document.getElementById('coach-text').innerHTML = `<div style="color:red;">Analysis Failed.</div>`;
         }
         document.getElementById('loader').style.display = 'none';
         document.getElementById('coach-text').style.display = 'block';
