@@ -69,7 +69,7 @@
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
         .nav-links a:hover { color: var(--gold); }
         .nav-links a.active { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
-        .menu-toggle { display: none; color: white; font-size: 1.8rem; cursor: pointer; }
+        .menu-toggle { display: block; color: white; font-size: 1.8rem; cursor: pointer; display: none; }
 
         /* --- CONTENT LAYOUT --- */
         .main-container {
@@ -230,8 +230,6 @@
     function moveBack() { if (currentIndex > -1) { currentIndex--; updateBoardSync(); } }
     function moveNext() { if (currentIndex < moveHistory.length - 1) { currentIndex++; updateBoardSync(); } }
 
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-
     async function startAnalysis() {
         const pgn = document.getElementById('pgnInput').value;
         const student = document.getElementById('studentName').value || "Student";
@@ -243,6 +241,10 @@
         document.getElementById('coach-text').style.display = 'none';
 
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
+        
+        // V46 Update: Using the most current stable model (gemini-2.5-flash)
+        const MODEL_NAME = "gemini-2.5-flash"; 
+        
         const promptText = `Analyze this Chess PGN: ${pgn}
         Role: Grandmaster Coach from The Chess Gurukul.
         1. **Performance Rating**: Estimate the ELO level shown in this game.
@@ -256,7 +258,7 @@
 
         while (attempts < maxAttempts) {
             try {
-                let API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+                let API_URL = `https://generativelanguage.googleapis.com/v1/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
                 let response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
@@ -271,10 +273,9 @@
                         if (attempts < maxAttempts) {
                             document.getElementById('coach-text').innerHTML = `<div class="quota-notice">Coach is busy (Attempt ${attempts}/${maxAttempts})... Retrying in 12 seconds.</div>`;
                             document.getElementById('coach-text').style.display = 'block';
-                            await delay(12000);
+                            await new Promise(r => setTimeout(r, 12000));
                             continue;
                         }
-                        throw new Error("QUOTA_LIMIT");
                     }
                     throw new Error(data.error.message);
                 }
@@ -287,11 +288,7 @@
 
             } catch (e) {
                 console.error("Analysis Error:", e);
-                if (e.message === "QUOTA_LIMIT") {
-                    document.getElementById('coach-text').innerHTML = `<div class="quota-notice"><strong>Limit Reached</strong><br>The free AI quota is currently full. Please wait 1-2 minutes and try again.</div>`;
-                } else {
-                    document.getElementById('coach-text').innerHTML = `<div class="error-box"><strong>Error:</strong><br>${e.message}</div>`;
-                }
+                document.getElementById('coach-text').innerHTML = `<div class="error-box"><strong>Status:</strong><br>${e.message}</div>`;
                 break;
             }
         }
