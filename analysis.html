@@ -33,7 +33,7 @@
             background-color: var(--off-white);
         }
 
-        /* --- NAVIGATION (Identical to Index.html) --- */
+        /* --- NAVIGATION --- */
         nav {
             background: var(--navy);
             padding: 15px 0;
@@ -68,6 +68,8 @@
         }
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
         .nav-links a:hover { color: var(--gold); }
+        /* Active State for AI Game Review */
+        .nav-links a.active { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
         .menu-toggle { display: none; color: white; font-size: 1.8rem; cursor: pointer; }
 
         /* --- CONTENT LAYOUT --- */
@@ -120,10 +122,10 @@
             background: #fffef0; border: 1px solid var(--gold); 
             padding: 25px; border-radius: 12px; margin-top: 20px; min-height: 200px; 
         }
+        .error-box { background: #fff5f5; border: 1px solid #ff0000; color: #d00000; padding: 15px; border-radius: 8px; }
         .loader { font-size: 30px; animation: pulse 1s infinite; display: none; text-align: center; color: var(--gold); }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
-        /* Mobile Adjustments */
         @media (max-width: 850px) {
             .menu-toggle { display: block; }
             .nav-links { 
@@ -131,7 +133,7 @@
                 background: var(--navy); flex-direction: column; padding: 20px; text-align: center; 
             }
             .nav-links.active { display: flex; }
-            .nav-links a { margin: 15px 0; }
+            .nav-links a { margin: 15px 0; margin-left: 0; }
             .main-container { grid-template-columns: 1fr; }
             #board { width: 100% !important; max-width: 350px; margin: 0 auto; }
         }
@@ -151,7 +153,7 @@
             <a href="index.html#about">About</a>
             <a href="index.html#programs">Programs</a>
             <a href="tournaments.html">Pune Tournaments</a>
-            <a href="#" style="color: var(--gold);">AI Game Review</a>
+            <a href="#" class="active">AI Game Review</a>
             <a href="index.html#contact">Contact</a>
         </div>
     </div>
@@ -197,7 +199,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-    // Navigation Toggle Logic (Matched to Index)
     const menuToggle = document.getElementById('mobile-menu');
     const navList = document.getElementById('nav-list');
     menuToggle.addEventListener('click', () => { navList.classList.toggle('active'); });
@@ -245,13 +246,24 @@
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ contents: [{ parts: [{ text: `Coach analysis for: ${pgn}. Give summary, technical tips, and 3 goals.` }] }] })
             });
+            
             const data = await response.json();
+
+            // Handle API Restrictions/Errors explicitly
+            if (data.error) {
+                throw new Error(data.error.message);
+            }
+
             lastAnalysis = data.candidates[0].content.parts[0].text;
             document.getElementById('coach-text').innerHTML = `<h3 style="color:var(--navy); border-bottom:1px solid var(--gold); padding-bottom:5px;">Gurukul Analysis</h3><div style="white-space:pre-wrap;">${lastAnalysis}</div>`;
             document.getElementById('downloadBtn').style.display = 'inline-block';
             document.getElementById('whatsappBtn').style.display = 'inline-block';
         } catch (e) {
-            document.getElementById('coach-text').innerHTML = "Error connecting to AI Coach.";
+            let errorMsg = "Error connecting to AI Coach.";
+            if (e.message.includes("referer")) {
+                errorMsg = `<div class="error-box"><strong>API Access Blocked:</strong><br>Google Cloud is blocking requests from this URL. Please ensure your API key settings allow 'thechessgurukul.github.io/*' as a referrer.</div>`;
+            }
+            document.getElementById('coach-text').innerHTML = errorMsg;
         } finally {
             document.getElementById('loader').style.display = 'none';
             document.getElementById('coach-text').style.display = 'block';
@@ -267,7 +279,7 @@
 
     function downloadPDF() {
         const element = document.getElementById('pdf-area');
-        html2pdf().from(element).save(`Chess_Report_${document.getElementById('studentName').value}.pdf`);
+        html2pdf().from(element).save(`Chess_Report_${document.getElementById('studentName').value || 'Student'}.pdf`);
     }
 </script>
 </body>
