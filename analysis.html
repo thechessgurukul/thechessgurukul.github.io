@@ -43,29 +43,28 @@
             border-bottom: 1px solid rgba(252, 163, 17, 0.2);
         }
         .nav-container {
-            max-width: 1200px; margin: 0 auto;
+            max-width: 1100px; margin: 0 auto;
             display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
         }
         .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
         .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
 
         .main-container {
-            max-width: 1300px; margin: 30px auto; padding: 0 20px;
-            display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px;
+            max-width: 1200px; margin: 20px auto; padding: 0 20px;
+            display: grid; grid-template-columns: 1.4fr 1fr; gap: 25px;
         }
 
         .tool-card {
-            background: var(--white); border-radius: 15px; padding: 25px;
+            background: var(--white); border-radius: 15px; padding: 20px;
             box-shadow: var(--shadow); border-top: 5px solid var(--gold);
         }
 
-        /* --- HD BOARD & EVAL BAR --- */
         .analysis-area {
-            display: flex; gap: 15px; align-items: stretch; justify-content: center; height: 500px;
+            display: flex; gap: 12px; align-items: stretch; justify-content: center; height: 450px;
         }
 
         #eval-bar-container {
-            width: 35px; background: #403d39; border-radius: 6px;
+            width: 30px; background: #403d39; border-radius: 4px;
             position: relative; overflow: hidden; display: flex; flex-direction: column; border: 2px solid #2b2d42;
         }
 
@@ -76,26 +75,25 @@
 
         #eval-text {
             position: absolute; width: 100%; text-align: center;
-            font-size: 11px; font-weight: bold; z-index: 2; bottom: 5px; color: #14213d;
+            font-size: 10px; font-weight: bold; z-index: 2; bottom: 5px; color: #14213d;
         }
 
         .board-ui { text-align: center; }
-        #board { width: 500px; height: 500px; margin: 0 auto; }
+        #board { width: 450px; height: 450px; margin: 0 auto; }
         
-        #move-indicator { color: var(--navy); font-weight: 700; margin-bottom: 10px; font-size: 1.3rem; }
-        .nav-btns { margin-top: 25px; display: flex; gap: 10px; justify-content: center; }
+        .nav-btns { margin-top: 15px; display: flex; gap: 10px; justify-content: center; }
         .btn-nav { 
-            background: #e9ecef; border: none; padding: 12px 24px; 
-            border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.2rem;
+            background: #e9ecef; border: none; padding: 8px 20px; 
+            border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 1.1rem;
         }
 
-        .input-group { display: flex; flex-direction: column; gap: 15px; }
-        input, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; box-sizing: border-box; }
+        .input-group { display: flex; flex-direction: column; gap: 12px; }
+        input, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; box-sizing: border-box; }
         
-        .action-btns { display: flex; flex-direction: column; gap: 10px; }
+        .action-btns { display: flex; flex-direction: column; gap: 8px; }
         .btn-main { 
-            padding: 14px; border: none; border-radius: 50px; font-weight: 800; 
-            cursor: pointer; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s;
+            padding: 12px; border: none; border-radius: 50px; font-weight: 800; 
+            cursor: pointer; text-transform: uppercase; font-size: 0.8rem; transition: 0.3s;
         }
         .btn-analyze { background: var(--navy); color: white; }
         .btn-pdf { background: #d00000; color: white; display: none; }
@@ -104,15 +102,15 @@
 
         #ai-coach-output { 
             background: #fffef0; border: 1px solid var(--gold); 
-            padding: 25px; border-radius: 12px; margin-top: 20px; min-height: 250px; 
+            padding: 20px; border-radius: 12px; margin-top: 15px; min-height: 200px; 
         }
-        .loader { font-size: 35px; animation: pulse 1s infinite; display: none; text-align: center; color: var(--gold); }
+        .loader { font-size: 30px; animation: pulse 1s infinite; display: none; text-align: center; color: var(--gold); }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
         @media (max-width: 1000px) { 
             .main-container { grid-template-columns: 1fr; } 
-            #board { width: 100%; height: auto; max-width: 400px; }
-            .analysis-area { height: 400px; }
+            #board { width: 100%; height: auto; max-width: 350px; }
+            .analysis-area { height: 350px; }
         }
     </style>
 </head>
@@ -127,7 +125,6 @@
 
 <div class="main-container">
     <div class="tool-card board-ui">
-        <h3 id="move-indicator">Position: Start</h3>
         <div class="analysis-area">
             <div id="eval-bar-container">
                 <div id="eval-bar-fill"></div>
@@ -151,7 +148,7 @@
             <div class="action-btns">
                 <button class="btn-main btn-analyze" id="analyzeBtn" onclick="startAnalysis()">✨ Start AI Review</button>
                 <button class="btn-main btn-pdf" id="downloadBtn" onclick="downloadPDF()">📄 Generate PDF Report</button>
-                <button class="btn-main btn-wa" id="whatsappBtn" onclick="shareWhatsApp()">📱 Share Analysis on WhatsApp</button>
+                <button class="btn-main btn-wa" id="whatsappBtn" onclick="share WhatsApp()">📱 Share Analysis on WhatsApp</button>
                 <button class="btn-main btn-reset" onclick="resetAll()">Reset</button>
             </div>
         </div>
@@ -178,7 +175,6 @@
     var lastAnalysis = "";
     var moveEvals = [];
 
-    // Initialize board on load
     window.onload = function() {
         board = Chessboard('board', {
             draggable: false,
@@ -195,7 +191,6 @@
         currentIndex = -1;
         moveEvals = [];
         updateEvalBar(0);
-        document.getElementById('move-indicator').innerText = "Position: Start";
         document.getElementById('pgnInput').value = '';
         document.getElementById('coach-text').innerHTML = 'Waiting for PGN input...';
         document.getElementById('downloadBtn').style.display = 'none';
@@ -212,7 +207,6 @@
         let tempGame = new Chess();
         for (let i = 0; i <= currentIndex; i++) { tempGame.move(moveHistory[i]); }
         board.position(tempGame.fen());
-        document.getElementById('move-indicator').innerText = currentIndex === -1 ? "Position: Start" : "Move: " + (currentIndex + 1);
         updateEvalBar(moveEvals[currentIndex] || 0);
     }
 
@@ -235,27 +229,34 @@
         document.getElementById('coach-text').style.display = 'none';
 
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
-        const promptText = `Analyze this Chess PGN: ${pgn}. As a GM Coach: 1. Est. ELO. 2. Critical move numbers. 3. Final Eval in centipawns (e.g. "CP: +150").`;
+        // Using Gemini 1.5 Flash (Official Stable ID)
+        const MODEL = "gemini-1.5-flash";
+
+        const promptText = `Analyze this Chess PGN: ${pgn}. As a GM Coach for ${student}: 1. Est. ELO. 2. Critical move numbers with brief notes. 3. Final Eval in centipawns (format "CP: +150").`;
 
         try {
-            let response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+            let response = await fetch(`https://generativelanguage.googleapis.com/v1/models/${MODEL}:generateContent?key=${API_KEY}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
             });
             let data = await response.json();
-            lastAnalysis = data.candidates[0].content.parts[0].text;
+            
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                lastAnalysis = data.candidates[0].content.parts[0].text;
+                let cpMatch = lastAnalysis.match(/CP:\s*([+-]?\d+)/);
+                let cpValue = cpMatch ? parseInt(cpMatch[1]) : 0;
+                moveEvals[currentIndex] = cpValue;
+                updateEvalBar(cpValue);
 
-            let cpMatch = lastAnalysis.match(/CP:\s*([+-]?\d+)/);
-            let cpValue = cpMatch ? parseInt(cpMatch[1]) : 0;
-            moveEvals[currentIndex] = cpValue;
-            updateEvalBar(cpValue);
-
-            document.getElementById('coach-text').innerHTML = `<h3 style="color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:5px;">Gurukul Analysis for ${student}</h3><div style="white-space:pre-wrap;">${lastAnalysis}</div>`;
-            document.getElementById('downloadBtn').style.display = 'block';
-            document.getElementById('whatsappBtn').style.display = 'block';
+                document.getElementById('coach-text').innerHTML = `<h3 style="color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:5px;">Gurukul Analysis for ${student}</h3><div style="white-space:pre-wrap;">${lastAnalysis}</div>`;
+                document.getElementById('downloadBtn').style.display = 'block';
+                document.getElementById('whatsappBtn').style.display = 'block';
+            } else {
+                throw new Error("Invalid API Response");
+            }
         } catch (e) {
-            document.getElementById('coach-text').innerHTML = `<div style="color:red;">Analysis Failed.</div>`;
+            document.getElementById('coach-text').innerHTML = `<div style="color:red;">Analysis Failed. Ensure your API Key is valid and try again.</div>`;
         }
         document.getElementById('loader').style.display = 'none';
         document.getElementById('coach-text').style.display = 'block';
