@@ -119,6 +119,7 @@
             padding: 25px; border-radius: 12px; margin-top: 20px; min-height: 200px; 
         }
         .error-box { background: #fff5f5; border: 1px solid #ff0000; color: #d00000; padding: 15px; border-radius: 8px; font-size: 0.9rem; }
+        .quota-notice { background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba; font-size: 0.9rem; }
         .loader { font-size: 30px; animation: pulse 1s infinite; display: none; text-align: center; color: var(--gold); }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
@@ -231,6 +232,7 @@
 
     async function startAnalysis() {
         const pgn = document.getElementById('pgnInput').value;
+        const student = document.getElementById('studentName').value || "Student";
         if (!game.load_pgn(pgn)) { alert("Invalid PGN format."); return; }
         
         moveHistory = game.history(); currentIndex = moveHistory.length - 1; updateBoardSync();
@@ -239,47 +241,52 @@
         document.getElementById('coach-text').style.display = 'none';
 
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
-        
-        // FIXED: Using "gemini-1.5-flash-latest" alias on v1 stable endpoint
         let API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+
+        // V42 MASTER PROMPT
+        const promptText = `Analyze this Chess PGN: ${pgn}
+        Role: Grandmaster Coach from The Chess Gurukul.
+        Instructions: 
+        1. **Performance Stats**: Estimate ELO and provide a brief style description (e.g., Tactical, Positional).
+        2. **Critical Moments (Mistake Highlighter)**: Identify the 2-3 most critical move numbers where the advantage changed. State the move, why it was a mistake, and the "Best Move" suggestion.
+        3. **Key Lesson**: What is the single biggest conceptual takeaway for ${student}?
+        4. **Mission**: A specific training goal for the next game.
+        Formatting: Use clear headings and bold move notations.`;
 
         try {
             let response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ 
-                    contents: [{ 
-                        parts: [{ 
-                            text: `You are a Grandmaster chess coach. Analyze this PGN: ${pgn}. Provide a brief summary of the play, 2 specific technical improvements, and 1 main goal for the student's next game.` 
-                        }] 
-                    }] 
-                })
+                body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
             });
             
             let data = await response.json();
 
-            // SECONDARY FALLBACK: Try gemini-2.0-flash if the first fails
+            if (data.error && data.error.status === "RESOURCE_EXHAUSTED") throw new Error("QUOTA_LIMIT");
+
             if (data.error && (data.error.status === "NOT_FOUND" || data.error.message.includes("not found"))) {
                 API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
                 response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{ parts: [{ text: `Analyze this PGN: ${pgn}` }] }] })
+                    body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
                 });
                 data = await response.json();
             }
 
-            if (data.error) {
-                throw new Error(data.error.message);
-            }
+            if (data.error) throw new Error(data.error.message);
 
             lastAnalysis = data.candidates[0].content.parts[0].text;
-            document.getElementById('coach-text').innerHTML = `<h3 style="color:var(--navy); border-bottom:1px solid var(--gold); padding-bottom:5px;">Gurukul Analysis</h3><div style="white-space:pre-wrap;">${lastAnalysis}</div>`;
+            document.getElementById('coach-text').innerHTML = `<h3 style="color:var(--navy); border-bottom:1px solid var(--gold); padding-bottom:5px;">Gurukul Analysis for ${student}</h3><div style="white-space:pre-wrap;">${lastAnalysis}</div>`;
             document.getElementById('downloadBtn').style.display = 'inline-block';
             document.getElementById('whatsappBtn').style.display = 'inline-block';
         } catch (e) {
-            console.error("Connection Debug:", e);
-            document.getElementById('coach-text').innerHTML = `<div class="error-box"><strong>Analysis Failed:</strong><br>${e.message}</div>`;
+            console.error("Analysis Error:", e);
+            if (e.message === "QUOTA_LIMIT") {
+                document.getElementById('coach-text').innerHTML = `<div class="quota-notice"><strong>Coach is busy!</strong><br>The AI is catching its breath. Please wait 15 seconds and try again.</div>`;
+            } else {
+                document.getElementById('coach-text').innerHTML = `<div class="error-box"><strong>Analysis Failed:</strong><br>${e.message}</div>`;
+            }
         } finally {
             document.getElementById('loader').style.display = 'none';
             document.getElementById('coach-text').style.display = 'block';
@@ -296,7 +303,7 @@
     function downloadPDF() {
         const element = document.getElementById('pdf-area');
         const opt = {
-            margin: 1,
+            margin: 0.5,
             filename: `Chess_Report_${document.getElementById('studentName').value || 'Student'}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2 },
