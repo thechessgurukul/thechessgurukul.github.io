@@ -13,6 +13,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tournaments in Pune | The Chess Gurukul</title>
+
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://thechessgurukul.github.io/thechessgurukul/index.html"
+        },{
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tournaments",
+          "item": "https://thechessgurukul.github.io/thechessgurukul/tournaments.html"
+        }]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Upcoming Chess Tournaments in Pune",
+        "description": "Schedule of FIDE Rated and Unrated chess tournaments in Pune, Maharashtra.",
+        "url": "https://thechessgurukul.github.io/thechessgurukul/tournaments.html",
+        "numberOfItems": "20",
+        "itemListOrder": "https://schema.org/ItemListOrderAscending"
+      }
+    ]
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 
     <style>
@@ -105,8 +135,8 @@
         .col-date { width: 15%; }
         .col-name { width: 30%; }
         .col-type { width: 12%; }
-        .col-loc  { width: 25%; }
-        .col-reg  { width: 18%; }
+        .col-loc   { width: 25%; }
+        .col-reg   { width: 18%; }
 
         tr:nth-child(even) { background-color: #fcfcfc; }
         .reg-link { color: var(--link-blue); text-decoration: underline; font-weight: 600; }
@@ -187,10 +217,8 @@
     const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
     let allTournaments = [];
 
-    // Helper to handle various date formats (DD-MM-YYYY or MM/DD/YYYY)
     function parseSheetDate(dateStr) {
         if (!dateStr) return new Date(NaN);
-        // Replace dashes with slashes for better cross-browser compatibility
         const cleanDate = dateStr.trim().replace(/-/g, '/');
         return new Date(cleanDate);
     }
@@ -201,7 +229,6 @@
             header: true,
             skipEmptyLines: true,
             complete: (results) => {
-                console.log("Data loaded:", results.data); // Debug check
                 allTournaments = results.data.filter(row => row['Date'] && row['Date'].trim() !== "");
                 
                 if (allTournaments.length === 0) {
@@ -213,7 +240,6 @@
                 displayTournaments(allTournaments);
             },
             error: (err) => {
-                console.error("PapaParse Error:", err);
                 document.getElementById('loading').innerText = "Error loading spreadsheet. Please check link.";
             }
         });
