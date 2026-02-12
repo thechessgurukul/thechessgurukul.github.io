@@ -33,7 +33,6 @@
             background-color: var(--off-white);
         }
 
-        /* --- NAVIGATION --- */
         nav {
             background: var(--navy);
             padding: 15px 0;
@@ -53,7 +52,6 @@
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
         .nav-links a.active { color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
 
-        /* --- CONTENT LAYOUT --- */
         .main-container {
             max-width: 1100px; margin: 40px auto; padding: 0 20px;
             display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px;
@@ -76,15 +74,15 @@
         .input-group { display: flex; flex-direction: column; gap: 15px; }
         input, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; box-sizing: border-box; }
         
-        .action-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .action-btns { display: flex; flex-direction: column; gap: 10px; }
         .btn-main { 
             padding: 14px; border: none; border-radius: 50px; font-weight: 800; 
             cursor: pointer; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s;
+            text-align: center; width: 100%;
         }
-        .btn-analyze { background: var(--navy); color: white; grid-column: span 2; }
+        .btn-analyze { background: var(--navy); color: white; }
         .btn-pdf { background: #d00000; color: white; display: none; }
         .btn-wa { background: #25D366; color: white; display: none; }
-        .btn-voice { background: #6c757d; color: white; display: none; grid-column: span 2; }
         .btn-reset { background: #e9ecef; color: var(--navy); }
 
         #ai-coach-output { 
@@ -106,7 +104,7 @@
             <span class="tagline">Explore the world of 64 squares...</span>
         </div>
         <div class="nav-links">
-            <a href="#" class="active">AI Game Review (V48)</a>
+            <a href="#" class="active">AI Game Review</a>
         </div>
     </div>
 </nav>
@@ -130,9 +128,8 @@
             
             <div class="action-btns">
                 <button class="btn-main btn-analyze" id="analyzeBtn" onclick="startAnalysis()">✨ Start AI Review</button>
-                <button class="btn-main btn-voice" id="voiceBtn" onclick="speakAnalysis()">🔊 Listen to Coach</button>
-                <button class="btn-main btn-pdf" id="downloadBtn" onclick="downloadPDF()">📄 PDF</button>
-                <button class="btn-main btn-wa" id="whatsappBtn" onclick="shareWhatsApp()">📱 WhatsApp</button>
+                <button class="btn-main btn-pdf" id="downloadBtn" onclick="downloadPDF()">📄 Generate PDF Report</button>
+                <button class="btn-main btn-wa" id="whatsappBtn" onclick="shareWhatsApp()">📱 Share Analysis on WhatsApp</button>
                 <button class="btn-main btn-reset" onclick="resetAll()">Reset</button>
             </div>
         </div>
@@ -147,12 +144,11 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <script>
-    // --- Restored V46 Board Engine ---
     var board = Chessboard('board', { draggable: true, position: 'start', pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png' });
     var game = new Chess();
     var moveHistory = [];
@@ -164,10 +160,8 @@
         document.getElementById('move-indicator').innerText = "Position: Start";
         document.getElementById('pgnInput').value = '';
         document.getElementById('coach-text').innerHTML = 'Ready to analyze your game...';
-        document.getElementById('voiceBtn').style.display = 'none';
         document.getElementById('downloadBtn').style.display = 'none';
         document.getElementById('whatsappBtn').style.display = 'none';
-        window.speechSynthesis.cancel();
     }
 
     function updateBoardSync() {
@@ -182,7 +176,6 @@
     function moveBack() { if (currentIndex > -1) { currentIndex--; updateBoardSync(); } }
     function moveNext() { if (currentIndex < moveHistory.length - 1) { currentIndex++; updateBoardSync(); } }
 
-    // --- V47 Intelligence + Voice Logic ---
     async function startAnalysis() {
         const pgn = document.getElementById('pgnInput').value;
         const student = document.getElementById('studentName').value || "Student";
@@ -194,7 +187,7 @@
         document.getElementById('coach-text').style.display = 'none';
 
         const API_KEY = 'AIzaSyDZGTpA-vsZMpbvlAy2cBzlXTpt3FG9Zqo'; 
-        const MODEL = "gemini-2.5-flash"; 
+        const MODEL = "gemini-1.5-flash"; 
         
         const promptText = `Analyze this Chess PGN: ${pgn}. As a GM Coach for ${student}: 1. Est. ELO. 2. Highlight 2-3 critical move numbers with mistakes/best moves. 3. Key lesson.`;
 
@@ -208,22 +201,14 @@
             lastAnalysis = data.candidates[0].content.parts[0].text;
 
             document.getElementById('coach-text').innerHTML = `<h3 style="color:var(--navy); border-bottom:1px solid var(--gold); padding-bottom:5px;">Gurukul Analysis for ${student}</h3><div style="white-space:pre-wrap;">${lastAnalysis}</div>`;
-            document.getElementById('voiceBtn').style.display = 'inline-block';
-            document.getElementById('downloadBtn').style.display = 'inline-block';
-            document.getElementById('whatsappBtn').style.display = 'inline-block';
+            document.getElementById('downloadBtn').style.display = 'block';
+            document.getElementById('whatsappBtn').style.display = 'block';
         } catch (e) {
             document.getElementById('coach-text').innerHTML = `<div style="color:red;">Analysis Failed: ${e.message}</div>`;
         }
         document.getElementById('loader').style.display = 'none';
         document.getElementById('coach-text').style.display = 'block';
         document.getElementById('analyzeBtn').disabled = false;
-    }
-
-    function speakAnalysis() {
-        window.speechSynthesis.cancel();
-        const msg = new SpeechSynthesisUtterance(lastAnalysis);
-        msg.rate = 0.95;
-        window.speechSynthesis.speak(msg);
     }
 
     function shareWhatsApp() {
@@ -234,7 +219,14 @@
 
     function downloadPDF() {
         const element = document.getElementById('pdf-area');
-        html2pdf().from(element).save(`Chess_Report_${document.getElementById('studentName').value || 'Student'}.pdf`);
+        const opt = {
+            margin: 1,
+            filename: `Chess_Report_${document.getElementById('studentName').value || 'Student'}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
     }
 </script>
 </body>
