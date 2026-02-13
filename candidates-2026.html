@@ -16,17 +16,11 @@
       "@type": "BlogPosting",
       "headline": "The Road to the Crown: Inside the 2026 FIDE Candidates Tournament",
       "description": "Everything you need to know about the 2026 FIDE Candidates Tournament, the 8 contenders, and the path to challenge Gukesh Dommaraju.",
-      "author": {
-        "@type": "Organization",
-        "name": "The Chess Gurukul"
-      },
+      "author": { "@type": "Organization", "name": "The Chess Gurukul" },
       "publisher": {
         "@type": "Organization",
         "name": "The Chess Gurukul",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://your-website.com/logo.png"
-        }
+        "logo": { "@type": "ImageObject", "url": "https://your-website.com/logo.png" }
       },
       "datePublished": "2026-02-12",
       "mainEntityOfPage": {
@@ -37,7 +31,6 @@
     </script>
 
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
     <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_9f54a2185fa1212da4acd9f6515a38"></script>
 
     <style>
@@ -47,8 +40,7 @@
             --off-white: #f8f9fa; 
             --text-dark: #212529;
             --white: #ffffff;
-            --whatsapp-green: #25d366;
-            --linkedin-blue: #0077b5;
+            --heart-red: #ff4b2b;
         }
 
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.8; color: var(--text-dark); margin: 0; background-color: var(--off-white); }
@@ -59,8 +51,13 @@
         .blog-container { max-width: 850px; margin: 40px auto; padding: 40px; background: var(--white); border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); }
 
         .back-link { display: inline-block; margin-bottom: 20px; color: var(--navy); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-        .blog-date { display: block; color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
-        .read-count-top { color: #6c757d; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: block; }
+        
+        /* Meta styling for Date and Read Time */
+        .blog-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; }
+        .blog-date { color: var(--gold); }
+        .read-time { color: #6c757d; }
+
+        .read-counter { font-size: 0.85rem; color: #6c757d; margin-bottom: 20px; display: flex; align-items: center; gap: 5px; }
 
         h1 { color: var(--navy); font-size: 2.3rem; line-height: 1.2; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
         h2 { color: var(--navy); margin-top: 35px; border-left: 5px solid var(--gold); padding-left: 15px; font-size: 1.6rem; }
@@ -74,12 +71,13 @@
         .fun-fact-grid { display: grid; grid-template-columns: 1fr; background: var(--navy); color: white; padding: 25px; border-radius: 10px; margin: 35px 0; }
         .fun-fact-title { font-weight: bold; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
 
-        .share-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--gold); }
-        .social-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
-        .btn-social { text-decoration: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; color: white; transition: 0.3s; }
-        .btn-whatsapp { background: var(--whatsapp-green); }
-        .btn-linkedin { background: var(--linkedin-blue); }
-        .btn-social:hover { opacity: 0.9; transform: translateY(-2px); }
+        /* Unified Interaction Box (Blog Master 50 Standard) */
+        .interaction-box { background: #ffffff; border: 2px solid #eee; border-radius: 12px; padding: 25px; margin-top: 40px; text-align: center; }
+
+        /* FORCE HEART TO BE RED */
+        [data-lyket-type="like"] svg { fill: var(--heart-red) !important; color: var(--heart-red) !important; }
+        [data-lyket-template="heart"] button { background: transparent !important; border: 2px solid #ff4b2b22 !important; border-radius: 50%; padding: 10px; transition: all 0.3s ease; }
+        [data-lyket-template="heart"] button:hover { background: #ff4b2b11 !important; transform: scale(1.1); }
 
         footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; border-top: 1px solid #eee; }
 
@@ -92,104 +90,116 @@
 
 <article class="blog-container">
     <a href="index.html" class="back-link">← Back to Home</a>
-    <span class="blog-date">FEB 12, 2026</span>
     
-    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
-        <span id="busuanzi_container_page_pv" class="read-count-top" style="margin-bottom: 0;">
-            👁️ <span id="busuanzi_value_page_pv"></span> reads
+    <div class="blog-meta">
+        <span class="blog-date">Feb 12, 2026</span>
+        <span style="color: #ddd;">|</span>
+        <span class="read-time">⏱️ 4 MIN READ</span>
+    </div>
+
+    <div class="read-counter">
+        <span>👁️</span>
+        <span id="busuanzi_container_page_pv" style="display:none;">
+            <span id="busuanzi_value_page_pv"></span> reads
         </span>
-        <div 
-          data-lyket-type="like" 
-          data-lyket-id="candidates-2026-blog" 
-          data-lyket-namespace="the-chess-gurukul"
-          data-lyket-template="twitter"
-        ></div>
     </div>
 
     <h1>🏆 The Road to the Crown: Inside the 2026 FIDE Candidates Tournament</h1>
 
-    <p>Hello, young Grandmasters!</p>
-    <p>The most important tournament of the World Championship cycle is here — the 2026 FIDE Candidates Tournament. This is the event that decides who will challenge World Champion <strong>Gukesh Dommaraju</strong> for the crown.</p>
-    
-    <p>Eight of the strongest players in the world.<br>
-    Fourteen rounds.<br>
-    One challenger.</p>
-    
-    <p>Let’s understand why this event is so special.</p>
+    <div class="content">
+        <p>Hello, young Grandmasters!</p>
+        <p>The most important tournament of the World Championship cycle is here — the 2026 FIDE Candidates Tournament. This is the event that decides who will challenge World Champion <strong>Gukesh Dommaraju</strong> for the crown.</p>
+        
+        <p>Eight of the strongest players in the world.<br>
+        Fourteen rounds.<br>
+        One challenger.</p>
+        
+        <p>Let’s understand why this event is so special.</p>
 
-    <h2>🔙 Flashback: The Gukesh Miracle (Toronto 2024)</h2>
-    <p>Before we look ahead to Cyprus, we must remember the history made just two years ago. At the 2024 Candidates in Toronto, 17-year-old <strong>Gukesh Dommaraju</strong> did the unthinkable. Entering the tournament as one of the youngest participants, he showed nerves of steel against legends like Fabiano Caruana and Ian Nepomniachtchi.</p>
-    <p>By winning that tournament, Gukesh became the <strong>youngest World Chess Championship challenger in history</strong>, breaking a record held by Garry Kasparov for 40 years. Of course, we now know he went on to win the title in late 2024! His journey started in Toronto and proved to every young player that age is just a number—if your preparation and mindset are world-class.</p>
+        <h2>🔙 Flashback: The Gukesh Miracle (Toronto 2024)</h2>
+        <p>Before we look ahead to Cyprus, we must remember the history made just two years ago. At the 2024 Candidates in Toronto, 17-year-old <strong>Gukesh Dommaraju</strong> did the unthinkable. Entering the tournament as one of the youngest participants, he showed nerves of steel against legends like Fabiano Caruana and Ian Nepomniachtchi.</p>
+        <p>By winning that tournament, Gukesh became the <strong>youngest World Chess Championship challenger in history</strong>, breaking a record held by Garry Kasparov for 40 years. Of course, we now know he went on to win the title in late 2024! His journey started in Toronto and proved to every young player that age is just a number—if your preparation and mindset are world-class.</p>
 
-    <h2>📍 Where Is It Happening?</h2>
-    <p>The 2026 Candidates Tournament will be held in <strong>Cyprus</strong>, at the luxurious Cap St Georges Hotel & Resort near Paphos, overlooking the Mediterranean Sea.</p>
-    <p>While the location may look calm and beautiful, the tension inside the playing hall will be intense. Every move could influence who earns the right to play for the World Championship.</p>
+        <h2>📍 Where Is It Happening?</h2>
+        <p>The 2026 Candidates Tournament will be held in <strong>Cyprus</strong>, at the luxurious Cap St Georges Hotel & Resort near Paphos, overlooking the Mediterranean Sea.</p>
+        <p>While the location may look calm and beautiful, the tension inside the playing hall will be intense. Every move could influence who earns the right to play for the World Championship.</p>
 
-    <h2>📅 The Format: A True Test of Stamina (March 28 – April 16)</h2>
-    <p>The tournament runs from March 28 to April 16, 2026, and follows a double round-robin format. That means:</p>
-    <ul>
-        <li>Each of the 8 players faces every other player twice</li>
-        <li>Once with the White pieces</li>
-        <li>Once with the Black pieces</li>
-        <li>A total of 14 rounds</li>
-    </ul>
-    <p>Consistency is crucial. With no easy opponents and limited room for error, players must maintain focus for nearly three weeks. If players are tied for first place after 14 rounds, rapid and blitz tie-break games will determine the challenger.</p>
-
-    <div class="lessons-box">
-        <h3 style="margin-top: 0;">⚔️ The 8 Contenders</h3>
+        <h2>📅 The Format: A True Test of Stamina (March 28 – April 16)</h2>
+        <p>The tournament runs from March 28 to April 16, 2026, and follows a double round-robin format. That means:</p>
         <ul>
-            <li><strong>Fabiano Caruana (USA)</strong> Former World Championship challenger and one of the best-prepared players in modern chess.</li>
-            <li><strong>R. Praggnanandhaa (India) 🇮🇳</strong> A rising superstar who secured qualification through the FIDE Circuit.</li>
-            <li><strong>Hikaru Nakamura (USA)</strong> Known for his dynamic style and elite calculation ability.</li>
-            <li><strong>Anish Giri (Netherlands)</strong> A deeply strategic player with world-class opening preparation.</li>
-            <li><strong>Javokhir Sindarov (Uzbekistan)</strong> A fearless young competitor who earned his place through the World Cup.</li>
-            <li><strong>Wei Yi (China)</strong> A former prodigy who has returned to elite form.</li>
-            <li><strong>Andrey Esipenko (FIDE/Neutral)</strong> Competing under the FIDE flag due to international regulations and qualified via rating.</li>
-            <li><strong>Matthias Blübaum (Germany)</strong> A determined competitor who impressed during the qualification cycle.</li>
+            <li>Each of the 8 players faces every other player twice</li>
+            <li>Once with the White pieces</li>
+            <li>Once with the Black pieces</li>
+            <li>A total of 14 rounds</li>
         </ul>
-    </div>
+        <p>Consistency is crucial. With no easy opponents and limited room for error, players must maintain focus for nearly three weeks. If players are tied for first place after 14 rounds, rapid and blitz tie-break games will determine the challenger.</p>
 
-    <h2>⏱ Official FIDE Classical Time Control</h2>
-    <p>The Candidates Tournament uses the official FIDE classical time control:</p>
-    <ul>
-        <li>120 minutes for the first 40 moves</li>
-        <li>+30 minutes added after move 40</li>
-        <li>30-second increment per move from move 41 onward</li>
-    </ul>
-    <p>Games can last five to six hours or even longer, depending on the position and complexity.</p>
-
-    <h2>📺 How to Watch: Don’t Miss a Move!</h2>
-    <p>Watching grandmasters think in real-time is one of the best ways to improve your "chess vision." Here is how you can follow the action:</p>
-    <ul>
-        <li><strong>Live Broadcasts:</strong> You can watch live commentary on the <strong>FIDE YouTube Channel</strong>, <strong>Chess.com</strong>, and <strong>Lichess.org</strong>.</li>
-        <li><strong>Analysis:</strong> For deep dives into the tactics, follow the <strong>ChessBase India</strong> channel for daily round summaries and expert insights.</li>
-        <li><strong>Time for India (IST):</strong> Since Cyprus is 3.5 hours behind India, rounds will typically begin around <strong>4:30 PM or 5:30 PM IST</strong>. This is the perfect time to watch the opening phase after school!</li>
-    </ul>
-
-    <div class="fun-fact-grid">
-        <div class="fun-fact-title">🌍 Why the Candidates Matters</div>
-        <div>
-            The winner earns the right to challenge World Champion Gukesh Dommaraju. The match that follows will determine the next World Champion. For aspiring players, this tournament offers valuable lessons in preparation, resilience, and consistency under pressure.
+        <div class="lessons-box">
+            <h3 style="margin-top: 0;">⚔️ The 8 Contenders</h3>
+            <ul>
+                <li><strong>Fabiano Caruana (USA)</strong> Former World Championship challenger and one of the best-prepared players in modern chess.</li>
+                <li><strong>R. Praggnanandhaa (India) 🇮🇳</strong> A rising superstar who secured qualification through the FIDE Circuit.</li>
+                <li><strong>Hikaru Nakamura (USA)</strong> Known for his dynamic style and elite calculation ability.</li>
+                <li><strong>Anish Giri (Netherlands)</strong> A deeply strategic player with world-class opening preparation.</li>
+                <li><strong>Javokhir Sindarov (Uzbekistan)</strong> A fearless young competitor who earned his place through the World Cup.</li>
+                <li><strong>Wei Yi (China)</strong> A former prodigy who has returned to elite form.</li>
+                <li><strong>Andrey Esipenko (FIDE/Neutral)</strong> Competing under the FIDE flag due to international regulations and qualified via rating.</li>
+                <li><strong>Matthias Blübaum (Germany)</strong> A determined competitor who impressed during the qualification cycle.</li>
+            </ul>
         </div>
-    </div>
 
-    <p>The road to the crown begins in Cyprus. And among these eight contenders, one will emerge as the challenger. ♟️</p>
+        <h2>⏱ Official FIDE Classical Time Control</h2>
+        <p>The Candidates Tournament uses the official FIDE classical time control:</p>
+        <ul>
+            <li>120 minutes for the first 40 moves</li>
+            <li>+30 minutes added after move 40</li>
+            <li>30-second increment per move from move 41 onward</li>
+        </ul>
+        <p>Games can last five to six hours or even longer, depending on the position and complexity.</p>
 
-    <div class="share-section">
-        <span class="share-title">Found this article informative? 💡 Share this with a friend!</span>
-        <div class="social-buttons">
-            <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" class="btn-social btn-whatsapp">Share on WhatsApp</a>
-            <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" class="btn-social btn-linkedin">Share on LinkedIn</a>
+        <h2>📺 How to Watch: Don’t Miss a Move!</h2>
+        <p>Watching grandmasters think in real-time is one of the best ways to improve your "chess vision." Here is how you can follow the action:</p>
+        <ul>
+            <li><strong>Live Broadcasts:</strong> You can watch live commentary on the <strong>FIDE YouTube Channel</strong>, <strong>Chess.com</strong>, and <strong>Lichess.org</strong>.</li>
+            <li><strong>Analysis:</strong> For deep dives into the tactics, follow the <strong>ChessBase India</strong> channel for daily round summaries and expert insights.</li>
+            <li><strong>Time for India (IST):</strong> Since Cyprus is 3.5 hours behind India, rounds will typically begin around <strong>4:30 PM or 5:30 PM IST</strong>. This is the perfect time to watch the opening phase after school!</li>
+        </ul>
+
+        <div class="fun-fact-grid">
+            <div class="fun-fact-title">🌍 Why the Candidates Matters</div>
+            <div>
+                The winner earns the right to challenge World Champion Gukesh Dommaraju. The match that follows will determine the next World Champion. For aspiring players, this tournament offers valuable lessons in preparation, resilience, and consistency under pressure.
+            </div>
         </div>
-    </div>
 
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="index.html" class="back-link">← Back to Knowledge Hub</a>
+        <p>The road to the crown begins in Cyprus. And among these eight contenders, one will emerge as the challenger. ♟️</p>
+
+        <div class="interaction-box">
+            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this update? Give it a heart and share with your chess circle! ❤️</p>
+            
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 25px;">
+                <div 
+                  data-lyket-type="like" 
+                  data-lyket-id="candidates-2026-v50-master" 
+                  data-lyket-namespace="the-chess-gurukul-master"
+                  data-lyket-template="heart"
+                ></div>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on WhatsApp</a>
+                <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #0077b5; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on LinkedIn</a>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none; font-size: 0.9rem;">← Back to Knowledge Hub</a>
+            </div>
+        </div>
     </div>
 </article>
 
 <footer>
-    <p>&copy; 2026 The Chess Gurukul | Pune, India</p>
+    <p>&copy; 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
 </footer>
 
 </body>
