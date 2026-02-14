@@ -4,17 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess960: Freestyle Chess Guide | The Chess Gurukul</title>
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Chess960: The Wild & Wonderful World of Freestyle Chess!">
+    <meta property="og:description" content="Discover why Magnus Carlsen and the world's top players are obsessed with this creative version of chess.">
+    <meta name="description" content="A guide to Chess960 (Fischer Random), its rules, and why it is the ultimate test of chess creativity.">
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_9f54a2185fa1212da4acd9f6515a38"></script>
+
     <style>
         :root {
             --navy: #14213d;
             --gold: #fca311;
             --off-white: #f8f9fa;
             --white: #ffffff;
-            --text-dark: #333;
+            --text-dark: #212529;
+            --heart-red: #ff4b2b;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.8;
             color: var(--text-dark);
             background-color: var(--off-white);
@@ -24,104 +34,28 @@
 
         nav {
             background: var(--navy);
-            padding: 20px 0;
+            padding: 15px 0;
             text-align: center;
             border-bottom: 4px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
             color: var(--gold);
             font-weight: 800;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             text-decoration: none;
-            letter-spacing: 1px;
         }
 
-        .container {
+        .blog-container {
             max-width: 850px;
             margin: 40px auto;
             background: var(--white);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        h1 { color: var(--navy); font-size: 2.2rem; margin-bottom: 10px; line-height: 1.3; }
-        h2 { color: var(--navy); border-left: 5px solid var(--gold); padding-left: 15px; margin-top: 35px; }
-        h3 { color: #444; margin-top: 25px; }
-
-        .blog-meta {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        .read-badge {
-            background: #f1f3f5;
-            color: #666;
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-left: 12px;
-            text-transform: uppercase;
-        }
-
-        /* Feature Boxes */
-        .lessons-box {
-            background: #fff8eb;
-            border: 2px dashed var(--gold);
-            padding: 25px;
-            border-radius: 12px;
-            margin: 30px 0;
-        }
-
-        .fun-fact-grid {
-            background: var(--navy);
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            margin: 30px 0;
-        }
-
-        .fun-fact-title {
-            color: var(--gold);
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .skills-list {
-            background: #f1f7ff;
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 5px solid #3a86ff;
-        }
-
-        .like-section {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-
-        .heart-btn {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .heart-btn:hover { transform: scale(1.2); }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: var(--navy);
-            color: white;
-            margin-top: 60px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
         }
 
         .back-link {
@@ -130,135 +64,211 @@
             text-decoration: none;
             color: var(--navy);
             font-weight: bold;
+            font-size: 0.9rem;
         }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .blog-date { color: var(--gold); }
+        .read-time { color: #6c757d; }
+
+        .read-counter {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #f8f9fa;
+            width: fit-content;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        h1 { color: var(--navy); font-size: 2.3rem; line-height: 1.2; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        h2 { color: var(--navy); border-left: 5px solid var(--gold); padding-left: 15px; margin-top: 35px; font-size: 1.6rem; }
+        h3 { color: var(--navy); margin-top: 25px; font-size: 1.3rem; }
+
+        .lessons-box { background: #fffef0; border: 1px solid var(--gold); padding: 30px; border-radius: 12px; margin: 40px 0; }
+        .fun-fact-grid { background: var(--navy); color: white; padding: 25px; border-radius: 10px; margin: 35px 0; }
+        .fun-fact-title { color: var(--gold); font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: block; letter-spacing: 1px; }
+        .skills-list { background: #f1f7ff; padding: 20px; border-radius: 12px; border-left: 5px solid #3a86ff; margin: 20px 0; }
+
+        .interaction-box {
+            background: #ffffff;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        [data-lyket-type="like"] svg { fill: var(--heart-red) !important; color: var(--heart-red) !important; }
+        [data-lyket-template="heart"] button { background: transparent !important; border: 2px solid #ff4b2b22 !important; border-radius: 50%; padding: 10px; transition: all 0.3s ease; }
+        [data-lyket-template="heart"] button:hover { background: #ff4b2b11 !important; transform: scale(1.1); }
+
+        footer { text-align: center; padding: 40px; background: var(--navy); color: white; margin-top: 60px; }
+
+        @media (max-width: 600px) { .blog-container { padding: 20px; margin: 10px; } h1 { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
 
 <nav><a href="index.html" class="logo">THE CHESS GURUKUL</a></nav>
 
-<main class="container">
-    <a href="blog-archive.html" class="back-link">← Back to Blog Archive</a>
+<article class="blog-container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="blog-meta">
+        <span class="blog-date">Feb 14, 2026</span>
+        <span style="color: #ddd;">|</span>
+        <span class="read-time">⏱️ 4 MIN READ</span>
+    </div>
+
+    <div class="read-counter">
+        <span>👁️</span>
+        <span id="busuanzi_container_page_pv" style="display:none;">
+            <span id="busuanzi_value_page_pv"></span> reads
+        </span>
+    </div>
 
     <h1>🎲 Chess960: The Wild & Wonderful World of Freestyle Chess!</h1>
     
-    <div class="blog-meta">
-        <span>Feb 14, 2026</span>
-        <span class="read-badge">⏱️ 4 MIN READ</span>
-    </div>
+    <div class="content">
+        <p>Hello, young Grandmasters! 🌟</p>
 
-    <p>Hello, young Grandmasters! 🌟</p>
+        <p>Have you ever sat down at your chessboard, looked at the pieces in their usual places—the Rooks in the corners, the Knights beside them—and wondered…</p>
 
-    <p>Have you ever sat down at your chessboard, looked at the pieces in their usual places—the Rooks in the corners, the Knights beside them—and wondered…</p>
+        <p><strong>"What if we mixed them all up?"</strong> 🤯</p>
 
-    <p><strong>"What if we mixed them all up?"</strong> 🤯</p>
+        <p>A very famous World Champion once wondered the same thing. His name was <strong>Bobby Fischer</strong>. He believed that chess should be about thinking, not just memorizing long opening lines from books. So he created something bold, creative, and exciting:</p>
 
-    <p>A very famous World Champion once wondered the same thing. His name was <strong>Bobby Fischer</strong>. He believed that chess should be about thinking, not just memorizing long opening lines from books. So he created something bold, creative, and exciting:</p>
+        <p>✨ <strong>Chess960</strong> — also called Fischer Random Chess or Freestyle Chess. And today, even superstars like <strong>Magnus Carlsen</strong> love playing it!</p>
 
-    <p>✨ <strong>Chess960</strong> — also called Fischer Random Chess or Freestyle Chess. And today, even superstars like <strong>Magnus Carlsen</strong> love playing it!</p>
+        <p>Let’s dive into this adventurous version of chess together. 🚀</p>
 
-    <p>Let’s dive into this adventurous version of chess together. 🚀</p>
+        <h2>🌀 What Exactly Is Chess960?</h2>
+        <p>In normal chess, the pieces always begin in the same position. You could set them up with your eyes closed! 😄</p>
+        
+        <p>But in <strong>Chess960</strong>, the pawns stay the same, and the back-row pieces (Rooks, Knights, Bishops, Queen, King) are shuffled into one of <strong>960 possible starting positions</strong>. Yes… 960! 🔢</p>
 
-    <h2>🌀 What Exactly Is Chess960?</h2>
-    <p>In normal chess, the pieces always begin in the same position. You could set them up with your eyes closed! 😄</p>
-    
-    <p>But in <strong>Chess960</strong>, the pawns stay the same, and the back-row pieces (Rooks, Knights, Bishops, Queen, King) are shuffled into one of <strong>960 possible starting positions</strong>. Yes… 960! 🔢</p>
+        <p>You could play almost three years without ever repeating the same setup.</p>
 
-    <p>You could play almost three years without ever repeating the same setup.</p>
-
-    <h3>📏 The Golden Rules of Shuffling</h3>
-    <p>Even though it feels wild, there are two important rules:</p>
-    <ul>
-        <li>The two <strong>Bishops</strong> must be on opposite colors (one light, one dark square).</li>
-        <li>The <strong>King</strong> must be placed somewhere between the two Rooks — so you can still castle.</li>
-    </ul>
-    <p>That’s it! Simple rules. Endless creativity. 🎨♟️</p>
-
-    <h2>🚀 Why Is “Freestyle Chess” So Popular?</h2>
-    <p>Chess960 is not just a fun home experiment. It is played at the highest level! The official championship is organized by FIDE, called the <strong>FIDE World Fischer Random Chess Championship</strong>.</p>
-
-    <p>Top players like <strong>Wesley So</strong> and even Indian stars like <strong>R Praggnanandhaa</strong> enjoy testing their pure skills in this format. 🇮🇳♟️</p>
-
-    <p>Why do they love it? Because in Chess960:</p>
-    <ul>
-        <li>There is no opening theory to memorize.</li>
-        <li>From move one, you must think independently.</li>
-        <li>Creativity beats preparation.</li>
-    </ul>
-    <p>It’s like a musician who stops reading sheet music and starts <strong>improvising</strong>. 🎵✨</p>
-
-    <h2>🧠 What Skills Does Chess960 Build?</h2>
-    <div class="skills-list">
-        <p>This format is like a brain gym for young champions! 💪</p>
+        <h3>📏 The Golden Rules of Shuffling</h3>
+        <p>Even though it feels wild, there are two important rules:</p>
         <ul>
-            <li>Sharp calculation skills</li>
-            <li>Better piece coordination</li>
-            <li>Strong understanding of chess principles</li>
-            <li>Calmness in unusual situations</li>
-            <li>Confidence without memorization</li>
+            <li>The two <strong>Bishops</strong> must be on opposite colors (one light, one dark square).</li>
+            <li>The <strong>King</strong> must be placed somewhere between the two Rooks — so you can still castle.</li>
         </ul>
-        <p>In Chess960, your <strong>imagination</strong> becomes your strongest piece.</p>
-    </div>
+        <p>That’s it! Simple rules. Endless creativity. 🎨♟️</p>
 
-    <h2>🏰 Castling in the Chaos</h2>
-    <p>At first, castling in Chess960 looks confusing. 😅 But here is the secret magic: No matter where the King and Rooks begin, when you castle, they finish in the same "safe house" squares:</p>
-    <ul>
-        <li><strong>Kingside (Short)</strong> → King finishes on g1, Rook on f1</li>
-        <li><strong>Queenside (Long)</strong> → King finishes on c1, Rook on d1</li>
-    </ul>
-    <p>It always ends in the same spots — just like normal chess! ✨</p>
+        <h2>🚀 Why Is “Freestyle Chess” So Popular?</h2>
+        <p>Chess960 is not just a fun home experiment. It is played at the highest level! The official championship is organized by FIDE, called the <strong>FIDE World Fischer Random Chess Championship</strong>.</p>
 
-    <div class="lessons-box">
-        <h3 style="margin-top:0;">🌟 Lessons for You</h3>
-        <p>Here’s your special Coach’s Box. Read carefully:</p>
+        <p>Top players like <strong>Wesley So</strong> and even Indian stars like <strong>R Praggnanandhaa</strong> enjoy testing their pure skills in this format. 🇮🇳♟️</p>
+
+        <p>Why do they love it? Because in Chess960:</p>
         <ul>
-            <li><strong>Understand, don’t memorize:</strong> Real strength comes from understanding positions.</li>
-            <li><strong>Be flexible:</strong> Every game is different — adapt quickly.</li>
-            <li><strong>Stay calm in surprises:</strong> Weird positions are opportunities.</li>
-            <li><strong>Follow principles:</strong> Control the center, develop pieces, protect your King.</li>
-            <li><strong>Watch for tactics:</strong> Forks, pins, and skewers appear early in random setups! ⚡</li>
+            <li>There is no opening theory to memorize.</li>
+            <li>From move one, you must think independently.</li>
+            <li>Creativity beats preparation.</li>
         </ul>
-        <p>If you practice these lessons, you are already thinking like a future Grandmaster. 🌈</p>
-    </div>
+        <p>It’s like a musician who stops reading sheet music and starts <strong>improvising</strong>. 🎵✨</p>
 
-    <div class="fun-fact-grid">
-        <span class="fun-fact-title">🎲 Fun Facts About Chess960</span>
+        <h2>🧠 What Skills Does Chess960 Build?</h2>
+        <div class="skills-list">
+            <p>This format is like a brain gym for young champions! 💪</p>
+            <ul>
+                <li>Sharp calculation skills</li>
+                <li>Better piece coordination</li>
+                <li>Strong understanding of chess principles</li>
+                <li>Calmness in unusual situations</li>
+                <li>Confidence without memorization</li>
+            </ul>
+            <p>In Chess960, your <strong>imagination</strong> becomes your strongest piece.</p>
+        </div>
+
+        <h2>🏰 Castling in the Chaos</h2>
+        <p>At first, castling in Chess960 looks confusing. 😅 But here is the secret magic: No matter where the King and Rooks begin, when you castle, they finish in the same "safe house" squares:</p>
         <ul>
-            <li>There are exactly <strong>960 legal starting positions</strong>.</li>
-            <li>It was officially introduced by <strong>Bobby Fischer in 1996</strong>.</li>
-            <li>It is recognized by FIDE and has its own World Championship.</li>
-            <li>Computers cannot rely on memorized openings here.</li>
-            <li>Many young Indian players use it to improve pure calculation skills.</li>
-            <li>It is sometimes called <strong>Freestyle Chess</strong> because you create your own ideas from move one!</li>
+            <li><strong>Kingside (Short)</strong> → King finishes on g1, Rook on f1</li>
+            <li><strong>Queenside (Long)</strong> → King finishes on c1, Rook on d1</li>
         </ul>
+        <p>It always ends in the same spots — just like normal chess! ✨</p>
+
+        <div class="lessons-box">
+            <h3 style="margin-top:0;">🌟 Lessons for You</h3>
+            <p>Here’s your special Coach’s Box. Read carefully:</p>
+            <ul>
+                <li><strong>Understand, don’t memorize:</strong> Real strength comes from understanding positions.</li>
+                <li><strong>Be flexible:</strong> Every game is different — adapt quickly.</li>
+                <li><strong>Stay calm in surprises:</strong> Weird positions are opportunities.</li>
+                <li><strong>Follow principles:</strong> Control the center, develop pieces, protect your King.</li>
+                <li><strong>Watch for tactics:</strong> Forks, pins, and skewers appear early in random setups! ⚡</li>
+            </ul>
+            <p>If you practice these lessons, you are already thinking like a future Grandmaster. 🌈</p>
+        </div>
+
+        <div class="fun-fact-grid">
+            <span class="fun-fact-title">🎲 Fun Facts About Chess960</span>
+            <ul>
+                <li>There are exactly <strong>960 legal starting positions</strong>.</li>
+                <li>It was officially introduced by <strong>Bobby Fischer in 1996</strong>.</li>
+                <li>It is recognized by FIDE and has its own World Championship.</li>
+                <li>Computers cannot rely on memorized openings here.</li>
+                <li>Many young Indian players use it to improve pure calculation skills.</li>
+                <li>It is sometimes called <strong>Freestyle Chess</strong> because you create your own ideas from move one!</li>
+            </ul>
+        </div>
+
+        <h2>🏆 How Can You Try It?</h2>
+        <p>You can easily play Chess960:</p>
+        <ul>
+            <li><strong>At home</strong> — shuffle your back-rank pieces (remember the two rules!).</li>
+            <li><strong>On platforms</strong> like Chess.com and Lichess, where the computer sets it up instantly.</li>
+        </ul>
+        <p>You don’t need to be a Grandmaster. All you need is curiosity and courage. 💛</p>
+
+        <h2>🌈 Final Thoughts from Coach</h2>
+        <p>Young Grandmasters, remember this: Normal chess is like swimming in a lane — structured and disciplined. <strong>Chess960</strong> is like diving into the ocean to explore hidden treasure. 💎</p>
+
+        <p>The board may look messy at first… but that “mess” is where beautiful ideas are hiding. Don’t be afraid of new positions. Smile at them. Explore them. Challenge them.</p>
+        
+        <p>Because the most powerful piece on the board isn’t the Queen… <strong>It’s your mind.</strong> 🧠♟️</p>
+
+        <p>Keep practicing. Keep thinking. Keep believing.</p>
+
+        <div class="interaction-box">
+            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this guide? Give it a heart and share it with your friends! ❤️</p>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 25px;">
+                <div 
+                  data-lyket-type="like" 
+                  data-lyket-id="chess960-freestyle-guide-v50" 
+                  data-lyket-namespace="the-chess-gurukul-master"
+                  data-lyket-template="heart"
+                ></div>
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on WhatsApp</a>
+                <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #0077b5; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on LinkedIn</a>
+            </div>
+            <div style="margin-top: 25px;">
+                <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none; font-size: 0.9rem;">← Back to Knowledge Hub</a>
+            </div>
+        </div>
     </div>
-
-    <h2>🏆 How Can You Try It?</h2>
-    <p>You can easily play Chess960:</p>
-    <ul>
-        <li><strong>At home</strong> — shuffle your back-rank pieces (remember the two rules!).</li>
-        <li><strong>On platforms</strong> like Chess.com and Lichess, where the computer sets it up instantly.</li>
-    </ul>
-    <p>You don’t need to be a Grandmaster. All you need is curiosity and courage. 💛</p>
-
-    <h2>🌈 Final Thoughts from Coach</h2>
-    <p>Young Grandmasters, remember this: Normal chess is like swimming in a lane — structured and disciplined. <strong>Chess960</strong> is like diving into the ocean to explore hidden treasure. 💎</p>
-
-    <p>The board may look messy at first… but that “mess” is where beautiful ideas are hiding. Don’t be afraid of new positions. Smile at them. Explore them. Challenge them.</p>
-    
-    <p>Because the most powerful piece on the board isn’t the Queen… <strong>It’s your mind.</strong> 🧠♟️</p>
-
-    <p>Keep practicing. Keep thinking. Keep believing.</p>
-
-    <div class="like-section">
-        <p>Did you enjoy learning about Chess960?</p>
-        <button class="heart-btn" onclick="this.innerHTML='❤️'">🤍</button>
-        <p><strong>Give this a heart</strong> if you enjoyed it!</p>
-    </div>
-</main>
+</article>
 
 <footer>
-    <p>&copy; 2026 The Chess Gurukul | Pune, India</p>
+    <p>&copy; 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
 </footer>
 
 </body>
