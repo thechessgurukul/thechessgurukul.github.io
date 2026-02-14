@@ -37,6 +37,7 @@
     </script>
 
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_9f54a2185fa1212da4acd9f6515a38"></script>
 
     <style>
         :root {
@@ -45,20 +46,70 @@
             --off-white: #f8f9fa; 
             --text-dark: #212529;
             --white: #ffffff;
-            --whatsapp-green: #25d366;
-            --linkedin-blue: #0077b5;
+            --heart-red: #ff4b2b;
         }
 
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.8; color: var(--text-dark); margin: 0; background-color: var(--off-white); }
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.8; 
+            color: var(--text-dark); 
+            margin: 0; 
+            background-color: var(--off-white); 
+        }
         
-        nav { background: var(--navy); padding: 15px 0; text-align: center; border-bottom: 4px solid var(--gold); }
-        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
+        nav { 
+            background: var(--navy); 
+            padding: 15px 0; 
+            text-align: center; 
+            border-bottom: 4px solid var(--gold); 
+        }
+        
+        .logo { 
+            color: var(--gold); 
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            text-decoration: none; 
+        }
 
-        .blog-container { max-width: 850px; margin: 40px auto; padding: 40px; background: var(--white); border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); }
+        .blog-container { 
+            max-width: 850px; 
+            margin: 40px auto; 
+            padding: 40px; 
+            background: var(--white); 
+            border-radius: 15px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05); 
+        }
 
-        .back-link { display: inline-block; margin-bottom: 20px; color: var(--navy); text-decoration: none; font-weight: bold; font-size: 0.9rem; }
-        .blog-date { display: block; color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 5px; }
-        .read-count-top { color: #6c757d; font-size: 0.85rem; font-weight: 600; margin-bottom: 25px; display: block; }
+        .back-link { 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            color: var(--navy); 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+        }
+
+        /* Meta styling for Date and Read Time */
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .blog-date { color: var(--gold); }
+        .read-time { color: #6c757d; }
+
+        .read-counter {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
         h1 { color: var(--navy); font-size: 2.3rem; line-height: 1.2; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
         h2 { color: var(--navy); margin-top: 35px; border-left: 5px solid var(--gold); padding-left: 15px; font-size: 1.6rem; }
@@ -72,16 +123,40 @@
         .fun-fact-grid { display: grid; grid-template-columns: 1fr; background: var(--navy); color: white; padding: 25px; border-radius: 10px; margin: 35px 0; }
         .fun-fact-title { font-weight: bold; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
 
-        .share-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid var(--gold); }
-        .social-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
-        .btn-social { text-decoration: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; color: white; transition: 0.3s; }
-        .btn-whatsapp { background: var(--whatsapp-green); }
-        .btn-linkedin { background: var(--linkedin-blue); }
-        .btn-social:hover { opacity: 0.9; transform: translateY(-2px); }
+        .interaction-box {
+            background: #ffffff;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* FORCE HEART TO BE RED */
+        [data-lyket-type="like"] svg {
+            fill: var(--heart-red) !important;
+            color: var(--heart-red) !important;
+        }
+        
+        [data-lyket-template="heart"] button {
+            background: transparent !important;
+            border: 2px solid #ff4b2b22 !important;
+            border-radius: 50%;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        [data-lyket-template="heart"] button:hover {
+            background: #ff4b2b11 !important;
+            transform: scale(1.1);
+        }
 
         footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; border-top: 1px solid #eee; }
 
-        @media (max-width: 600px) { .blog-container { padding: 20px; margin: 10px; } h1 { font-size: 1.8rem; } }
+        @media (max-width: 600px) { 
+            .blog-container { padding: 20px; margin: 10px; } 
+            h1 { font-size: 1.8rem; } 
+        }
     </style>
 </head>
 <body>
@@ -90,8 +165,19 @@
 
 <article class="blog-container">
     <a href="index.html" class="back-link">← Back to Home</a>
-    <span class="blog-date">FEB 11, 2026</span>
-    <span class="read-count-top">👁️ <span id="busuanzi_value_page_pv"></span> reads</span>
+    
+    <div class="blog-meta">
+        <span class="blog-date">FEB 11, 2026</span>
+        <span style="color: #ddd;">|</span>
+        <span class="read-time">⏱️ 4 MIN READ</span>
+    </div>
+
+    <div class="read-counter">
+        <span>👁️</span>
+        <span id="busuanzi_container_page_pv">
+            <span id="busuanzi_value_page_pv"></span> reads
+        </span>
+    </div>
 
     <h1>The Queen of Chess: How Judit Polgár Shattered the Ultimate Glass Ceiling</h1>
 
@@ -140,16 +226,26 @@
         </div>
     </div>
 
-    <div class="share-section">
-        <span class="share-title">Inspired by this story? Share it with a friend!</span>
-        <div class="social-buttons">
-            <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" class="btn-social btn-whatsapp">Share on WhatsApp</a>
-            <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" class="btn-social btn-linkedin">Share on LinkedIn</a>
+    <div class="interaction-box">
+        <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Inspired by Judit's story? Give it a heart and share it! ❤️</p>
+        
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 25px;">
+            <div 
+              data-lyket-type="like" 
+              data-lyket-id="judit-polgar-v33-red" 
+              data-lyket-namespace="the-chess-gurukul-master"
+              data-lyket-template="heart"
+            ></div>
         </div>
-    </div>
 
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="index.html" class="back-link">← Back to Knowledge Hub</a>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">Share on WhatsApp</a>
+            <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #0077b5; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on LinkedIn</a>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none; font-size: 0.9rem;">← Back to Knowledge Hub</a>
+        </div>
     </div>
 </article>
 
