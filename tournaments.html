@@ -130,7 +130,7 @@
             border: 1px solid #eee; 
             vertical-align: top; 
             word-wrap: break-word;
-            font-size: 0.95rem; /* Unified font size */
+            font-size: 0.95rem;
         }
         th { background: var(--off-white); color: var(--navy); text-align: left; border: 1px solid #ddd; font-weight: 700; }
         .col-date { width: 15%; }
@@ -292,20 +292,56 @@
         tableBody.innerHTML = "";
         
         if (data.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px;">No tournaments found for this selection.</td></tr>';
+            const emptyTr = document.createElement('tr');
+            const emptyTd = document.createElement('td');
+            emptyTd.setAttribute('colspan', '5');
+            emptyTd.setAttribute('style', 'text-align:center; padding:30px;');
+            emptyTd.textContent = "No tournaments found for this selection.";
+            emptyTr.appendChild(emptyTd);
+            tableBody.appendChild(emptyTr);
         } else {
             data.forEach(row => {
                 const dateObj = parseSheetDate(row['Date']);
                 const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
                 
                 const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="font-weight:bold; color:var(--navy);">${dayName}<br>${row['Date']}</td>
-                    <td style="font-weight: 600; color: var(--text-dark);">${row['Tournament Name']}</td>
-                    <td>${row['Type']}</td>
-                    <td style="color: #444;">${row['Location']}</td>
-                    <td><a href="${row['Link']}" target="_blank" class="reg-link">View Details</a></td>
-                `;
+
+                // Date Cell
+                const dateTd = document.createElement('td');
+                dateTd.style.fontWeight = "bold";
+                dateTd.style.color = "var(--navy)";
+                dateTd.innerHTML = `${dayName}<br>${row['Date']}`; // Day name is generated locally, safe.
+                tr.appendChild(dateTd);
+
+                // Name Cell
+                const nameTd = document.createElement('td');
+                nameTd.style.fontWeight = "600";
+                nameTd.style.color = "var(--text-dark)";
+                nameTd.textContent = row['Tournament Name'];
+                tr.appendChild(nameTd);
+
+                // Type Cell
+                const typeTd = document.createElement('td');
+                typeTd.textContent = row['Type'];
+                tr.appendChild(typeTd);
+
+                // Location Cell
+                const locTd = document.createElement('td');
+                locTd.style.color = "#444";
+                locTd.textContent = row['Location'];
+                tr.appendChild(locTd);
+
+                // Action Cell
+                const actionTd = document.createElement('td');
+                const link = document.createElement('a');
+                link.href = row['Link'];
+                link.target = "_blank";
+                link.rel = "noopener noreferrer"; // Security fix
+                link.className = "reg-link";
+                link.textContent = "View Details";
+                actionTd.appendChild(link);
+                tr.appendChild(actionTd);
+
                 tableBody.appendChild(tr);
             });
         }
