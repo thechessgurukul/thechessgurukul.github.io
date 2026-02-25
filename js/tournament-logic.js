@@ -12,13 +12,15 @@ function parseSheetDate(dateStr) {
     return new Date(cleanDate);
 }
 
+// THIS IS THE MAIN FUNCTION
 function init() {
+    console.log("Starting data fetch..."); // Helpful for debugging
     Papa.parse(publicSpreadsheetUrl, {
         download: true,
         header: true,
         skipEmptyLines: true,
         complete: (results) => {
-            // Filter out empty rows
+            console.log("Data received:", results.data);
             allTournaments = results.data.filter(row => row['Date'] && row['Date'].trim() !== "");
             
             if (allTournaments.length === 0) {
@@ -30,11 +32,11 @@ function init() {
             populateMonthFilter(allTournaments);
             displayTournaments(allTournaments);
             
-            // Add listeners to filters (Professional way vs inline onchange)
             document.getElementById('monthFilter').addEventListener('change', filterData);
             document.getElementById('ratingFilter').addEventListener('change', filterData);
         },
         error: (err) => {
+            console.error("PapaParse Error:", err);
             const loadingEl = document.getElementById('loading');
             if(loadingEl) loadingEl.innerText = "Error loading spreadsheet. Please check link.";
         }
@@ -93,7 +95,8 @@ function displayTournaments(data) {
         const emptyTr = document.createElement('tr');
         const emptyTd = document.createElement('td');
         emptyTd.setAttribute('colspan', '5');
-        emptyTd.className = 'text-center-padding'; // Replaces inline style
+        emptyTd.style.textAlign = "center";
+        emptyTd.style.padding = "20px";
         emptyTd.textContent = "No tournaments found for this selection.";
         emptyTr.appendChild(emptyTd);
         tableBody.appendChild(emptyTr);
@@ -104,40 +107,30 @@ function displayTournaments(data) {
             
             const tr = document.createElement('tr');
 
-            // Date Column
             const dateTd = document.createElement('td');
-            dateTd.className = 'col-date-styled'; // Logic for styling moved to CSS/Class
             dateTd.appendChild(document.createTextNode(dayName));
             dateTd.appendChild(document.createElement('br'));
             dateTd.appendChild(document.createTextNode(row['Date']));
             tr.appendChild(dateTd);
 
-            // Name Column
             const nameTd = document.createElement('td');
             nameTd.textContent = row['Tournament Name'];
             tr.appendChild(nameTd);
 
-            // Type Column
             const typeTd = document.createElement('td');
             typeTd.textContent = row['Type'];
             tr.appendChild(typeTd);
 
-            // Location Column
             const locTd = document.createElement('td');
             locTd.textContent = row['Location'];
             tr.appendChild(locTd);
 
-            // Link Column
             const actionTd = document.createElement('td');
             const link = document.createElement('a');
             
             try {
-                const cleanUrl = new URL(row['Link'].trim());
-                if (cleanUrl.protocol === 'https:') {
-                    link.href = cleanUrl.href;
-                } else {
-                    link.href = "#";
-                }
+                const cleanUrl = row['Link'] ? row['Link'].trim() : "#";
+                link.href = cleanUrl;
             } catch (e) {
                 link.href = "#";
             }
@@ -153,9 +146,13 @@ function displayTournaments(data) {
         });
     }
 
-    loading.classList.add('hidden'); // Uses the .hidden class from CSS
+    loading.classList.add('hidden');
     table.classList.remove('hidden'); 
 }
 
-// Start the app when the page is ready
-window.addEventListener('DOMContentLoaded', init);
+// CRITICAL FIX: Tell the browser to actually run the init function
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
