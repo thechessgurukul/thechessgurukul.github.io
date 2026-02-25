@@ -160,11 +160,13 @@
         .nav-links a:hover { color: var(--gold); }
 
         .menu-toggle {
-            display: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
+    display: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    background: transparent; /* Add this */
+    border: none;            /* Add this */
+}
 
         /* Hero Section */
         .hero {
@@ -288,22 +290,31 @@
         footer a:hover { color: var(--gold); text-decoration: underline; }
 
         @media (max-width: 850px) {
-            .menu-toggle { display: block; }
-            .nav-container { padding: 0 15px; }
-            .logo { font-size: 1.1rem; } 
-            .tagline { font-size: 0.65rem; }
-            .hero { padding: 60px 20px; } 
-            .hero h1 { font-size: 1.8rem; margin-bottom: 10px; } 
-            .hero p { font-size: 0.95rem; margin: 15px auto; } 
-            .founder-box { padding: 30px; }
-            .bio-footer { justify-content: center; }
-            .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--navy); flex-direction: column; padding: 20px; text-align: center; box-shadow: 0 10px 10px rgba(0,0,0,0.2); }
-            .nav-links.active { display: flex; }
-            .nav-links a { margin: 15px 0; font-size: 1.1rem; }
-            .section-title { font-size: 1.8rem; }
-            .blog-card { flex: 0 0 85%; } 
-            .testimonial-card { flex: 0 0 85%; }
-        }
+    /* FIX: Added transparency and removed borders to kill the white box */
+    .menu-toggle { 
+        display: block; 
+        background: transparent !important; 
+        border: none !important; 
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent;
+        color: white; /* Keeps the ☰ icon white */
+    }
+    
+    .nav-container { padding: 0 15px; }
+    .logo { font-size: 1.1rem; } 
+    .tagline { font-size: 0.65rem; }
+    .hero { padding: 60px 20px; } 
+    .hero h1 { font-size: 1.8rem; margin-bottom: 10px; } 
+    .hero p { font-size: 0.95rem; margin: 15px auto; } 
+    .founder-box { padding: 30px; }
+    .bio-footer { justify-content: center; }
+    .nav-links { display: none; position: absolute; top: 70px; left: 0; width: 100%; background: var(--navy); flex-direction: column; padding: 20px; text-align: center; box-shadow: 0 10px 10px rgba(0,0,0,0.2); }
+    .nav-links.active { display: flex; }
+    .nav-links a { margin: 15px 0; font-size: 1.1rem; }
+    .section-title { font-size: 1.8rem; }
+    .blog-card { flex: 0 0 85%; } 
+    .testimonial-card { flex: 0 0 85%; }
+}
     </style>
 </head>
 <body>
