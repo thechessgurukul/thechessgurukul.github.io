@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNH0MG597R"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -43,7 +44,9 @@
     ]
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" 
+            integrity="sha512-rKFRvzy7ko9Hr9uKnWqVguMJRJuAgGjbHqA2vK6f1Ssc0M9H+Jt2vGshYhU2M00T28AIn9K0X5QWp99x9X5+g==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
         :root {
@@ -306,11 +309,13 @@
                 
                 const tr = document.createElement('tr');
 
-                // Date Cell
+                // Date Cell - FIXED (Removed innerHTML)
                 const dateTd = document.createElement('td');
                 dateTd.style.fontWeight = "bold";
                 dateTd.style.color = "var(--navy)";
-                dateTd.innerHTML = `${dayName}<br>${row['Date']}`; // Day name is generated locally, safe.
+                dateTd.appendChild(document.createTextNode(dayName));
+                dateTd.appendChild(document.createElement('br'));
+                dateTd.appendChild(document.createTextNode(row['Date']));
                 tr.appendChild(dateTd);
 
                 // Name Cell
@@ -331,12 +336,23 @@
                 locTd.textContent = row['Location'];
                 tr.appendChild(locTd);
 
-                // Action Cell
+                // Action Cell - FIXED (URL Validation added)
                 const actionTd = document.createElement('td');
                 const link = document.createElement('a');
-                link.href = row['Link'];
+                
+                try {
+                    const cleanUrl = new URL(row['Link'].trim());
+                    if (cleanUrl.protocol === 'https:' || cleanUrl.protocol === 'http:') {
+                        link.href = cleanUrl.href;
+                    } else {
+                        link.href = "#";
+                    }
+                } catch (e) {
+                    link.href = "#"; // Fallback for invalid URLs
+                }
+
                 link.target = "_blank";
-                link.rel = "noopener noreferrer"; // Security fix
+                link.rel = "noopener noreferrer";
                 link.className = "reg-link";
                 link.textContent = "View Details";
                 actionTd.appendChild(link);
@@ -353,7 +369,7 @@
     window.addEventListener('DOMContentLoaded', init);
 </script>
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 </body>
 </html>
