@@ -1,7 +1,7 @@
 <head>
     <meta http-equiv="Content-Security-Policy" 
           content="default-src 'self'; 
-                   script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://busuanzi.ibruce.info; 
+                   script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://busuanzi.ibruce.info; 
                    connect-src 'self' https://docs.google.com https://*.google.com https://google.com https://www.google-analytics.com https://region1.google-analytics.com; 
                    img-src 'self' https://images.unsplash.com data:; 
                    style-src 'self' 'unsafe-inline'; 
@@ -28,38 +28,29 @@
         :root { --navy: #14213d; --gold: #fca311; --off-white: #f8f9fa; --text-dark: #212529; --link-blue: #0056b3; }
         * { box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: var(--text-dark); margin: 0; background-color: var(--off-white); }
-        
         .nav-active { color: var(--gold) !important; }
         .hidden { display: none; }
         .text-gold { color: var(--gold); }
         .footer-brand { color: var(--gold); font-weight: 600; margin-bottom: 15px; }
-        
         nav { background: var(--navy); padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(252, 163, 17, 0.2); }
         .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
-        
         .hero { background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80'); background-size: cover; padding: 60px 20px; text-align: center; border-top: 4px solid var(--gold); color: white; }
         .hero h1 { font-size: 2.2rem; margin: 0; color: var(--gold); }
-        
         .container { max-width: 1100px; margin: 20px auto 60px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--gold); }
         .filter-section { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; background: #f1f3f5; padding: 20px; border-radius: 10px; }
         .filter-group { display: flex; flex-direction: column; gap: 5px; flex-grow: 1; }
         .filter-group label { font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase; }
         select { padding: 10px; border-radius: 5px; border: 1px solid #ccc; cursor: pointer; }
-        
         .table-responsive { width: 100%; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; min-width: 900px; table-layout: fixed; }
         th, td { padding: 15px; border: 1px solid #eee; vertical-align: top; word-wrap: break-word; font-size: 0.95rem; }
         th { background: var(--off-white); color: var(--navy); text-align: left; font-weight: 700; }
-        
         .col-date { width: 15%; } .col-name { width: 30%; } .col-type { width: 12%; } .col-loc { width: 25%; } .col-reg { width: 18%; }
         tr:nth-child(even) { background-color: #fcfcfc; }
         .reg-link { color: var(--link-blue); font-weight: 600; }
         .loading-text { text-align: center; padding: 20px; font-weight: bold; color: var(--navy); }
-        
-        footer { margin-top: 50px; padding: 40px 20px; background: var(--navy); color: white; text-align: center; }
-        .view-counter { display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; color: var(--gold); }
     </style>
 </head>
 <body>
@@ -111,5 +102,6 @@
 
 </body>
 </html>
+
 
 
