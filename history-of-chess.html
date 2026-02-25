@@ -1,82 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Security-Policy" 
-          content="default-src 'self'; 
-                   script-src 'self' https://busuanzi.ibruce.info https://unpkg.com; 
-                   style-src 'self' 'unsafe-inline'; 
-                   img-src 'self' https://raw.githubusercontent.com; 
-                   connect-src 'self' https://api.lyket.dev;
-                   object-src 'none'; 
-                   base-uri 'self'; 
-                   form-action 'self'; 
-                   frame-ancestors 'none'; 
-                   upgrade-insecure-requests;">
-    
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=()">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Great Journey of Chess | The Chess Gurukul</title>
 
     <link rel="canonical" href="https://thechessgurukul.github.io/thechessgurukul/history-of-chess.html">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://thechessgurukul.github.io/thechessgurukul/history-of-chess.html">
+    <meta property="og:title" content="The Great Journey of Chess | The Chess Gurukul">
     <meta property="og:description" content="Discover the magical story of Chaturanga and how chess traveled from ancient India to the whole world.">
     <meta property="og:image" content="https://raw.githubusercontent.com/thechessgurukul/thechessgurukul/main/social-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "The Great Journey of Chess: From Ancient India to Your Board!",
+      "description": "Discover the magical story of Chaturanga and how chess traveled from ancient India to the whole world.",
+      "author": {
+        "@type": "Organization",
+        "name": "The Chess Gurukul"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "The Chess Gurukul",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://raw.githubusercontent.com/thechessgurukul/thechessgurukul/main/logo.png"
+        }
+      },
       "datePublished": "2026-02-10",
-      "author": {"@type": "Organization", "name": "The Chess Gurukul"}
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://thechessgurukul.github.io/thechessgurukul/history-of-chess.html"
+      }
     }
     </script>
 
-    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <script src="https://unpkg.com/@lyket/widget@1.7.0/dist/lyket.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_9f54a2185fa1212da4acd9f6515a38"></script>
 
     <style>
-        :root { 
+        :root {
             --navy: #14213d; 
             --gold: #fca311; 
             --off-white: #f8f9fa; 
-            --white: #ffffff; 
-            --heart-red: #ff4b2b; 
+            --text-dark: #212529;
+            --white: #ffffff;
+            --heart-red: #ff4b2b;
         }
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.8; color: #212529; margin: 0; background-color: var(--off-white); }
-        nav { background: var(--navy); padding: 15px 0; text-align: center; border-bottom: 4px solid var(--gold); }
-        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
-        .blog-container { max-width: 800px; margin: 40px auto; padding: 40px; background: var(--white); border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); }
-        .back-link { display: inline-block; margin-bottom: 20px; color: var(--navy); text-decoration: none; font-weight: bold; }
-        .blog-meta { display: flex; gap: 10px; margin-bottom: 5px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin: 0;
+            background-color: var(--off-white);
+        }
+
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .logo { 
+            color: var(--gold); 
+            font-weight: 800; 
+            font-size: 1.4rem; 
+            text-decoration: none; 
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Meta styling for Date and Read Time */
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
         .blog-date { color: var(--gold); }
-        .read-counter { font-size: 0.85rem; color: #6c757d; margin-bottom: 20px; display: flex; align-items: center; gap: 5px; }
-        h1 { color: var(--navy); font-size: 2.2rem; line-height: 1.3; }
+        .read-time { color: #6c757d; }
+
+        .read-counter {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        h1 { color: var(--navy); font-size: 2.2rem; line-height: 1.3; margin-bottom: 20px; }
         h3 { color: var(--navy); margin-top: 30px; border-left: 4px solid var(--gold); padding-left: 15px; }
-        .fun-fact-box { background: #fffef0; border: 2px dashed var(--gold); padding: 20px; border-radius: 10px; margin: 40px 0; }
-        .parent-note { background: #eef2ff; border-radius: 10px; padding: 20px; margin: 30px 0; border: 1px solid #c7d2fe; }
-        .interaction-box { background: #ffffff; border: 2px solid #eee; border-radius: 12px; padding: 25px; margin-top: 40px; text-align: center; }
-        [data-lyket-type="like"] svg { fill: var(--heart-red) !important; color: var(--heart-red) !important; }
-        .btn-share { text-decoration: none; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
-        .bg-whatsapp { background: #25d366; }
-        .bg-linkedin { background: #0077b5; }
+        
+        .fun-fact-box {
+            background: #fffef0;
+            border: 2px dashed var(--gold);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+
+        .parent-note {
+            background: #eef2ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid #c7d2fe;
+        }
+
+        .interaction-box {
+            background: #ffffff;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* FORCE HEART TO BE RED */
+        [data-lyket-type="like"] svg {
+            fill: var(--heart-red) !important;
+            color: var(--heart-red) !important;
+        }
+        
+        [data-lyket-template="heart"] button {
+            background: transparent !important;
+            border: 2px solid #ff4b2b22 !important;
+            border-radius: 50%;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        [data-lyket-template="heart"] button:hover {
+            background: #ff4b2b11 !important;
+            transform: scale(1.1);
+        }
+
         footer { text-align: center; padding: 40px; color: #777; font-size: 0.9rem; }
-        @media (max-width: 600px) { .blog-container { padding: 20px; margin: 10px; } h1 { font-size: 1.6rem; } }
+
+        @media (max-width: 600px) {
+            .blog-container { padding: 20px; margin: 10px; }
+            h1 { font-size: 1.6rem; }
+        }
     </style>
 </head>
 <body>
 
-<nav><a href="index.html" class="logo">THE CHESS GURUKUL</a></nav>
+<nav>
+    <a href="index.html" class="logo">THE CHESS GURUKUL</a>
+</nav>
 
 <article class="blog-container">
-    <a href="blog-archive.html" class="back-link">← Back to Archive</a>
+    <a href="index.html" class="back-link">← Back to Home</a>
     
     <div class="blog-meta">
         <span class="blog-date">Feb 07, 2026</span>
         <span style="color: #ddd;">|</span>
-        <span style="color: #6c757d;">⏱️ 4 MIN READ</span>
+        <span class="read-time">⏱️ 4 MIN READ</span>
     </div>
     
     <div class="read-counter">
@@ -103,42 +208,73 @@
             <li><strong>Ashwa (The Brave Horses):</strong> These represented the cavalry, and they still look like horses today! 🐎</li>
             <li><strong>Padati (The Foot Soldiers):</strong> These were the brave soldiers on the front lines, now known as Pawns. 👣</li>
         </ul>
+        <p>The game was a way for Kings and Princes to practice "War Strategy" without actually hurting anyone. It taught them patience, bravery, and how to protect the Raja (The King) at all costs! 👑</p>
 
         <div class="fun-fact-box">
             <strong>💡 The Legend of the Wheat Grain:</strong><br>
-            A famous story says that when the King of India wanted to reward the inventor of chess, the inventor asked for something simple: 1 grain of rice on the first square, 2 on the second, 4 on the third, and so on (doubling every time). 🍚 The King laughed, thinking it was a small request. But by the time they reached the 64th square, there wasn't enough rice in the whole world to fill the board! 🌍
+            A famous story says that when the King of India wanted to reward the inventor of chess, the inventor asked for something simple: 1 grain of rice on the first square, 2 on the second, 4 on the third, and so on (doubling every time). 🍚 The King laughed, thinking it was a small request. But by the time they reached the 64th square, there wasn't enough rice in the whole world to fill the board! 🌍 This shows the power of exponential growth—just like how your skills grow when you practice! 📈
         </div>
 
         <h3>🌍 Chapter 2: The Game Begins to Travel (Persia & Arabia)</h3>
         <p>Indian merchants and travelers loved the game so much that they took it with them on the Silk Road to Persia (modern-day Iran). 🐪 The Persians were fascinated! They called the game <strong>Shatranj</strong>.</p>
-        <p>The Persians added their own flavor to the game. They started calling the King the "Shah." When the King was trapped and had no moves left, they would shout <strong>"Shah Mat!"</strong> 📢 That is exactly where our English word <strong>"Checkmate"</strong> comes from!</p>
+
+        <p>The Persians added their own flavor to the game. They started calling the King the "Shah." When the King was trapped and had no moves left, they would shout <strong>"Shah Mat!"</strong> 📢 That is exactly where our English word <strong>"Checkmate"</strong> comes from! It literally means "The King is helpless." It is amazing to think that every time you win a game today, you are using a phrase from ancient Persia! 🤚👑</p>
 
         <h3>👑 Chapter 3: The European "Upgrade" & Superpowers</h3>
-        <p>By the year 1,000 AD, chess had traveled to Europe. This is where the pieces we recognize today finally took shape. Because Europe didn't have many war elephants in their armies, they changed the "Gaja" into "Bishops."</p>
-        <p>But the biggest change happened to the <strong>Queen</strong>. 👸 Originally, the Queen was a piece called the "Vizier" and was quite weak. Around 500 years ago, players in Europe gave the Queen "superpowers," allowing her to move any number of squares in any direction. This turned chess into a "Mad Queen’s Game!" ⚡</p>
+        <p>By the year 1,000 AD, chess had traveled to Europe. This is where the pieces we recognize today finally took shape. Because Europe didn't have many war elephants in their armies, they changed the "Gaja" into "Bishops" to reflect their own culture. The "Ratha" (Chariots) became "Rooks," which were styled after the towers of a castle. 🏰</p>
+
+        <p>But the biggest change happened to the <strong>Queen</strong>. 👸 Originally, the Queen was a piece called the "Vizier" (a King's advisor), and she was actually quite weak—she could only move one square at a time diagonally! Around 500 years ago, players in Europe decided to make the game faster and more exciting. They gave the Queen "superpowers," allowing her to move any number of squares in any direction. This turned chess into a "Mad Queen’s Game," and it’s the fast-paced version we play today! ⚡</p>
 
         <div class="parent-note">
             <strong>👨‍👩‍👧‍👦 A Note for Parents: Why History Matters</strong><br>
-            Learning the history of chess helps children realize they are part of a global tradition. It builds <strong>Cultural Awareness</strong> and <strong>Contextual Learning</strong>. When a child understands that their "Knight" was once a "Brave Horse," the game starts being an adventure. 🧠💎
+            Learning the history of chess helps children realize they are part of a global tradition. It builds <strong>Cultural Awareness</strong> and <strong>Contextual Learning</strong>. When a child understands that their "Knight" was once a "Brave Horse" in an ancient army, the game stops being a chore and starts being an adventure. This emotional connection increases their "Attention Span" and "Retentive Memory." It also teaches them that things evolve over time—just as they are evolving into better players every day! 🧠💎
         </div>
 
         <h3>🏆 Chapter 4: Chess Today—You are Part of History!</h3>
-        <p>Today, it is estimated that <strong>hundreds of millions of people</strong> play chess worldwide. 🌎 From the bustling streets of Pune to professional tournament halls in New York, the rules are the same.</p>
-        <p>The game has evolved into a global sport that builds <strong>Resilience, Logic, and Critical Thinking.</strong> Every time you make a move, you are walking in the footsteps of ancient warriors and brilliant grandmasters. 👣🔝</p>
+        <p>Today, it is estimated that <strong>hundreds of millions of people</strong> play chess worldwide. 🌎 From the bustling streets of Pune to professional tournament halls in New York, the rules are the same. In fact, online platforms now see millions of new players joining every single month, making chess one of the fastest-growing sports in the world!</p>
+
+        <p>The game has evolved from a training tool for Indian Kings to a global sport that builds <strong>Resilience, Logic, and Critical Thinking.</strong> When you sit down to play, you aren't just looking at a board; you are speaking a language that is 1,500 years old. Every time you make a move, you are walking in the footsteps of ancient warriors and brilliant grandmasters. 👣🔝</p>
+
+        <h3>✨ Summary: The Journey in a Nutshell</h3>
+        <p>1. <strong>India (6th Century):</strong> Chaturanga is born in the Gupta Empire. 🇮🇳<br>
+        2. <strong>Persia (7th Century):</strong> Shatranj spreads and "Shah Mat" is coined. 🇮🇷<br>
+        3. <strong>Europe (15th Century):</strong> The Queen gets her superpowers and pieces change names. 🇪🇺<br>
+        4. <strong>Modern World:</strong> Millions of people play online and offline every day! 🧠</p>
+
+        <p style="text-align: center; font-weight: bold; color: var(--navy); margin-bottom: 40px;">
+            🤔 Question for you: If you lived 1,500 years ago, would you rather lead the Elephant army or the Chariot squad? Tell your coach in your next class! 🐘🏰
+        </p>
 
         <div class="interaction-box">
-            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this journey? Give it a heart! ❤️</p>
-            <div style="display: flex; justify-content: center; margin-bottom: 25px;">
-                <div data-lyket-type="like" data-lyket-id="history-of-chess-v35" data-lyket-namespace="the-chess-gurukul-master" data-lyket-template="heart"></div>
+            <p style="font-weight: 700; color: var(--navy); margin-bottom: 15px;">Enjoyed this journey through time? Give it a heart and share it! ❤️</p>
+            
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 25px;">
+                <div 
+                  data-lyket-type="like" 
+                  data-lyket-id="history-of-chess-v33-red" 
+                  data-lyket-namespace="the-chess-gurukul-master"
+                  data-lyket-template="heart"
+                ></div>
             </div>
+
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://api.whatsapp.com/send?text=The Great Journey of Chess: https://thechessgurukul.github.io/thechessgurukul/history-of-chess.html" target="_blank" rel="noopener noreferrer" class="btn-share bg-whatsapp">Share on WhatsApp</a>
-                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://thechessgurukul.github.io/thechessgurukul/history-of-chess.html" target="_blank" rel="noopener noreferrer" class="btn-share bg-linkedin">Share on LinkedIn</a>
+                <a href="#" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.title) + ': ' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #25d366; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; gap: 8px;">Share on WhatsApp</a>
+                <a href="#" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href), '_blank'); return false;" style="text-decoration: none; background: #0077b5; color: white; padding: 12px 25px; border-radius: 8px; font-size: 0.9rem; font-weight: bold;">Share on LinkedIn</a>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <a href="index.html#blog" style="color: var(--navy); font-weight: 600; text-decoration: none; font-size: 0.9rem;">← Back to Knowledge Hub</a>
             </div>
         </div>
     </div>
 </article>
 
-<footer><p>&copy; 2026 The Chess Gurukul | Pune, India 🇮🇳</p></footer>
+<footer>
+    <p>&copy; 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
+</footer>
+
 </body>
 </html>
+
+
+
