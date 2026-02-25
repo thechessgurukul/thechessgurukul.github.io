@@ -1,6 +1,6 @@
 /**
- * THE CHESS GURUKUL - Tournament Logic (V33 Master)
- * Standard: Blog Master 50 Styling & Triggering
+ * THE CHESS GURUKUL - Hardened Tournament Logic (V34 Master)
+ * Standard: Blog Master 50 Styling & Enhanced Security
  */
 
 const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
@@ -13,33 +13,37 @@ function parseSheetDate(dateStr) {
 }
 
 function init() {
-    console.log("V33 Master: Initializing fetch...");
+    console.log("V34 Master: Initializing secure fetch...");
+    
+    // Attach event listeners in JS (Required for strict CSP)
+    const monthF = document.getElementById('monthFilter');
+    const rateF = document.getElementById('ratingFilter');
+    if(monthF) monthF.addEventListener('change', filterData);
+    if(rateF) rateF.addEventListener('change', filterData);
+
     Papa.parse(publicSpreadsheetUrl, {
         download: true,
         header: true,
         skipEmptyLines: true,
         complete: (results) => {
             allTournaments = results.data.filter(row => row['Date'] && row['Date'].trim() !== "");
-            
             if (allTournaments.length === 0) {
-                document.getElementById('loading').innerText = "No data found in the spreadsheet.";
+                document.getElementById('loading').textContent = "No data found in the spreadsheet.";
                 return;
             }
-
             populateMonthFilter(allTournaments);
             displayTournaments(allTournaments);
-            
-            document.getElementById('monthFilter').addEventListener('change', filterData);
-            document.getElementById('ratingFilter').addEventListener('change', filterData);
         },
         error: (err) => {
-            document.getElementById('loading').innerText = "Connection failed. Please refresh.";
+            console.error("Connection Error:", err);
+            document.getElementById('loading').textContent = "Connection failed. Please refresh.";
         }
     });
 }
 
 function populateMonthFilter(data) {
     const monthSelect = document.getElementById('monthFilter');
+    if (!monthSelect) return;
     const monthsFound = new Set();
     data.forEach(row => {
         const d = parseSheetDate(row['Date']);
@@ -71,22 +75,63 @@ function displayTournaments(data) {
     const tableBody = document.getElementById('table-body');
     const table = document.getElementById('tournament-table');
     const loading = document.getElementById('loading');
-    tableBody.innerHTML = "";
+    
+    // Safe Clear
+    while (tableBody.firstChild) { tableBody.removeChild(tableBody.firstChild); }
     
     if (data.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:20px;">No tournaments found.</td></tr>';
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.setAttribute('colspan', '5');
+        td.style.textAlign = 'center';
+        td.style.padding = '20px';
+        td.textContent = "No tournaments found.";
+        tr.appendChild(td);
+        tableBody.appendChild(tr);
     } else {
         data.forEach(row => {
+            const tr = document.createElement('tr');
             const dateObj = parseSheetDate(row['Date']);
             const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${dayName}<br>${row['Date']}</td>
-                <td>${row['Tournament Name']}</td>
-                <td>${row['Type']}</td>
-                <td>${row['Location']}</td>
-                <td><a href="${row['Link'] || '#'}" target="_blank" rel="noopener" class="reg-link">View Details</a></td>
-            `;
+
+            // 1. Date (Bold/Blue styling kept)
+            const dateTd = document.createElement('td');
+            dateTd.style.fontWeight = 'bold';
+            dateTd.style.color = 'var(--navy)';
+            dateTd.appendChild(document.createTextNode(dayName));
+            dateTd.appendChild(document.createElement('br'));
+            dateTd.appendChild(document.createTextNode(row['Date'] || ""));
+            tr.appendChild(dateTd);
+
+            // 2. Name
+            const nameTd = document.createElement('td');
+            nameTd.style.fontWeight = '600';
+            nameTd.textContent = row['Tournament Name'] || "";
+            tr.appendChild(nameTd);
+
+            // 3. Type
+            const typeTd = document.createElement('td');
+            typeTd.textContent = row['Type'] || "";
+            tr.appendChild(typeTd);
+
+            // 4. Location
+            const locTd = document.createElement('td');
+            locTd.textContent = row['Location'] || "";
+            tr.appendChild(locTd);
+
+            // 5. Details Link (Protocol safety included)
+            const linkTd = document.createElement('td');
+            const a = document.createElement('a');
+            let rawLink = row['Link'] || "#";
+            // Ensure link starts with http or https
+            a.href = (rawLink.startsWith('http')) ? rawLink : "#";
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            a.className = "reg-link";
+            a.textContent = "View Details";
+            linkTd.appendChild(a);
+            tr.appendChild(linkTd);
+
             tableBody.appendChild(tr);
         });
     }
