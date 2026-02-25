@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Security-Policy" 
           content="default-src 'self'; 
                    script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://busuanzi.ibruce.info; 
-                   connect-src https://docs.google.com https://www.google-analytics.com https://region1.google-analytics.com; 
+                   connect-src 'self' https://docs.google.com https://*.google.com https://www.google-analytics.com https://region1.google-analytics.com; 
                    img-src 'self' https://images.unsplash.com data:; 
-                   style-src 'self'; 
+                   style-src 'self' 'unsafe-inline'; 
                    frame-ancestors 'none'; 
                    object-src 'none'; 
                    base-uri 'self';
@@ -33,7 +33,6 @@
         * { box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: var(--text-dark); margin: 0; background-color: var(--off-white); }
         
-        /* 3. REPLACED INLINE STYLES WITH CLASSES */
         .nav-active { color: var(--gold) !important; }
         .hidden { display: none; }
         .text-gold { color: var(--gold); }
