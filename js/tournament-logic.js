@@ -1,6 +1,6 @@
 /**
- * THE CHESS GURUKUL - Hardened Tournament Logic (V34 Master)
- * Standard: Blog Master 50 Styling & Enhanced Security
+ * THE CHESS GURUKUL - Hardened Tournament Logic (V35 Master)
+ * Standard: Blog Master 50 Styling & Elite Security Validation
  */
 
 const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
@@ -13,7 +13,7 @@ function parseSheetDate(dateStr) {
 }
 
 function init() {
-    console.log("V34 Master: Initializing secure fetch...");
+    console.log("V35 Master: Initializing secure fetch...");
     
     // Attach event listeners in JS (Required for strict CSP)
     const monthF = document.getElementById('monthFilter');
@@ -76,15 +76,14 @@ function displayTournaments(data) {
     const table = document.getElementById('tournament-table');
     const loading = document.getElementById('loading');
     
-    // Safe Clear
+    // Safe DOM Clearing
     while (tableBody.firstChild) { tableBody.removeChild(tableBody.firstChild); }
     
     if (data.length === 0) {
         const tr = document.createElement('tr');
         const td = document.createElement('td');
         td.setAttribute('colspan', '5');
-        td.style.textAlign = 'center';
-        td.style.padding = '20px';
+        td.className = "no-data";
         td.textContent = "No tournaments found.";
         tr.appendChild(td);
         tableBody.appendChild(tr);
@@ -94,37 +93,50 @@ function displayTournaments(data) {
             const dateObj = parseSheetDate(row['Date']);
             const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
 
-            // 1. Date (Bold/Blue styling kept)
+            // 1. Date Column
             const dateTd = document.createElement('td');
-            dateTd.style.fontWeight = 'bold';
-            dateTd.style.color = 'var(--navy)';
+            dateTd.className = "col-date";
             dateTd.appendChild(document.createTextNode(dayName));
             dateTd.appendChild(document.createElement('br'));
             dateTd.appendChild(document.createTextNode(row['Date'] || ""));
             tr.appendChild(dateTd);
 
-            // 2. Name
+            // 2. Tournament Name Column
             const nameTd = document.createElement('td');
-            nameTd.style.fontWeight = '600';
+            nameTd.className = "col-name";
             nameTd.textContent = row['Tournament Name'] || "";
             tr.appendChild(nameTd);
 
-            // 3. Type
+            // 3. Type Column
             const typeTd = document.createElement('td');
+            typeTd.className = "col-type";
             typeTd.textContent = row['Type'] || "";
             tr.appendChild(typeTd);
 
-            // 4. Location
+            // 4. Location Column
             const locTd = document.createElement('td');
+            locTd.className = "col-loc";
             locTd.textContent = row['Location'] || "";
             tr.appendChild(locTd);
 
-            // 5. Details Link (Protocol safety included)
+            // 5. Details Link Column (Strong Protocol Validation)
             const linkTd = document.createElement('td');
+            linkTd.className = "col-link";
             const a = document.createElement('a');
-            let rawLink = row['Link'] || "#";
-            // Ensure link starts with http or https
-            a.href = (rawLink.startsWith('http')) ? rawLink : "#";
+            
+            let finalUrl = "#";
+            try {
+                const rawUrl = (row['Link'] || "").trim();
+                const cleanUrl = new URL(rawUrl);
+                // Only allow HTTP/HTTPS
+                if (cleanUrl.protocol === 'https:' || cleanUrl.protocol === 'http:') {
+                    finalUrl = cleanUrl.href;
+                }
+            } catch (e) {
+                finalUrl = "#";
+            }
+            
+            a.href = finalUrl;
             a.target = "_blank";
             a.rel = "noopener noreferrer";
             a.className = "reg-link";
