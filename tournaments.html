@@ -3,166 +3,68 @@
 <head>
     <meta http-equiv="Content-Security-Policy" 
           content="default-src 'self'; 
-                   script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://busuanzi.ibruce.info; 
-                   connect-src 'self' https://docs.google.com https://www.google-analytics.com; 
-                   img-src 'self' https: data:; 
-                   style-src 'self' 'unsafe-inline'; 
+                   script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://busuanzi.ibruce.info; 
+                   connect-src https://docs.google.com https://www.google-analytics.com https://region1.google-analytics.com; 
+                   img-src 'self' https://images.unsplash.com data:; 
+                   style-src 'self'; 
                    frame-ancestors 'none'; 
                    object-src 'none'; 
-                   base-uri 'self';">
+                   base-uri 'self';
+                   form-action 'self';
+                   upgrade-insecure-requests;">
+
+    <meta http-equiv="Permissions-Policy" 
+          content="camera=(), microphone=(), geolocation=(), interest-cohort=()">
 
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNH0MG597R"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MNH0MG597R');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tournaments in Pune | The Chess Gurukul</title>
 
-    <script type="application/ld+json">
-    [
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://thechessgurukul.github.io/thechessgurukul/index.html"
-        },{
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Tournaments",
-          "item": "https://thechessgurukul.github.io/thechessgurukul/tournaments.html"
-        }]
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Upcoming Chess Tournaments in Pune",
-        "description": "Schedule of FIDE Rated and Unrated chess tournaments in Pune, Maharashtra.",
-        "url": "https://thechessgurukul.github.io/thechessgurukul/tournaments.html",
-        "numberOfItems": "20",
-        "itemListOrder": "https://schema.org/ItemListOrderAscending"
-      }
-    ]
-    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNH0MG597R"></script>
+    <script src="js/analytics-config.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js" 
             integrity="sha512-rKFRvzy7ko9Hr9uKnWqVguMJRJuAgGjbHqA2vK6f1Ssc0M9H+Jt2vGshYhU2M00T28AIn9K0X5QWp99x9X5+g==" 
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
-        :root {
-            --navy: #14213d; 
-            --gold: #fca311; 
-            --off-white: #f8f9fa; 
-            --text-dark: #212529;
-            --white: #ffffff;
-            --link-blue: #0056b3;
-        }
-
+        :root { --navy: #14213d; --gold: #fca311; --off-white: #f8f9fa; --text-dark: #212529; --link-blue: #0056b3; }
         * { box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            margin: 0;
-            background-color: var(--off-white);
-        }
-
-        nav {
-            background: var(--navy);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border-bottom: 1px solid rgba(252, 163, 17, 0.2);
-        }
-        .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.6; color: var(--text-dark); margin: 0; background-color: var(--off-white); }
+        
+        /* 3. REPLACED INLINE STYLES WITH CLASSES */
+        .nav-active { color: var(--gold) !important; }
+        .hidden { display: none; }
+        .text-gold { color: var(--gold); }
+        .footer-brand { color: var(--gold); font-weight: 600; margin-bottom: 15px; }
+        
+        nav { background: var(--navy); padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3); border-bottom: 1px solid rgba(252, 163, 17, 0.2); }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; }
         .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
-
-        .hero {
-            background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-top: 4px solid var(--gold);
-        }
+        
+        .hero { background: linear-gradient(rgba(20, 33, 61, 0.95), rgba(20, 33, 61, 0.95)), url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80'); background-size: cover; padding: 60px 20px; text-align: center; border-top: 4px solid var(--gold); color: white; }
         .hero h1 { font-size: 2.2rem; margin: 0; color: var(--gold); }
-
-        .container { 
-            max-width: 1100px; 
-            margin: 20px auto 60px; 
-            background: white; 
-            padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
-            border-top: 5px solid var(--gold);
-        }
-
-        .filter-section {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            background: #f1f3f5;
-            padding: 20px;
-            border-radius: 10px;
-        }
+        
+        .container { max-width: 1100px; margin: 20px auto 60px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--gold); }
+        .filter-section { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; background: #f1f3f5; padding: 20px; border-radius: 10px; }
         .filter-group { display: flex; flex-direction: column; gap: 5px; flex-grow: 1; }
         .filter-group label { font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase; }
-        select { padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: inherit; cursor: pointer; }
-
+        select { padding: 10px; border-radius: 5px; border: 1px solid #ccc; cursor: pointer; }
+        
         .table-responsive { width: 100%; overflow-x: auto; }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            min-width: 900px; 
-            table-layout: fixed; 
-        }
-        th, td { 
-            padding: 15px; 
-            border: 1px solid #eee; 
-            vertical-align: top; 
-            word-wrap: break-word;
-            font-size: 0.95rem;
-        }
-        th { background: var(--off-white); color: var(--navy); text-align: left; border: 1px solid #ddd; font-weight: 700; }
-        .col-date { width: 15%; }
-        .col-name { width: 30%; }
-        .col-type { width: 12%; }
-        .col-loc   { width: 25%; }
-        .col-reg   { width: 18%; }
-
+        table { width: 100%; border-collapse: collapse; min-width: 900px; table-layout: fixed; }
+        th, td { padding: 15px; border: 1px solid #eee; vertical-align: top; word-wrap: break-word; font-size: 0.95rem; }
+        th { background: var(--off-white); color: var(--navy); text-align: left; font-weight: 700; }
+        
+        .col-date { width: 15%; } .col-name { width: 30%; } .col-type { width: 12%; } .col-loc { width: 25%; } .col-reg { width: 18%; }
         tr:nth-child(even) { background-color: #fcfcfc; }
-        .reg-link { color: var(--link-blue); text-decoration: underline; font-weight: 600; }
-        #loading { text-align: center; padding: 20px; font-weight: bold; color: var(--navy); }
+        .reg-link { color: var(--link-blue); font-weight: 600; }
+        .loading-text { text-align: center; padding: 20px; font-weight: bold; color: var(--navy); }
         
         footer { margin-top: 50px; padding: 40px 20px; background: var(--navy); color: white; text-align: center; }
-        .view-counter { display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(252, 163, 17, 0.3); color: var(--gold); }
-
-        @media (max-width: 850px) {
-            .filter-group { width: 100%; }
-            .hero h1 { font-size: 1.5rem; }
-        }
+        .view-counter { display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; font-size: 0.85rem; color: var(--gold); }
     </style>
 </head>
 <body>
@@ -172,45 +74,29 @@
         <a href="index.html" class="logo">THE CHESS GURUKUL</a>
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="tournaments.html" style="color: var(--gold);">Tournaments</a>
+            <a href="tournaments.html" class="nav-active">Tournaments</a>
         </div>
     </div>
 </nav>
 
-<header class="hero">
-    <h1>Upcoming Tournaments in Pune, Maharashtra</h1>
-</header>
+<header class="hero"><h1>Upcoming Tournaments in Pune, Maharashtra</h1></header>
 
 <div class="container">
     <div class="filter-section">
         <div class="filter-group">
-            <label>Filter by Month</label>
-            <select id="monthFilter" onchange="filterData()">
-                <option value="all">All Months</option>
-            </select>
+            <label for="monthFilter">Filter by Month</label>
+            <select id="monthFilter"><option value="all">All Months</option></select>
         </div>
         <div class="filter-group">
-            <label>Rating Category</label>
-            <select id="ratingFilter" onchange="filterData()">
-                <option value="all">All Categories</option>
-                <option value="Rated">Rated</option>
-                <option value="Unrated">Unrated</option>
-            </select>
+            <label for="ratingFilter">Rating Category</label>
+            <select id="ratingFilter"><option value="all">All Categories</option><option value="Rated">Rated</option><option value="Unrated">Unrated</option></select>
         </div>
     </div>
-
-    <div id="loading">Connecting to Spreadsheet...</div>
-    
+    <div id="loading" class="loading-text">Connecting to Spreadsheet...</div>
     <div class="table-responsive">
-        <table id="tournament-table" style="display:none;">
+        <table id="tournament-table" class="hidden">
             <thead>
-                <tr>
-                    <th class="col-date">Date</th>
-                    <th class="col-name">Tournament Name</th>
-                    <th class="col-type">Type</th>
-                    <th class="col-loc">Location</th>
-                    <th class="col-reg">Register / View details</th>
-                </tr>
+                <tr><th class="col-date">Date</th><th class="col-name">Tournament Name</th><th class="col-type">Type</th><th class="col-loc">Location</th><th class="col-reg">Register / View details</th></tr>
             </thead>
             <tbody id="table-body"></tbody>
         </table>
@@ -218,163 +104,14 @@
 </div>
 
 <footer>
-    <p style="margin-bottom: 15px; font-weight: 600; color: var(--gold);">THE CHESS GURUKUL</p>
+    <p class="footer-brand">THE CHESS GURUKUL</p>
     <div class="view-counter">
-        <span id="busuanzi_container_page_pv">
-            👁️ <span id="busuanzi_value_page_pv">...</span> reads
-        </span>
+        <span id="busuanzi_container_page_pv">👁️ <span id="busuanzi_value_page_pv">...</span> reads</span>
     </div>
-    <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">© 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
+    <p style="opacity: 0.6; font-size: 0.8rem;">© 2026 The Chess Gurukul | Pune, India 🇮🇳</p>
 </footer>
 
-<script>
-    const publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfhTmO3FfIAxgxgNoSZJ2f1veT9kFlnQoYYHuj6AKwl8wrxIBvPtRLOF2QmYHVyVvi8ywiAnl__Fif/pub?output=csv';
-    let allTournaments = [];
-
-    function parseSheetDate(dateStr) {
-        if (!dateStr) return new Date(NaN);
-        const cleanDate = dateStr.trim().replace(/-/g, '/');
-        return new Date(cleanDate);
-    }
-
-    function init() {
-        Papa.parse(publicSpreadsheetUrl, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: (results) => {
-                allTournaments = results.data.filter(row => row['Date'] && row['Date'].trim() !== "");
-                
-                if (allTournaments.length === 0) {
-                    document.getElementById('loading').innerText = "No data found in the spreadsheet.";
-                    return;
-                }
-
-                populateMonthFilter(allTournaments);
-                displayTournaments(allTournaments);
-            },
-            error: (err) => {
-                document.getElementById('loading').innerText = "Error loading spreadsheet. Please check link.";
-            }
-        });
-    }
-
-    function populateMonthFilter(data) {
-        const monthSelect = document.getElementById('monthFilter');
-        const monthsFound = new Set();
-        
-        data.forEach(row => {
-            const d = parseSheetDate(row['Date']);
-            if (!isNaN(d)) {
-                monthsFound.add(d.toLocaleString('default', { month: 'long' }));
-            }
-        });
-
-        const monthOrder = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const sortedMonths = Array.from(monthsFound).sort((a, b) => monthOrder.indexOf(a) - monthOrder.indexOf(b));
-
-        sortedMonths.forEach(m => {
-            const opt = document.createElement('option');
-            opt.value = m;
-            opt.textContent = m;
-            monthSelect.appendChild(opt);
-        });
-    }
-
-    function filterData() {
-        const monthVal = document.getElementById('monthFilter').value;
-        const ratingVal = document.getElementById('ratingFilter').value;
-
-        const filtered = allTournaments.filter(row => {
-            const d = parseSheetDate(row['Date']);
-            const rowMonth = isNaN(d) ? "" : d.toLocaleString('default', { month: 'long' });
-            const rowType = (row['Type'] || "").trim();
-            
-            const matchMonth = (monthVal === 'all' || rowMonth === monthVal);
-            const matchRating = (ratingVal === 'all' || rowType === ratingVal);
-            return matchMonth && matchRating;
-        });
-
-        displayTournaments(filtered);
-    }
-
-    function displayTournaments(data) {
-        const tableBody = document.getElementById('table-body');
-        const table = document.getElementById('tournament-table');
-        const loading = document.getElementById('loading');
-        tableBody.innerHTML = "";
-        
-        if (data.length === 0) {
-            const emptyTr = document.createElement('tr');
-            const emptyTd = document.createElement('td');
-            emptyTd.setAttribute('colspan', '5');
-            emptyTd.setAttribute('style', 'text-align:center; padding:30px;');
-            emptyTd.textContent = "No tournaments found for this selection.";
-            emptyTr.appendChild(emptyTd);
-            tableBody.appendChild(emptyTr);
-        } else {
-            data.forEach(row => {
-                const dateObj = parseSheetDate(row['Date']);
-                const dayName = isNaN(dateObj) ? "" : dateObj.toLocaleDateString('en-US', { weekday: 'long' }) + ", ";
-                
-                const tr = document.createElement('tr');
-
-                const dateTd = document.createElement('td');
-                dateTd.style.fontWeight = "bold";
-                dateTd.style.color = "var(--navy)";
-                dateTd.appendChild(document.createTextNode(dayName));
-                dateTd.appendChild(document.createElement('br'));
-                dateTd.appendChild(document.createTextNode(row['Date']));
-                tr.appendChild(dateTd);
-
-                const nameTd = document.createElement('td');
-                nameTd.style.fontWeight = "600";
-                nameTd.style.color = "var(--text-dark)";
-                nameTd.textContent = row['Tournament Name'];
-                tr.appendChild(nameTd);
-
-                const typeTd = document.createElement('td');
-                typeTd.textContent = row['Type'];
-                tr.appendChild(typeTd);
-
-                const locTd = document.createElement('td');
-                locTd.style.color = "#444";
-                locTd.textContent = row['Location'];
-                tr.appendChild(locTd);
-
-                const actionTd = document.createElement('td');
-                const link = document.createElement('a');
-                
-                try {
-                    const cleanUrl = new URL(row['Link'].trim());
-                    // 3. UPGRADED: Only allow secure HTTPS links to prevent downgrade attacks
-                    if (cleanUrl.protocol === 'https:') {
-                        link.href = cleanUrl.href;
-                    } else {
-                        link.href = "#";
-                    }
-                } catch (e) {
-                    link.href = "#";
-                }
-
-                link.target = "_blank";
-                link.rel = "noopener noreferrer";
-                link.className = "reg-link";
-                link.textContent = "View Details";
-                actionTd.appendChild(link);
-                tr.appendChild(actionTd);
-
-                tableBody.appendChild(tr);
-            });
-        }
-
-        loading.style.display = 'none';
-        table.style.display = 'table';
-    }
-
-    window.addEventListener('DOMContentLoaded', init);
-</script>
-
+<script src="js/tournament-logic.js"></script>
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 </body>
