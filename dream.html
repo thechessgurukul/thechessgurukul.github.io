@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dream | The Chess Gurukul | CA Gaurav Bapat</title>
+    <meta name="description" content="CA Gaurav Bapat's vision to build a world-class chess academy in India — a home for chess excellence where any child can learn, grow, and dream bigger.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thechessgurukul.github.io/thechessgurukul/dream.html">
+    <meta property="og:title" content="A Dream Beyond the Board | The Chess Gurukul">
+    <meta property="og:description" content="CA Gaurav Bapat's vision to build a world-class chess academy in India where any child can walk in and learn, grow, and dream bigger.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/thechessgurukul/thechessgurukul/main/social-preview.jpg">
+
+    <style>
+        :root {
+            --navy: #14213d;
+            --gold: #fca311;
+            --off-white: #f8f9fa;
+            --text-dark: #212529;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--off-white);
+            scroll-behavior: smooth;
+        }
+
+        /* ── Navigation (matches main site) ── */
+        nav {
+            background: var(--navy);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(252, 163, 17, 0.2);
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo-group { display: flex; flex-direction: column; }
+        .logo { color: var(--gold); font-weight: 800; font-size: 1.4rem; text-decoration: none; line-height: 1.2; }
+        .tagline { color: #ffffff; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.5px; opacity: 0.9; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a.active { color: var(--gold); }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+        /* ── Hero Banner ── */
+        .dream-hero {
+            background: linear-gradient(rgba(20, 33, 61, 0.96), rgba(20, 33, 61, 0.96)),
+                        url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 20px 100px;
+            text-align: center;
+            border-top: 4px solid var(--gold);
+        }
+        .dream-hero .eyebrow {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 4px;
+            margin-bottom: 28px;
+        }
+        .dream-hero h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .dream-hero p {
+            font-size: 1.15rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* ── Main Content ── */
+        .dream-body {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 80px 20px 60px;
+        }
+
+        .intro-name {
+            font-size: 1.05rem;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .dream-body p {
+            font-size: 1.08rem;
+            color: #333;
+            margin-bottom: 22px;
+            line-height: 1.9;
+        }
+
+        .dream-body h2 {
+            font-size: 1.7rem;
+            color: var(--navy);
+            margin: 50px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold);
+            display: inline-block;
+        }
+
+        /* ── Vision List ── */
+        .vision-list {
+            list-style: none;
+            margin: 24px 0 30px;
+            padding: 0;
+        }
+        .vision-list li {
+            padding: 14px 20px 14px 52px;
+            margin-bottom: 12px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+        }
+        .vision-list li::before {
+            content: "♟";
+            position: absolute;
+            left: 16px;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* ── Invitation Block ── */
+        .invitation-block {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            border-top: 5px solid var(--gold);
+        }
+        .invitation-block h2 {
+            border-bottom: none;
+            margin-top: 0;
+            padding-bottom: 0;
+        }
+        .invitation-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .invitation-block ul li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            font-size: 1rem;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .invitation-block ul li:last-child { border-bottom: none; }
+        .invitation-block ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* ── Closing Quote ── */
+        .closing-quote {
+            background: var(--navy);
+            color: white;
+            border-radius: 16px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        .closing-quote p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .closing-quote .signature {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1rem;
+            font-style: normal;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* ── CTA Buttons ── */
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 50px 0 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            white-space: nowrap;
+            border: 2px solid var(--gold);
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        .btn-primary:hover { background: #e59400; border-color: #e59400; }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+        .btn-secondary:hover { background: var(--navy); color: white; }
+
+        .share-note {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* ── Floating WhatsApp ── */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        .floating-whatsapp svg { width: 38px; height: 38px; fill: white; }
+
+        /* ── Footer ── */
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        footer a { color: #777; text-decoration: none; margin: 0 10px; }
+        footer a:hover { color: var(--gold); text-decoration: underline; }
+
+        /* ── Responsive ── */
+        @media (max-width: 850px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 15px 0; font-size: 1.1rem; }
+            .dream-hero h1 { font-size: 2rem; }
+            .dream-hero { padding: 80px 20px 60px; }
+            .invitation-block { padding: 30px 20px; }
+            .closing-quote { padding: 40px 24px; }
+            .cta-group { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I%20read%20about%20your%20dream%20and%20would%20like%20to%20connect." class="floating-whatsapp" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.2-3.2-5.6-.3-8.6 2.4-11.3 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.6 5.6-9.3 1.9-3.7 1-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+</a>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="logo-group">
+            <a href="index.html" class="logo">THE CHESS GURUKUL</a>
+            <span class="tagline">Explore the world of 64 squares...</span>
+        </div>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation">☰</button>
+        <div class="nav-links" id="nav-list">
+            <a href="index.html#about">About</a>
+            <a href="index.html#why-chess">Why Chess?</a>
+            <a href="index.html#programs">Programs</a>
+            <a href="tournaments.html">Pune Tournaments</a>
+            <a href="dream.html" class="active">My Dream</a>
+            <a href="index.html#blog">Blog</a>
+            <a href="index.html#reviews">Reviews</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<div class="dream-hero">
+    <span class="eyebrow">A Personal Vision</span>
+    <h1>A Dream Beyond the Board</h1>
+    <p>One coach. One vision. A lifetime of commitment to chess and the children who play it.</p>
+</div>
+
+<!-- Body Content -->
+<div class="dream-body">
+
+    <p class="intro-name">My name is CA Gaurav Bapat.</p>
+
+    <p>For years, chess has not just been a game for me. It has been a teacher, a discipline, and a way of shaping young minds. Through my journey with Chess Gurukul, I have seen something deeply powerful.</p>
+
+    <p style="font-size: 1.2rem; font-weight: 600; color: var(--navy); border-left: 4px solid var(--gold); padding-left: 20px; margin: 30px 0;">
+        A single opportunity in chess can change a child's life.
+    </p>
+
+    <h2>The Dream</h2>
+    <p>I carry a dream.</p>
+    <p>A dream to build a world-class chess academy in India. A place where any child, regardless of background, can walk in and learn, grow, and dream bigger.</p>
+    <p>I envision a space where everything a chess learner needs exists under one roof.</p>
+
+    <ul class="vision-list">
+        <li>A spacious, international-standard tournament hall</li>
+        <li>A rich chess library filled with timeless knowledge</li>
+        <li>Residential accommodation for students coming from across the country</li>
+        <li>Dedicated training rooms, analysis zones, and mentoring spaces</li>
+        <li>A vibrant chess club that brings together players of all levels to learn, compete, and grow together</li>
+        <li>A culture that builds not just players — but thinkers, leaders, and resilient individuals</li>
+    </ul>
+
+    <p style="font-size: 1.1rem; font-weight: 600; color: var(--navy);">Not just an academy. But a home for chess excellence.</p>
+
+    <h2>Why This Matters</h2>
+    <p>India has immense chess talent.</p>
+    <p>Yet, access to structured training, infrastructure, and mentorship is still limited for many. This dream is not about creating champions alone. It is about creating access. It is about building a system where talent meets opportunity.</p>
+
+    <h2>A Life Dedicated to This Vision</h2>
+    <p>If this dream takes shape, I commit something deeply personal.</p>
+    <p>I will dedicate my entire life to building, nurturing, and growing this institution. Not as a project. Not as a business. But as a mission.</p>
+
+    <!-- Invitation Block -->
+    <div class="invitation-block">
+        <h2>An Invitation</h2>
+        <p>No great dream is built alone. I warmly invite you if you are:</p>
+        <ul>
+            <li>A chess enthusiast who believes in the power of the game</li>
+            <li>A parent who sees learning through chess as a gift</li>
+            <li>A mentor, supporter, or well-wisher</li>
+            <li>A philanthropist who believes in empowering young minds</li>
+            <li>Someone who wishes to contribute to a meaningful long-term vision</li>
+        </ul>
+        <p>Share this vision. Talk about it. Connect me with people who resonate with it. And if you are in a position to support — whether through guidance, resources, collaboration, or patronage — your contribution can help bring this dream closer to reality.</p>
+    </div>
+
+    <!-- Closing Quote -->
+    <div class="closing-quote">
+        <p>"One day, I hope we will look at this institution and say — <em>this is where countless journeys began.</em>"</p>
+        <p>Until then, this remains a dream. But one I am committed to pursuing with everything I have.</p>
+        <span class="signature">— CA Gaurav Bapat, Founder, Chess Gurukul</span>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="cta-group">
+        <a href="https://wa.me/919175154913?text=Hi%20Gaurav%2C%20I%20read%20about%20your%20dream%20and%20would%20like%20to%20connect." class="btn btn-primary" target="_blank" rel="noopener noreferrer">💬 Connect on WhatsApp</a>
+        <a href="#" class="btn btn-secondary" id="share-btn">🔗 Share This Vision</a>
+    </div>
+    <p class="share-note">Help spread the word — every share brings this dream closer.</p>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 The Chess Gurukul | CA Gaurav Bapat | Pune, India</p>
+    <p>
+        <a href="privacy-policy.html">Privacy Policy</a> |
+        <a href="terms.html">Terms &amp; Conditions</a>
+    </p>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu').addEventListener('click', function () {
+        document.getElementById('nav-list').classList.toggle('active');
+    });
+
+    // Share button
+    document.getElementById('share-btn').addEventListener('click', function (e) {
+        e.preventDefault();
+        if (navigator.share) {
+            navigator.share({
+                title: 'A Dream Beyond the Board — The Chess Gurukul',
+                text: 'CA Gaurav Bapat has a powerful vision to build a world-class chess academy in India. Read about it here.',
+                url: window.location.href
+            });
+        } else {
+            // Fallback: copy link to clipboard
+            navigator.clipboard.writeText(window.location.href).then(function () {
+                alert('Link copied to clipboard! Share it with someone who might resonate.');
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
